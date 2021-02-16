@@ -1,0 +1,43 @@
+<mat-card class="mat-elevation-z8">
+  <mat-card>
+    <table class="table" style="border: none" border="0">
+      <tr>
+        <td width="85%" style="border: none">
+          <mat-form-field style="display: inline; width: 30%">
+            <mat-label>অনুসন্ধান</mat-label>
+            <input matInput placeholder="অনুসন্ধানের শব্দাংশ লিখুন" (keyup)="applyFilter($event.target.value)"/>
+          </mat-form-field>
+        </td>
+        <td class="float-right" style="border: none">
+          <a  (click)="openDialogTeam()" class="btn btn-primary" >
+            <i class="fa fa-plus" matTooltip="নতুন সদস্য যুক্ত করুন" ></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+    <table [dataSource]="dataSource" mat-table matSort>
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> নাম</th>
+        <td *matCellDef="let element" mat-cell > {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> ক্রিয়া</th>
+        <td *matCellDef="let element" mat-cell>
+          <a style="margin-right: 5px;" class="btn btn-danger" matTooltip="অপসারণ করুন">
+            <i class="fa fa-remove red-color"></i>
+          </a>
+          <a (click)="openDialog(element)" class="btn btn-success" matTooltip="দেখুন">
+            <i class="fa fa-eye"></i>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
+<app-loader></app-loader>

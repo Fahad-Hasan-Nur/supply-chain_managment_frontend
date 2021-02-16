@@ -1,0 +1,31 @@
+<!-- <li #drop1="ngbDropdown" ngbDropdown autoClose="false" class="nav-item d-md-down-none"
+    placement="bottom right" ngbDropdown (openChange)="checkDropDown($event,drop1)">
+  <a (click)="true"  class="nav-link" ngbDropdownToggle style="padding-left: 15px;">
+    <i class="fa fa-bell-o fa-1x nav-font"></i>
+    <span *ngIf="notifications && unSeenCount> 0"
+          class="badge badge-pill badge-danger">{{unSeenCount}}
+  </span>
+  </a>
+  <div *ngIf="notifications "
+       ngbDropdownMenu>
+    <div class="dropdown-header text-center">
+      <strong>{{'আপনার ' + unSeenCount + ' টি নতুন নোটিফিকেশন রয়েছে' | translate}}</strong>
+    </div>
+
+
+    <a *ngFor="let n of notifications"  href="{{n.url}}" ngbDropdownItem >
+      <div class= "row "(click)="clickNotification(n)">
+        <div class=" text-wrap col-12 ">
+          {{n.notificationContent}}</div>
+      </div>
+    </a>
+
+
+    <div class="dropdown-header text-center">
+      <a (click)="clickSeeAll()">সব দেখুন</a>
+    </div>
+  </div>
+
+</li>
+
+ -->

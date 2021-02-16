@@ -1,0 +1,74 @@
+<mat-card>
+    <mat-card-content>
+      <div fxLayoutAlign="end">
+      </div>
+      <div>
+          <mat-form-field class="col-md-3">
+            <mat-label>{{'মন্ত্রণালয়ের নাম​'}}</mat-label>
+            <input matInput placeholder="{{'মন্ত্রণালয়ের নাম​ দিয়ে অনুসন্ধান'}}">
+          </mat-form-field>
+          <mat-form-field class="col-md-3">
+            <mat-label>{{'অফিসের নাম'}}</mat-label>
+            <input matInput placeholder="{{'অফিসের নাম​ দিয়ে অনুসন্ধান'}}">
+          </mat-form-field>
+          <mat-form-field class="col-md-3">
+            <mat-label>{{'পদবির নাম​'}}</mat-label>
+            <input matInput placeholder="{{'পদবির নাম দিয়ে অনুসন্ধান'}}">
+          </mat-form-field>
+          <mat-form-field class="col-md-3">
+            <mat-label>{{'কর্মকর্তার নাম​'}}</mat-label>
+            <input matInput placeholder="{{'কর্মকর্তার নাম দিয়ে অনুসন্ধান'}}">
+          </mat-form-field>
+        </div>
+      
+      <mat-card-actions align="end" style="margin-right: auto; padding: unset">
+        <a class="btn btn-secondary" style="margin-right: 5px" matTooltip="{{'অনুসন্ধানের ফিল্ডগুলো রিসেট করুন​'}}">
+          <i class="fa fa-refresh"></i>
+        </a>
+        <a class="btn btn-primary" matTooltip="{{'অনুসন্ধান করুন​'}}">
+          <i class="fa fa-search"></i>
+        </a>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+  <br><br>
+  <div>
+  <div class="mem-list-table-container">
+    <table mat-table [dataSource]="dataSource" class="mem-table-full-width" matSort>
+      <!--Serial-->
+      <ng-container matColumnDef="sl">
+        <th mat-header-cell *matHeaderCellDef>{{'ক্রমিক নং'}}</th>
+        <td mat-cell *matCellDef="let element;let i = index">{{i + 1 }}</td>
+      </ng-container>
+      <!--Building Name-->
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'কর্মকর্তার নাম​'}}</th>
+        <td mat-cell *matCellDef="let element">{{element.buildingName}}</td>
+      </ng-container>
+      <!--  Address-->
+      <ng-container matColumnDef="designationName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'পদবির নাম'}}</th>
+        <td mat-cell *matCellDef="let element">{{element.address}}</td>
+      </ng-container>
+      <ng-container matColumnDef="officeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'অফিসের নাম'}}</th>
+        <td mat-cell *matCellDef="let element">{{element.address}}</td>
+      </ng-container>
+      <ng-container matColumnDef="ministryName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'মন্ত্রণালয়ের নাম'}}</th>
+        <td mat-cell *matCellDef="let element">{{element.address}}</td>
+      </ng-container>
+      <ng-container matColumnDef="disclaimer">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+          {{'কোনো কর্মকর্তা পাওয়া যায়নি'}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+      <tr [hidden]="dataSource.data.length === 0" mat-row *matRowDef="let row; columns: displayColumns"></tr>
+      <tr [hidden]="dataSource.data.length !== 0" mat-footer-row *matFooterRowDef="['disclaimer']"
+          class="example-second-footer-row"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[25, 50, 100, 200]"></mat-paginator>
+</div>

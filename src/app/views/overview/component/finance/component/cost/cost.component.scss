@@ -1,0 +1,47 @@
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .button1 {background-color: red;}
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  th.mat-header-cell, td.mat-cell {
+    text-align: center;
+  }
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .button1 {background-color: red;}
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  th.mat-header-cell, td.mat-cell {
+    text-align: center;
+  }
+  .table-input{
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    border-color: white;
+    border: 0px;
+  }

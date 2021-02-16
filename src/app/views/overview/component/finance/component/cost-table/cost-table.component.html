@@ -1,0 +1,32 @@
+<mat-card class="mat-elevation-z8">
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="year">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> আর্থিক বছর
+      </th>
+      <td *matCellDef="let element" mat-cell> {{element.year}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gob">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> জিওবি</th>
+      <td *matCellDef="let element" mat-cell> {{element.gob}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="finance">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> নিজস্ব অর্থ</th>
+      <td *matCellDef="let element" mat-cell> {{element.finance}} </td>
+    </ng-container>
+    <ng-container matColumnDef="other">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> অন্যান্য</th>
+      <td *matCellDef="let element" mat-cell> {{element.other}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> মোট</th>
+      <td *matCellDef="let element" mat-cell> {{element.total}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</mat-card>

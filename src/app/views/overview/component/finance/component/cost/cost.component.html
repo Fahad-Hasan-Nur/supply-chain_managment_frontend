@@ -1,0 +1,59 @@
+<mat-card class="mat-elevation-z8">
+  <a class="btn btn-primary" (click)="add()" style="margin: 0px;">
+    <i class="fa fa-plus" matTooltip="অর্থায়নের ধরণ ও উৎস যুক্ত করুন"></i>
+  </a>
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="উৎস">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> উৎস</th>
+      <td *matCellDef="let element; let i = index" mat-cell>
+        <input appDoubleClick readonly type="text" class="table-input {{'element'+i}}" name="source"
+               [(ngModel)]="element.source">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="জিওবি">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> জিওবি</th>
+      <td *matCellDef="let element; let j = index" mat-cell>
+        <input appDoubleClick readonly type="text" class="table-input {{'element'+j}}" name="gob"
+               [(ngModel)]="element.gob">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="নিজস্ব অর্থায়ন">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> নিজস্ব অর্থায়ন</th>
+      <td *matCellDef="let element; let k = index" mat-cell>
+        <input appDoubleClick readonly type="text" class="table-input {{'element'+k}}" name="finance"
+               [(ngModel)]="element.finance">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="অন্যান্য">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> অন্যান্য</th>
+      <td *matCellDef="let element; let l = index" mat-cell>
+        <input appDoubleClick readonly type="text" class="table-input {{'element'+l}}" name="other"
+               [(ngModel)]="element.other">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="অ্যাকশন">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> অ্যাকশন</th>
+      <td *matCellDef="let element; let m = index" mat-cell>
+
+        <a class="btn btn-success" (click)="save(element)" style="margin: 0px;">
+          <i class="fa fa-save" matTooltip="যুক্ত করুন"></i>
+        </a>
+
+        <a class="btn btn-warning" (click)="edit(m)" style="margin: 0px;">
+          <i id="{{'view'+m}}" class="fa fa-edit" matTooltip="পরিবর্তন করুন"></i>
+        </a>
+
+        <a class="btn btn-danger" (click)="cancel(element)" style="margin: 0px;">
+          <i class="fa fa-trash" matTooltip="বাতিল করুন"></i>
+        </a>
+
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</mat-card>

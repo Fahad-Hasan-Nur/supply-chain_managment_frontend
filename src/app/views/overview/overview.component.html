@@ -1,0 +1,59 @@
+<div class="animated fadeIn">
+    <div class="card-header">
+        <div class="animated fadeIn">
+            <mat-tab-group mat-stretch-tabs>
+                <mat-tab label="বিবরণ ">
+                    <app-project-overview [project]="project"></app-project-overview>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("লক্ষ্য সমুহ")'>{{'পরবর্তী​'}}</button>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="লক্ষ্য সমুহ">
+                    <app-goal></app-goal>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("অর্থায়ন")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("বিবরণ")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="অর্থায়ন">
+                    <app-finance></app-finance>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("লোকবল")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("লক্ষ্য সমুহ")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="লোকবল">
+                    <app-man-power></app-man-power>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("সংযোজন")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("অর্থায়ন")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+                <mat-tab label="সংযোজন">
+                    <app-add-file></app-add-file>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("প্রকল্প এলাকা")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("লোকবল")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+                <mat-tab label="প্রকল্প এলাকা">
+                    <app-project-area></app-project-area>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("ব্যয় সারসংক্ষেপ")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("সংযোজন")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+                <mat-tab label="ব্যয় সারসংক্ষেপ">
+                    <app-cost-overview></app-cost-overview>
+                    <div class="align-content-end">
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("বিবরণ")'>{{'পরবর্তী​'}}</button>
+                        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" tabindex="-1" (click)='moveToSelectedTab("প্রকল্প এলাকা")'>{{'পূর্ববর্তী'}}</button>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

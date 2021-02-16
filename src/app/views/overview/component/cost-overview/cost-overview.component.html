@@ -1,0 +1,51 @@
+<mat-accordion #accordion="matAccordion" [multi]="true">
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                কর ব্যয়
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-expense [expense]="taxExpenseData"></app-expense>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                সংগ্রহ এবং সেবা
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-expense [expense]="serviceExpenseData"></app-expense>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                মেরামত, সংগ্রহ এবং পুনরবাশন
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-expense [expense]="constructionExpenseData"></app-expense>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                মূলধন ব্যয়
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-expense [expense]="capitalExpenseData"></app-expense>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                নির্মাণ
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-expense [expense]="buildExpenseData"></app-expense>
+    </mat-expansion-panel>
+    <div>
+        <p align="right"></p>
+        <h3 align='right'> মোট ব্যয় : {{total}} </h3>
+    </div>
+</mat-accordion>

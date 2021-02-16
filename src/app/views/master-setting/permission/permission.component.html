@@ -1,0 +1,45 @@
+<mat-card class="mat-elevation-z8">
+
+    <div class="float-right">
+        <button class="btn btn-primary" color="primary">{{' সংরক্ষণ করুন​'}}</button>
+    </div>
+    <table [dataSource]="dataSource" mat-table matSort>
+
+        <ng-container matColumnDef="privilage">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> </th>
+            <td *matCellDef="let element" mat-cell> {{element.privilage}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="সুপার এডমিন">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> সুপার এডমিন</th>
+            <td *matCellDef="let element" mat-cell> <input type="checkbox" [checked]="element.admin"
+                    (change)="onChange(element.admin, $event.target.checked)" /></td>
+        </ng-container>
+
+        <ng-container matColumnDef="জিইডি লেখক">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> জিইডি লেখক</th>
+            <td *matCellDef="let element" mat-cell><input type="checkbox" [checked]="element.gedAuthor"
+                    (change)="onChange(element.gedAuthor, $event.target.checked)" /> </td>
+        </ng-container>
+        <ng-container matColumnDef="প্রকল্প ব্যবস্থাপক">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> প্রকল্প ব্যবস্থাপক </th>
+            <td *matCellDef="let element" mat-cell> <input type="checkbox" [checked]="element.pd"
+                    (change)="onChange(element.pd, $event.target.checked)" /> </td>
+        </ng-container>
+        <ng-container matColumnDef="প্রকল্প সদস্য">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> প্রকল্প সদস্য </th>
+            <td *matCellDef="let element" mat-cell> <input type="checkbox"[checked]="element.pdMember"
+                    (change)="onChange(element.pdMember, $event.target.checked)" /> </td>
+        </ng-container>
+        <ng-container matColumnDef="সচিব">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header>সচিব </th>
+            <td *matCellDef="let element" mat-cell> <input type="checkbox"  [checked]="element.secretary"
+                    (change)="onChange(element.secretary, $event.target.checked)" /> </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+
+
+</mat-card>

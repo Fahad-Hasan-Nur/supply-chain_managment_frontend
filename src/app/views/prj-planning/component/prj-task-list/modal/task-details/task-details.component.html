@@ -1,0 +1,8 @@
+<div class="animated fadeIn">
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="{{'বর্ণনা'}}">
+            <app-create-task [isModal]="true" [underTab]="true" (modelOff)="cancel()" [taskData]="task" [editable]="true" ></app-create-task>
+        </mat-tab>
+        <mat-tab label="{{'সংযুক্তি'}}"><app-attachments [task]="task"></app-attachments></mat-tab>
+    </mat-tab-group>
+</div>
