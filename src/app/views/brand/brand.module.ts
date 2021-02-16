@@ -1,33 +1,28 @@
-import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrandRoutingModule } from './brannd-routing.module';
-import { BrandComponent } from './brand.component';
-import { DemoMaterialModule } from '../../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { QuillModule } from 'ngx-quill';
-import {SelectModule} from "ng-select";
-import {NgSelectModule} from "@ng-select/ng-select";
-
+import { Brand } from '../../common/model/brand';
+import { DemoMaterialModule } from '../../material.module';
+import { BrandAddComponent } from './brand-add/brand-add.component';
+import { BrandListComponent } from './brand-list/brand-list.component';
+import { BrandRoutingModule } from './brand-routing.module';
+import { BrandComponent } from './brand.component';
+import { LoaderComponent } from './loader.component';
 
 @NgModule({
-  declarations: [
-    BrandComponent
-  ],
-  entryComponents: [],
-
+  declarations: [BrandComponent, BrandListComponent, BrandAddComponent,LoaderComponent],
   imports: [
     CommonModule,
     BrandRoutingModule,
     FormsModule,
-    NgSelectModule,
     DemoMaterialModule,
     ReactiveFormsModule,
-    QuillModule.forRoot(),
-    SelectModule,
   ],
-  providers: []
+  providers: [DatePipe,Brand],
 })
 export class BrandModule {
-  constructor() {}
+  constructor() {
+    console.log('brand-module loaded');
+  }
 }

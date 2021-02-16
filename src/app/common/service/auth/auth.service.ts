@@ -68,11 +68,6 @@ export class AuthService {
 
   public isTokenValid(admin: Admin): boolean {
     if (admin) {
-      console.log(admin.exp * 1000);
-
-      if (new Date(admin.exp * 1000) < (new Date)) {
-        return false;
-      }
       return true;
     } else {
       return false;

@@ -6,5 +6,7 @@ export class Brand {
     public description?: string ;
     public imageId?: string ;
     public imageName?: string ;
+    public createdBy?: number;
+    public createdAt?: Date;
   }
   

@@ -161,6 +161,96 @@ export const navItems: NavData[] = [
       },
     ]
   },
+  //Brand
+  {
+    name: MENU_NAME.BRAND,
+    url: URL.BRAND,
+    icon: ICON.BRAND,
+    children: [
+      //BRAND LIST VIEW
+      {
+        name: MENU_NAME.BRAND_LIST,
+        url: URL.BRAND_LIST,
+        icon: ICON.PRODUCT_LIST,
+        authorities: [MENU_NAME.BRAND_LIST],
+        requiredRole: [
+          ROLES.SUPER_ADMIN,
+          ROLES.ADMIN
+        ]
+      },
+      //PRODUCT ADD
+      {
+        name: MENU_NAME.BRAND_ADD,
+        url: URL.BRAND_ADD,
+        icon: ICON.PRODUCT_ADD,
+        authorities: [MENU_NAME.BRAND_ADD],
+        requiredRole: [
+          ROLES.ADMIN,
+          ROLES.SUPER_ADMIN,
+        ]
+      },
+    ]
+  },
+  //Category
+   {
+    name: MENU_NAME.CATEGORY,
+    url: URL.CATEGORY,
+    icon: ICON.CATEGORY,
+    children: [
+      //BRAND LIST VIEW
+      {
+        name: MENU_NAME.CATEGORY_LIST,
+        url: URL.CATEGORY_LIST,
+        icon: ICON.PRODUCT_LIST,
+        authorities: [MENU_NAME.CATEGORY_LIST],
+        requiredRole: [
+          ROLES.SUPER_ADMIN,
+          ROLES.ADMIN
+        ]
+      },
+      //PRODUCT ADD
+      {
+        name: MENU_NAME.CATEGORY_ADD,
+        url: URL.CATEGORY_ADD,
+        icon: ICON.PRODUCT_ADD,
+        authorities: [MENU_NAME.CATEGORY_ADD],
+        requiredRole: [
+          ROLES.ADMIN,
+          ROLES.SUPER_ADMIN,
+        ]
+      },
+    ]
+  },
+   //SUb-Category
+   {
+    name: MENU_NAME.SUB_CATEGORY,
+    url: URL.SUB_CATEGORY,
+    icon: ICON.CATEGORY,
+    children: [
+      //Sub category LIST VIEW
+      {
+        name: MENU_NAME.SUB_CATEGORY_LIST,
+        url: URL.SUB_CATEGORY_LIST,
+        icon: ICON.PRODUCT_LIST,
+        authorities: [MENU_NAME.SUB_CATEGORY_LIST],
+        requiredRole: [
+          ROLES.SUPER_ADMIN,
+          ROLES.ADMIN
+        ]
+      },
+      //SUBCATEGORY ADD
+      {
+        name: MENU_NAME.SUB_CATEGORY_ADD,
+        url: URL.SUB_CATEGORY_ADD,
+        icon: ICON.PRODUCT_ADD,
+        authorities: [MENU_NAME.SUB_CATEGORY_ADD],
+        requiredRole: [
+          ROLES.ADMIN,
+          ROLES.SUPER_ADMIN,
+        ]
+      },
+    ]
+  },
   //REPORT
   // {
   //   name: MENU_NAME.REPORT,

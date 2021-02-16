@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../common/service/storage/storage.service';
 import { AUTH } from '../../common/constant/global-variables.constant';
+import { Brand } from '../../common/model/brand';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,14 @@ private  reqHeader= new HttpHeaders({
    */
   public getBrand(): Observable<any>{
     return this._http.get(BRAND_API.GET_BRAND,{ headers: this.reqHeader });
+  }
+  /**
+   * create a new brand.
+   *
+   * @param brand
+   * @returns brand
+   */
+  public addBrand(brand:Brand){
+    return this._http.post(BRAND_API.ADD_BRAND,brand,{ headers: this.reqHeader });
   }
 }

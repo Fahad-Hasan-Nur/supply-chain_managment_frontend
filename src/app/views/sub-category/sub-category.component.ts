@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-brand',
+  selector: 'app-sub-category',
   template: `
                  <div class="animated fadeIn">
                    <router-outlet></router-outlet>
@@ -9,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
                 `,
   styles: []
 })
-export class BrandComponent implements OnInit {
+export class SubCategoryComponent implements OnInit {
+
   constructor() { }
+
   ngOnInit() {
   }
 

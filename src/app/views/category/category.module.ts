@@ -1,13 +1,15 @@
-import { CategoryComponent } from './category.component';
-import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-
-import { CategoryRoutingModule } from './category-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DemoMaterialModule } from '../../material.module';
+import { CategoryAddComponent } from './category-add/category-add.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryRoutingModule } from './category-routing.module';
+import { CategoryComponent } from './category.component';
 
 @NgModule({
-  declarations: [CategoryComponent],
+  declarations: [CategoryComponent, CategoryAddComponent, CategoryListComponent],
   entryComponents:[],
   imports: [
     CommonModule,

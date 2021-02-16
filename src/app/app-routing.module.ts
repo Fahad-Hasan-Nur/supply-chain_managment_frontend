@@ -36,9 +36,9 @@ export const routes: Routes = [
         loadChildren: () => import('./views/category/category.module').then(m => m.CategoryModule)
       },
       {
-        path: URL_NAME.BRAND,
+        path: URL_NAME.SUB_CATEGORY,
        // canActivate: [AuthGuard],
-        loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule)
+        loadChildren: () => import('./views/sub-category/sub-category.module').then(m => m.SubCategoryModule)
       },
       {
         path: URL_NAME.PRJ_DASHBOARD,
@@ -51,20 +51,20 @@ export const routes: Routes = [
         loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
+        path: URL_NAME.BRAND,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule)
+      },
+      {
         path: URL_NAME.PRJ,
       //  canActivate: [AuthGuard],
         loadChildren: () => import('./views/prj-planning/prj-planning.module').then(m => m.PrjPlanningModule)
       },
-      {
-        path: URL_NAME.MASTER_SETTING,
-      //  canActivate: [AuthGuard],
-        loadChildren: () => import('./views/master-setting/master-setting.module').then(m => m.MasterSettingModule)
-      },
-      {
-        path: URL_NAME.EMPLOYEE,
-     //   canActivate: [AuthGuard],
-        loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule)
-      }
+    //   {
+    //     path: URL_NAME.EMPLOYEE,
+    //  //   canActivate: [AuthGuard],
+    //     loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule)
+    //   }
     ],
   },
   {

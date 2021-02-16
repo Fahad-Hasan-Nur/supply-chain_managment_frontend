@@ -70,43 +70,31 @@ export class DefaultLayoutComponent implements OnInit {
     const privilege = new Set<string>();
 
     // privilege.add(MENU_NAME.CATEGORY);
-    // privilege.add(MENU_NAME.BRAND);
+    privilege.add(MENU_NAME.BRAND);
+    privilege.add(MENU_NAME.PRODUCT_ADD);
+    privilege.add(MENU_NAME.PRODUCT_LIST);
     // privilege.add(MENU_NAME.PRJ_DASHBOARD);
     // privilege.add(MENU_NAME.PRJ_OVERVIEW);
     // privilege.add(MENU_NAME.PRJ_ADD);
     // privilege.add(MENU_NAME.PRJ_LIST);
     // privilege.add(MENU_NAME.PRJ_TASK_LIST);
     // privilege.add(MENU_NAME.PRJ_TASK_ADD);
-    privilege.add(MENU_NAME.PRODUCT_ADD);
-    privilege.add(MENU_NAME.PRODUCT_LIST);
-    // privilege.add(MENU_NAME.USER_ROLES);
-    // privilege.add(MENU_NAME.USER_PERMISSION);
+    privilege.add(MENU_NAME.BRAND_ADD);
+    privilege.add(MENU_NAME.BRAND_LIST);
+    privilege.add(MENU_NAME.CATEGORY_ADD);
+    privilege.add(MENU_NAME.CATEGORY_LIST);
+    privilege.add(MENU_NAME.SUB_CATEGORY_ADD);
+    privilege.add(MENU_NAME.SUB_CATEGORY_LIST);
+
 
     this.navItems = this.filterNavItems(getNavItems(), privilege);
     console.log(this.navItems);
-
-  //  this.projectOfTasks();
 
   }
 
   private userInfoGet() {
 
   }
-
-  // private projectOfTasks() {
-  //   const userInfo = this.adminService.usersStorage();
-  //   this.taskService.getTasksByPrjId(userInfo.projectId).subscribe(
-  //     (res) => {
-  //       this.storage.remove(PROJECT.PROJECT_OF_TASKS);
-  //       this.storage.save(PROJECT.PROJECT_OF_TASKS, res);
-  //       console.log(this.storage.read(PROJECT.PROJECT_OF_TASKS));
-  //     },
-  //     (err) => {
-  //       console.log(err);
-
-  //     },
-  //   );
-  // }
 
   public filterNavItems(items: NavData[], authorities: Set<string>): NavData[] {
     items.forEach((item) => {
@@ -137,10 +125,6 @@ export class DefaultLayoutComponent implements OnInit {
   public ngDoCheck(): void {
     this.cdr.detectChanges();
   }
-
-  // public logout() : void {
-  //   this.authService.logout();
-  // }
 
   public goToProfile() {
 

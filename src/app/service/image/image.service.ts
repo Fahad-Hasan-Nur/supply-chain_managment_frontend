@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IMAGE_API, PRODUCT_API } from '../../common/constant/api.constants';
-import { Product } from '../../common/model/product';
+import { AUTH } from '../../common/constant/global-variables.constant';
+import { StorageService } from '../../common/service/storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
