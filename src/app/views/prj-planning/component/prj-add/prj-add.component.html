@@ -3,40 +3,41 @@
 </div>
 <mat-card style="min-height: 25vh;">
     <mat-card-content>
-        <form class="example-form" novalidate [formGroup]="myForm">
+        <form class="example-form" #prjNgModel='ngForm'>
             <div class="row">
                 <div class="col-md-12">
                     <mat-form-field>
-                        <mat-label>{{' প্রকল্পের নাম ​'}}</mat-label>
-                        <input matInput placeholder="প্রকল্পের লিখুন​" formControlName="projectName" name="projectName" [required]="true">
+                        <mat-label>{{' প্রকল্পের শিরোনাম ​'}}</mat-label>
+                        <input matInput placeholder="প্রকল্পের শিরোনাম ​" #name="ngModel" name="name" [(ngModel)]="data.name">
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field>
                         <mat-label>{{' প্রকল্পের মেয়াদকাল (হইতে) '}}</mat-label>
-                        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" [required]="true" placeholder="Choose a date" (click)="picker1.open()" formControlName="fromDate" [min]="minDate" [max]="maxDate" name="fromDate" readonly>
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
+                        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="startDatePicker" [required]="false" placeholder="Choose a date" (click)="startDatePicker.open()" #startDate='ngModel' name="startDate" [(ngModel)]="data.startDate" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startDatePicker></mat-datepicker>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field>
                         <mat-label>{{' প্রকল্পের মেয়াদকাল (পর্যন্ত)​ '}}</mat-label>
-                        <input matInput [matDatepicker]="picker" [required]="true" placeholder="Choose a date" (click)="picker.open()" formControlName="toDate" [min]="minDate" [max]="maxDate" name="toDate" readonly>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="finishDatePicker" [required]="false" placeholder="Choose a date" (click)="finishDatePicker.open()" #finishDate='ngModel' name="finishDate" [(ngModel)]="data.finishDate" [min]="minDate"
+                            [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="finishDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #finishDatePicker></mat-datepicker>
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-6">
                     <mat-form-field>
-                        <mat-label>{{' প্রধান কার্যালয় ​'}}</mat-label>
-                        <input type="text" [required]="true" placeholder="প্রধান কার্যালয়" aria-label="Number" matInput [formControl]="officeControl" [matAutocomplete]="auto">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredOffice | async" [value]="option.name" (onSelectionChange)="onSelectState(option.id)">
-                                {{option.name}}
+                        <mat-label>{{' প্রকল্প কার্যালয় ​'}}</mat-label>
+                        <input matInput [required]="true" placeholder="প্রকল্প কার্যালয় লিখুন​" aria-label="State" #office='ngModel' name="office" [matAutocomplete]="autoOffice" [(ngModel)]="data.office">
+                        <mat-autocomplete autoActiveFirstOption #autoOffice="matAutocomplete">
+                            <mat-option *ngFor="let office of officeList" [value]="office.name" (onSelectionChange)="onSelectState(office.id)">
+                                {{ office.name }}
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
@@ -45,17 +46,31 @@
                 <div class="col-md-6">
                     <mat-form-field>
                         <mat-label>{{' প্রকল্প পরিচালক ​'}}</mat-label>
-                        <input type="text" [required]="true" placeholder="প্রকল্প পরিচালক" aria-label="Number" matInput [formControl]="employeeControl" [matAutocomplete]="autoEm">
+                        <input matInput [required]="true" placeholder="প্রকল্প পরিচালক" aria-label="State" #employee='ngModel' name="employee" [matAutocomplete]="autoEm" [(ngModel)]="data.projectDirector">
                         <mat-autocomplete autoActiveFirstOption #autoEm="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredEmployees | async" [value]="option.name">
-                                {{option.name}}
+                            <mat-option *ngFor="let employee of employeeList" [value]="employee.name">
+                                {{ employee.name }}
                             </mat-option>
                         </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-12">
+                    <mat-form-field>
+                        <mat-label>{{' Available Quantity​'}}</mat-label>
+                        <input matInput placeholder="Enter Product Quantity ​" #quantity="ngModel" name="quantity" [(ngModel)]="data.quantity">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                    <mat-form-field>
+                        <mat-label>{{'Price'}}</mat-label>
+                        <input matInput placeholder="Enter Price ​" #price="ngModel" name="price" [(ngModel)]="data.price">
                     </mat-form-field>
                 </div>
             </div>
         </form>
     </mat-card-content>
 </mat-card>
-<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!myForm.valid" (click)="save()">{{'সংরক্ষণ করুন'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid" (click)="save()">{{'সংরক্ষণ করুন'}}</button>
 <app-loader></app-loader>

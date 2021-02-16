@@ -21,37 +21,48 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: URL_NAME.OVERVIEW,
+        redirectTo: URL_NAME.PRODUCT,
         pathMatch: 'full',
       },
+    
       {
         path: URL_NAME.OVERVIEW,
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () => import('./views/overview/overview.module').then(m => m.OverviewModule)
       },
       {
+        path: URL_NAME.CATEGORY,
+       // canActivate: [AuthGuard],
+        loadChildren: () => import('./views/category/category.module').then(m => m.CategoryModule)
+      },
+      {
+        path: URL_NAME.BRAND,
+       // canActivate: [AuthGuard],
+        loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule)
+      },
+      {
         path: URL_NAME.PRJ_DASHBOARD,
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardComponentModule)
       },
       {
-        path: URL_NAME.PRJ_ARTICLE,
+        path: URL_NAME.PRODUCT,
         canActivate: [AuthGuard],
-        loadChildren: () => import('./views/article/article.module').then(m => m.ArticleModule)
+        loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
         path: URL_NAME.PRJ,
-        canActivate: [AuthGuard],
+      //  canActivate: [AuthGuard],
         loadChildren: () => import('./views/prj-planning/prj-planning.module').then(m => m.PrjPlanningModule)
       },
       {
         path: URL_NAME.MASTER_SETTING,
-        canActivate: [AuthGuard],
+      //  canActivate: [AuthGuard],
         loadChildren: () => import('./views/master-setting/master-setting.module').then(m => m.MasterSettingModule)
       },
       {
         path: URL_NAME.EMPLOYEE,
-        canActivate: [AuthGuard],
+     //   canActivate: [AuthGuard],
         loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule)
       }
     ],

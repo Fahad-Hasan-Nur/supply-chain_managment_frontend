@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { FILE_SERVICE } from '../../common/constant/api.constants';
 import { TaskAttachment } from '../../views/prj-planning/model/task-attachment';
-import { UsersService } from '../users/users.service';
+//import { UsersService } from '../users/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class FileManagerService {
 
   private  FILE_SERVICE_URL =  environment.GLOBAL_GATEWAY_URL+'/'+environment.FILE_SERVICE_CONTEXT;
 
-  constructor(private userService: UsersService,
+  constructor(
+    //private userService: UsersService,
               private _http: HttpClient) { }
 
   public createFormData(oid: string, files?: File[], tag?: string ): FormData {
@@ -25,7 +26,7 @@ export class FileManagerService {
     formData.append('description','prj,'+tag);
     formData.append('tag', 'prj');
     formData.append('oid', oid);
-    formData.append('createdBy', this.userService.usersStorage().employeeId);
+   // formData.append('createdBy', this.userService.usersStorage().employeeId);
     return formData;
   }
 

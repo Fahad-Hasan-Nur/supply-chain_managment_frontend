@@ -40,26 +40,10 @@
                 </div>
 
             </div>
-            <button mat-raised-button color="primary" style="float:right; margin:5px ; align-content: flex-end;" (click)="save()">{{'সংরক্ষণ করুন'}}</button>
+            <button mat-raised-button color="primary" style="float:right; margin:5px ; align-content: flex-end;" (click)="save()">{{'সংরক্ষণ
+              করুন'}}</button>
         </form>
     </mat-card-content>
 </mat-card>
-<br>
-<mat-accordion #accordion="matAccordion" [multi]="true">
-  <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        অর্থায়নের ধরণ ও উৎস
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-cost></app-cost>
-  </mat-expansion-panel>
-  <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        বছরভিত্তিক প্রাক্কলিত ব্যয়
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-cost-table></app-cost-table>
-  </mat-expansion-panel>
-</mat-accordion>
+<app-cost></app-cost>
+<app-cost-table></app-cost-table>

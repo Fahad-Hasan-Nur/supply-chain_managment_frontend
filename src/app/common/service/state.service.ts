@@ -2,39 +2,42 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Task } from '../../views/prj-planning/model/task';
 import {Project} from "../../views/prj-planning/model/project";
-import {User} from "../model/user";
+import {Admin} from "../model/admin";
 import {rejects} from "assert";
+import { Product } from '../model/product';
+import { Auth } from '../model/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-  private currentUserState!: BehaviorSubject<User>;
+  private currentAdminState!: BehaviorSubject<Admin>;
   private currentTaskState!: BehaviorSubject<Task>;
+  private currentProductState!: BehaviorSubject<Product>;
   private currentProjectState!: BehaviorSubject<Project>;
-  private currentFormState!: BehaviorSubject<boolean>;
+  private currentAuthState!: BehaviorSubject<Auth>;
 
   /**
    *
-   * set current User
+   * set current admin
    *
-   * @param user
+   * @param admin
    */
-  public async setUser(user: User) {
+  public async setAdmin(admin: Admin) {
     await new Promise((resolve,rejects) => {
-      if (this.currentUserState === undefined) this.currentUserState = new BehaviorSubject<User>(user);
+      if (this.currentAdminState === undefined) this.currentAdminState = new BehaviorSubject<Admin>(admin);
     });
-    await this.currentUserState.next(user);
+    await this.currentAdminState.next(admin);
   }
 
   /**
    *
-   * get current User.
+   * get current Admin.
    *
-   * @return currentUserState
+   * @return currentAdminState
    */
-  public getUser(): User{
-    return this.currentUserState.value;
+  public getAdmin(): Admin{
+    return this.currentAdminState.value;
   }
 
   /**
@@ -62,45 +65,42 @@ export class StateService {
 
   /**
    *
-   * set current project.
+   * set current product.
    *
-   * @param project
+   * @param product
    */
-  public async setProject(project: Project) {
+  public async setProduct(product: Product) {
     await new Promise((resolve,rejects) => {
-      if (this.currentProjectState === undefined) this.currentProjectState = new BehaviorSubject<Project>(project);
+      if (this.currentProductState === undefined) this.currentProductState = new BehaviorSubject<Product>(product);
     });
-    await this.currentProjectState.next(project);
+    await this.currentProductState.next(product);
+  }
+  public async setProject(product: Project) {
+    await new Promise((resolve,rejects) => {
+      if (this.currentProjectState === undefined) this.currentProjectState = new BehaviorSubject<Project>(product);
+    });
+    await this.currentProductState.next(product);
+  }
+  public async setAuth(auth: Auth) {
+    await new Promise((resolve,rejects) => {
+      if (this.currentAuthState === undefined) this.currentAuthState = new BehaviorSubject<Auth>(auth);
+    });
+    await this.currentAuthState.next(auth);
   }
 
   /**
-   * get current project.
+   * get current product.
    *
-   * @return currentProjectState
+   * @return currentProductState
    */
-  public getProject(): Project{
+  public getProduct(): Product{
+    return this.currentProductState.value;
+  }
+  public getProject(): Product{
     return this.currentProjectState.value;
   }
-
-  /**
-   *
-   * set current Form state (view or edit).
-   *
-   * @param status
-   */
-  public async setIsView(status: boolean) {
-    await new Promise((resolve,rejects) => {
-      if (this.currentFormState === undefined) this.currentFormState = new BehaviorSubject<boolean>(status);
-    });
-    await this.currentFormState.next(status);
+  public getAuth(): Auth{
+    return this.currentAuthState.value;
   }
 
-  /**
-   * get current Form state (view or edit).
-   *
-   * @return currentFormState
-   */
-  public getIsView(): boolean{
-    return this.currentFormState.value;
-  }
 }

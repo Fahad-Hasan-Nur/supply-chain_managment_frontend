@@ -1,25 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {environment} from "../../environments/environment";
 import {GREETING_SERVICE} from "../common/constant/api.constants";
+import { AUTH } from '../common/constant/global-variables.constant';
+import { StorageService } from '../common/service/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestLoginService {
 
-  constructor(private _http: HttpClient) { }
+  private  reqHeader= new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + this.storage.read(AUTH.TOKEN)
+  });
+  constructor(private _http: HttpClient,private storage: StorageService) { }
 
-  public getTestLogin() : Observable<any>{
-    return this._http.post('http://dev-hscm.grp.gov.bd/global/api/auth-service/auth-service//sec/master/authentication/v1/login',
-      {
-        "userId": "asad0002",
-        "userPassword": "123456789",
-        "clientId": "grp-web-portal",
-        "clientPassword": "123456",
-        "grantType": "password"
-      });
+  public getTestLogin(data) : Observable<any>{
+    return this._http.post('https://nur-ecommerce-backend.herokuapp.com/api/auth/admin/login',data,{ headers: this.reqHeader } );
   }
   public testGreetingService():Observable<any>{
     return this._http.get(GREETING_SERVICE);

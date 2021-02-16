@@ -4,9 +4,10 @@ import { EmployeeListComponent } from './component/employee-list/employee-list.c
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { DemoMaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeComponent } from './employee.component';
 
 @NgModule({
-  declarations: [EmployeeListComponent],
+  declarations: [EmployeeListComponent, EmployeeComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,

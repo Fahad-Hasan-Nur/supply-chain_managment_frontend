@@ -10,10 +10,10 @@ import { TaskService } from '../../../service/task/task.service';
 import { DatePipe } from '@angular/common';
 import { MY_FORMATS, PROJECT } from '../../constant/global-variables.constant';
 import { StorageService } from '../../service/storage/storage.service';
-import { UsersService } from '../../../service/users/users.service';
+//import { UsersService } from '../../../service/users/users.service';
 import { Employee } from '../../model/employee';
 import { TaskBrief } from '../../model/taskBrief';
-import { OfficeService } from '../../../service/office/office.service';
+//import { OfficeService } from '../../../service/office/office.service';
 import { ToastService } from '../../service/toast.service';
 
 import { success_message } from '../../constant/messages';
@@ -58,8 +58,8 @@ export class CreateTaskComponent implements OnInit {
     protected snackbar: MatSnackBar,
     public datepipe: DatePipe,
     private storage: StorageService,
-    private userService: UsersService,
-    private officeService: OfficeService,
+    // private userService: UsersService,
+    // private officeService: OfficeService,
     private service: TaskService,
     private toastService: ToastService,
     private treeService: TreeService,
@@ -69,17 +69,17 @@ export class CreateTaskComponent implements OnInit {
   ngOnInit() {
     this.reactiveForm();
     this.employeeInitialization();
-    this.officeService.getMemberByProjectId(this.userService.usersStorage().projectId).subscribe(res=>{
-      console.log(res);
-      this.employees = res;
-    });
-    if(this.data.parent){
-     this.taskInitialization();
-      this.service.getTaskBriefByPrjId(this.userService.usersStorage().projectId).subscribe(res=>{
-      this.tasks = res;
-      this.tasks = this.tasks.filter(obj => obj.title.toLowerCase() !== this.data.title.toLowerCase());
-    })
-    }
+    // this.officeService.getMemberByProjectId(this.userService.usersStorage().projectId).subscribe(res=>{
+    //   console.log(res);
+    //   this.employees = res;
+    // });
+    // if(this.data.parent){
+    //  this.taskInitialization();
+    //   this.service.getTaskBriefByPrjId(this.userService.usersStorage().projectId).subscribe(res=>{
+    //   this.tasks = res;
+    //   this.tasks = this.tasks.filter(obj => obj.title.toLowerCase() !== this.data.title.toLowerCase());
+    // })
+    // }
   }
 
   employeeInitialization(){
@@ -98,20 +98,20 @@ export class CreateTaskComponent implements OnInit {
       map(val => this.filterTask(val))
     );
   }
-  setParent(){
-    this.data.parent = !this.data.parent;
-    if(this.data.parent === true){
-      this.taskInitialization();
-      this.service.getTaskBriefByPrjId(this.userService.usersStorage().projectId).subscribe(res=>{
-        this.tasks = res;
-        this.treeService.getTreeTaskToChildTasksId(this.data).forEach(taskId =>{
-          this.tasks.splice(this.tasks.findIndex(x => x.id == taskId), 1);
-        })
-      })
-    }else{
-      this.parentTaskId.setValue({ id: null, title: null });
-    }
-  }
+  // setParent(){
+  //   this.data.parent = !this.data.parent;
+  //   if(this.data.parent === true){
+  //     this.taskInitialization();
+  //     this.service.getTaskBriefByPrjId(this.userService.usersStorage().projectId).subscribe(res=>{
+  //       this.tasks = res;
+  //       this.treeService.getTreeTaskToChildTasksId(this.data).forEach(taskId =>{
+  //         this.tasks.splice(this.tasks.findIndex(x => x.id == taskId), 1);
+  //       })
+  //     })
+  //   }else{
+  //     this.parentTaskId.setValue({ id: null, title: null });
+  //   }
+  // }
   updateForm(ev: any, idd: any, componentid: any) {
     console.log(idd)
     if (ev.isUserInput) {
@@ -176,7 +176,7 @@ export class CreateTaskComponent implements OnInit {
   save(){
     this.loadDataForm();
     this.service.addTask(this.data).subscribe(res => {
-      this.projectOfTasks();
+   //   this.projectOfTasks();
 
       this.toastService.openSnackBar(success_message.SAVED_SUCCESSFULLY,this.toastService.ACTION_SUCESS,this.toastService.CLASS_NAME_SUCESS)
       this.myForm.reset();
@@ -187,24 +187,24 @@ export class CreateTaskComponent implements OnInit {
     });
   }
   loadDataForm(){
-    this.loader.loading = true;
-    let userInfo = this.userService.usersStorage();
-    this.data.projectId = userInfo.projectId;
-    this.data.title = this.myForm.controls['title'].value;
-    this.data.employeeId = this.empId;
-    this.data.startDate = this.myForm.controls['startDate'].value;
-    this.data.endDate = this.myForm.controls['endDate'].value;
-    this.data.economyCode = this.myForm.controls['economyCode'].value;
-    this.data.category = this.myForm.controls['category'].value;
-    this.data.parentTaskId = this.taskId;
-    this.data.startDate = this.utilService.convertDateTimeToDate(this.data.startDate.toString());
-    this.data.endDate = this.utilService.convertDateTimeToDate(this.data.endDate.toString());
-    console.log(this.data)
+    // this.loader.loading = true;
+    // let userInfo = this.userService.usersStorage();
+    // this.data.projectId = userInfo.projectId;
+    // this.data.title = this.myForm.controls['title'].value;
+    // this.data.employeeId = this.empId;
+    // this.data.startDate = this.myForm.controls['startDate'].value;
+    // this.data.endDate = this.myForm.controls['endDate'].value;
+    // this.data.economyCode = this.myForm.controls['economyCode'].value;
+    // this.data.category = this.myForm.controls['category'].value;
+    // this.data.parentTaskId = this.taskId;
+    // this.data.startDate = this.utilService.convertDateTimeToDate(this.data.startDate.toString());
+    // this.data.endDate = this.utilService.convertDateTimeToDate(this.data.endDate.toString());
+    // console.log(this.data)
   }
   update(){
     this.loadDataForm();
     this.service.updateTask(this.data).subscribe(res=>{
-      this.projectOfTasks();
+     // this.projectOfTasks();
       this.toastService.openSnackBar(success_message.SAVED_SUCCESSFULLY,this.toastService.ACTION_SUCESS,this.toastService.CLASS_NAME_SUCESS)
     },error=>{
       this.loader.loading=false;
@@ -212,23 +212,23 @@ export class CreateTaskComponent implements OnInit {
     })
   }
 
- private projectOfTasks(){
-    this.service.getTasksByPrjId(this.userService.usersStorage().projectId).subscribe(
-      res => {
-        this.storage.remove(PROJECT.PROJECT_OF_TASKS);
-        this.storage.save(PROJECT.PROJECT_OF_TASKS,res);
-        console.log(this.storage.read(PROJECT.PROJECT_OF_TASKS));
-        this.loader.loading = false;
-        if(!this.editable){
-          this.afterSave.emit(this.data)
-        }else{
-          this.afterSave.emit();
-        }
-      },error => {
-        console.log(error);
-        this.loader.loading = false;
-      }
-    )
-  }
+//  private projectOfTasks(){
+//     this.service.getTasksByPrjId(this.userService.usersStorage().projectId).subscribe(
+//       res => {
+//         this.storage.remove(PROJECT.PROJECT_OF_TASKS);
+//         this.storage.save(PROJECT.PROJECT_OF_TASKS,res);
+//         console.log(this.storage.read(PROJECT.PROJECT_OF_TASKS));
+//         this.loader.loading = false;
+//         if(!this.editable){
+//           this.afterSave.emit(this.data)
+//         }else{
+//           this.afterSave.emit();
+//         }
+//       },error => {
+//         console.log(error);
+//         this.loader.loading = false;
+//       }
+//     )
+//   }
 
 }

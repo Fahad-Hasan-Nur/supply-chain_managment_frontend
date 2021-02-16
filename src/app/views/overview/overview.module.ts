@@ -22,15 +22,9 @@ import { CostTableComponent } from './component/finance/component/cost-table/cos
 import { CostComponent } from './component/finance/component/cost/cost.component';
 import { ExpenseComponent } from './component/cost-overview/components/expense/expense.component';
 import { GoalComponent } from './component/goal/goal.component';
+import { DescriptionComponent } from './component/goal/component/description/description.component';
 import {SelectModule} from "ng-select";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
-import {StringFilterByPipe} from "../../common/pipe/StringFilterByPipe";
-import {OrderByPipe} from "../../common/pipe/OrderByPipe";
-import {ViewOrEditDirective} from "../../common/directive/view-or-edit.directive";
-import {ViewOrEditOtherDirective} from "../../common/directive/view-or-edit-other.directive";
-import {ConfirmationComponent} from "../../common/component/confirmation/confirmation.component";
-import {DoubleClickDirective} from "../../common/directive/double-click.directive";
 
 
 
@@ -50,14 +44,9 @@ import {DoubleClickDirective} from "../../common/directive/double-click.directiv
     CostTableComponent,
     CostComponent,
     GoalComponent,
-    StringFilterByPipe,
-    OrderByPipe,
-    ViewOrEditDirective,
-    ViewOrEditOtherDirective,
-    ConfirmationComponent,
-    DoubleClickDirective
+    DescriptionComponent
   ],
-  entryComponents: [ViewMemberDialogComponent, AddMemberDialogComponent,ConfirmationComponent],
+  entryComponents: [ViewMemberDialogComponent, AddMemberDialogComponent, DescriptionComponent],
 
   imports: [
     CommonModule,
@@ -68,7 +57,6 @@ import {DoubleClickDirective} from "../../common/directive/double-click.directiv
     ReactiveFormsModule,
     QuillModule.forRoot(),
     SelectModule,
-    NgxMatSelectSearchModule
   ],
   providers: [DatePipe, Project, Finance, Member]
 })

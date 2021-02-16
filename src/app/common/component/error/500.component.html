@@ -1,16 +1,47 @@
-<div class="error-background">
-  <div class="app flex-row align-items-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="clearfix" style="color: white">
-            <h1 class="float-left display-3 mr-4">৪০৪</h1>
-            <h4 class="pt-3">দুঃখিত! আপনি হারিয়ে গেছেন​।</h4>
-            <p class="text-muted" style="color: white !important;">আপনি যে পাতাটি সন্ধান করছেন,তার জন্যে বাটনটিতে ক্লিক করুন</p>
-            <button mat-raised-button color="primary" style="float:right; margin:5px" (click)="testLogin()">{{'ক্লিক করুন'}}</button>
-          </div>
+<!-- <div class="error-background">
+    <div class="app flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <mat-card style="min-height: inherit;">
+                    <mat-card-content>
+                        <form class="example-form" #NgModel='ngForm'>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>{{' Mail'}}</mat-label>
+                                        <input type="email" matInput placeholder="Enter mail.. ​" [required]="true" #email="ngModel" name="email" [(ngModel)]="data.email">
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <mat-label>{{' Password'}}</mat-label>
+                                        <input type="password" matInput placeholder="Enter Passrowd.. ​" [required]="true" #password="ngModel" name="password" [(ngModel)]="data.password">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+                <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!NgModel.valid" (click)="testLogin()">{{'Login'}}</button>
+
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div> -->
+<div class="error-background">
+    <div class="box">
+        <h2>Login</h2>
+        <form #NgModel='ngForm'>
+            <div class="inputBox">
+                <input type="email" [required]="true" #email="ngModel" name="email" [(ngModel)]="data.email" onkeyup="this.setAttribute('value', this.value);" value="">
+                <label>Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" [required]="true" #password="ngModel" name="password" [(ngModel)]="data.password" onkeyup="this.setAttribute('value', this.value);" value="">
+                <label>Password</label>
+            </div>
+            <input type="submit" name="sign-in" value="Sign In" [disabled]="!NgModel.valid" (click)="testLogin()">
+        </form>
+    </div>
 </div>

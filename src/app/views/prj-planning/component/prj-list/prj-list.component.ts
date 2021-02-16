@@ -34,28 +34,28 @@ export class PrjListComponent implements OnInit {
         (error) => console.log(error)
       )
   }
+
   @ViewChild(MatPaginator, { static: true }) public paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) public sort: MatSort;
 
   applyFilter(filterValue: any) {
     this.dataSource.filter = filterValue.value.trim().toLowerCase();
   }
-  search(project) {
-  }
+
+  search(project) {}
+
   viewPrjOverviewPage(id){
     this.route.navigateByUrl(URL.PRJ_OVERVIEW_ID + id);
   }
+
   openDialogView(id?) {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
     dialogConfig.data = {
         prjId: id
     };
     this.dialog.open(PrjViewComponent, dialogConfig);
   }
-
 }
 

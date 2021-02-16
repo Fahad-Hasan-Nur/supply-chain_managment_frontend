@@ -7,7 +7,7 @@ import { StorageService } from '../../../../../../common/service/storage/storage
 import { ToastService } from '../../../../../../common/service/toast.service';
 import { FileManagerService } from '../../../../../../service/file/file-manager.service';
 import { TaskService } from '../../../../../../service/task/task.service';
-import { UsersService } from '../../../../../../service/users/users.service';
+//import { UsersService } from '../../../../../../service/users/users.service';
 import { Task } from '../../../../model/task';
 import { TaskAttachment } from '../../../../model/task-attachment';
 
@@ -29,7 +29,7 @@ export class AttachmentsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   constructor(public dialog: MatDialog,
      private storage: StorageService,
-     private userService: UsersService,
+     //private userService: UsersService,
      private service: TaskService, 
      private toastService: ToastService, 
      public fileService: FileManagerService) {
@@ -91,15 +91,15 @@ export class AttachmentsComponent implements OnInit {
     })
   }
   private projectOfTasks(){
-    this.service.getTasksByPrjId(this.userService.usersStorage().projectId).subscribe(
-      res => {
-        this.storage.remove(PROJECT.PROJECT_OF_TASKS);
-        this.storage.save(PROJECT.PROJECT_OF_TASKS,res);
-        console.log(this.storage.read(PROJECT.PROJECT_OF_TASKS)); 
-      },error => {
-        console.log(error);
-      }
-    )
+    // this.service.getTasksByPrjId(this.userService.usersStorage().projectId).subscribe(
+    //   res => {
+    //     this.storage.remove(PROJECT.PROJECT_OF_TASKS);
+    //     this.storage.save(PROJECT.PROJECT_OF_TASKS,res);
+    //     console.log(this.storage.read(PROJECT.PROJECT_OF_TASKS)); 
+    //   },error => {
+    //     console.log(error);
+    //   }
+    // )
   }
   deleteFile(event) {
     this.attachments.splice(event, 1);

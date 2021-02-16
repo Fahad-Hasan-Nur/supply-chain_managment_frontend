@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { success_message } from '../../../../common/constant/messages';
@@ -26,15 +26,11 @@ export class ProjectOverviewComponent implements OnInit {
   @Input('project') project: Project;
 
   public ministryOfficeList: LayerOfficeBrief[] = [];
-
   public planningDivisionOfficeList: LayerOfficeBrief[] = [];
-
   public layer: Layer[] = [];
-
   public maxDate: any;
   public minDate: any;
   public myFilter: any;
-  searchCtrl = '';
 
   constructor(public route: ActivatedRoute,
               private service: ProjectService,
@@ -44,7 +40,6 @@ export class ProjectOverviewComponent implements OnInit {
     this.project.id = this.route.snapshot.params.id;
     this.getMinisters();
     this.getLayers();
-    this.stateService.setIsView(true);
   }
 
   getLayers(){
@@ -100,4 +95,7 @@ export class ProjectOverviewComponent implements OnInit {
     });
   }
 
+  setStateProject(project: Project): void{
+    this.stateService.setProject(project);
+  }
 }

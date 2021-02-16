@@ -10,7 +10,7 @@ import {ProjectService} from "../../service/project/project.service";
 })
 export class OverviewComponent implements OnInit {
 
-  constructor( private project: Project,
+  constructor( public project: Project,
                private service: ProjectService ) { }
 
   ngOnInit() {

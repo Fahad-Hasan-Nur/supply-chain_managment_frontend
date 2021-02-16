@@ -5,8 +5,8 @@ import { EDITOR_OPTIONS_MEDIUM } from '../../../../../../common/constant/editor.
 import { Employee } from '../../../../../../common/model/employee';
 import { Member } from '../../../../model/member';
 import { SelectionModel } from '@angular/cdk/collections';
-import { UsersService } from '../../../../../../service/users/users.service';
-import { OfficeService } from '../../../../../../service/office/office.service';
+//import { UsersService } from '../../../../../../service/users/users.service';
+//import { OfficeService } from '../../../../../../service/office/office.service';
 import { LoaderComponent } from '../../../loader/loader.component';
 import { ToastService } from '../../../../../../common/service/toast.service';
 import { success_message } from '../../../../../../common/constant/messages';
@@ -29,15 +29,16 @@ export class AddMemberDialogComponent implements OnInit {
   @ViewChild(LoaderComponent,{static:false}) loader: LoaderComponent;
   modalData: Employee[];
 
-  public officeId = this.userService.usersStorage().officeOid;
-  public projectId = this.userService.usersStorage().projectId;
+  // public officeId = this.userService.usersStorage().officeOid;
+  // public projectId = this.userService.usersStorage().projectId;
   constructor( public fb: FormBuilder,
      public dialog: MatDialog,
      public dialogRef: MatDialogRef<AddMemberDialogComponent>,
      @Inject(MAT_DIALOG_DATA) public data:any,
      private toastService: ToastService,
-     private userService: UsersService,
-     private officeService: OfficeService) {
+    // private userService: UsersService,
+     //private officeService: OfficeService
+     ) {
 }
 
   ngOnInit() {
@@ -49,22 +50,22 @@ export class AddMemberDialogComponent implements OnInit {
     this.loader.loading = true;
     this.reactiveForm();
     this.toolbarOptions = EDITOR_OPTIONS_MEDIUM;
-    this.officeService.getEmployeeByOfficeId(this.officeId).subscribe(res=>{
-        // this.dataSource.data = this.employees;
-        // for(let employee of res) {
-        //   this.employee = new Employee();
-        //   this.employee.id = employee.id;
-        //   this.employee.name = employee.name;
-        //   this.employee.officeUnitPostName = employee.officeUnitPostName;
-        //   this.employees.push(this.employee)
-        // }
-        this.employees = res;
-        // console.log(this.employees)
-        let myUser = this.modalData.map(item => { return item.name; });
-        this.employees = this.employees.filter(x=> !myUser.includes(x.name))
-        this.loader.loading = false;
-        this.dataSource.data = this.employees;
-    })
+    // this.officeService.getEmployeeByOfficeId(this.officeId).subscribe(res=>{
+    //     // this.dataSource.data = this.employees;
+    //     // for(let employee of res) {
+    //     //   this.employee = new Employee();
+    //     //   this.employee.id = employee.id;
+    //     //   this.employee.name = employee.name;
+    //     //   this.employee.officeUnitPostName = employee.officeUnitPostName;
+    //     //   this.employees.push(this.employee)
+    //     // }
+    //     this.employees = res;
+    //     // console.log(this.employees)
+    //     let myUser = this.modalData.map(item => { return item.name; });
+    //     this.employees = this.employees.filter(x=> !myUser.includes(x.name))
+    //     this.loader.loading = false;
+    //     this.dataSource.data = this.employees;
+    // })
   }
   reactiveForm() {
     this.data= new Member();
@@ -130,20 +131,20 @@ export class AddMemberDialogComponent implements OnInit {
       return this.selectedEmployeeId.includes(row.id);
     }
   }
-  isCheckedDisabled(employee: Employee): boolean {
-    return employee.id === this.userService.usersStorage().employeeId;
-  }
+  // isCheckedDisabled(employee: Employee): boolean {
+  //   return employee.id === this.userService.usersStorage().employeeId;
+  // }
   save(){
      this.loader.loading = true;
-     this.officeService.addOurEmployee(this.projectId, this.ourEmployee).subscribe(res=>{
-      this.toastService.openSnackBar(success_message.SAVED_SUCCESSFULLY,this.toastService.ACTION_SUCESS,this.toastService.CLASS_NAME_SUCESS)
-      this.loader.loading = false;
-      this.dialog.closeAll();
-     },error => {
-      console.log(error);
-      this.loader.loading = false;
-      this.toastService.openSnackBar(success_message.FAILD,this.toastService.ACTION_WRONG,this.toastService.CLASS_NAME_WRONG)
-     });
+    //  this.officeService.addOurEmployee(this.projectId, this.ourEmployee).subscribe(res=>{
+    //   this.toastService.openSnackBar(success_message.SAVED_SUCCESSFULLY,this.toastService.ACTION_SUCESS,this.toastService.CLASS_NAME_SUCESS)
+    //   this.loader.loading = false;
+    //   this.dialog.closeAll();
+    //  },error => {
+    //   console.log(error);
+    //   this.loader.loading = false;
+    //   this.toastService.openSnackBar(success_message.FAILD,this.toastService.ACTION_WRONG,this.toastService.CLASS_NAME_WRONG)
+    //  });
   }
   cancel(){
       this.dialog.closeAll();

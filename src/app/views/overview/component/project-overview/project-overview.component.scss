@@ -10,20 +10,14 @@
     cursor: pointer;
   }
   .button1 {background-color: red;}
-  :host ::ng-deep .mat-sort-header-container {
-    display: flex;
-    justify-content: center;
+  :host ::ng-deep .mat-sort-header-container { 
+    display: flex;  
+    justify-content: center; 
   }
-
-  th.mat-header-cell, td.mat-cell {
-    text-align: center;
+  
+  th.mat-header-cell, td.mat-cell { 
+    text-align: center; 
   }
   .mat-select-disabled .mat-select-value {
     color: rgba(green, 1);
 }
-.underline-remove {
-  ::ng-deep .mat-form-field-underline {
-    display: none !important;
-  }
-}
-

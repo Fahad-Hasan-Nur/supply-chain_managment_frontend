@@ -1,0 +1,69 @@
+<mat-card>
+    <table class="table" style="border: none" border="0">
+        <tr>
+            <td width="85%" style="border: none">
+                <mat-form-field style="display: inline; width: 30%">
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Write to search..." (keyup)="applyFilter($event.target)" />
+                </mat-form-field>
+            </td>
+            <td class="float-right" style="border: none">
+                <a class="btn btn-primary" [routerLink]="'/product/product-add'">
+                    <i class="fa fa-plus" matTooltip="Add New Product"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <mat-card-actions [hidden]="!showFilters" align="end">
+        <a class="btn btn-primary" (click)="search($event)">
+            <i class="fa fa-search"></i>
+        </a>
+    </mat-card-actions>
+</mat-card>
+<br/>
+<table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="Name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Name</th>
+        <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Category">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Category</th>
+        <td *matCellDef="let element" mat-cell> {{element.categoryName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Sub-Category">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Sub Category</th>
+        <td *matCellDef="let element" mat-cell> {{element.subCategoryName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Brand">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Brand</th>
+        <td *matCellDef="let element" mat-cell> {{element.brandName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Quantity</th>
+        <td *matCellDef="let element" mat-cell> {{element.quantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Price</th>
+        <td *matCellDef="let element" mat-cell> {{element.price}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
+        <td *matCellDef="let element" mat-cell>
+            <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element.id)">
+                <i class="fa fa-eye"></i>
+            </a>
+            <a class="btn btn-danger" matTooltip="Edit">
+                <i class="fa fa-edit"></i>
+            </a>
+        </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

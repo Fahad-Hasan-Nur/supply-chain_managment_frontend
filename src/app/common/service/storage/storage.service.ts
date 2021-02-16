@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {AUTH} from '../../constant/global-variables.constant'
 @Injectable({
@@ -28,4 +29,5 @@ export class StorageService {
       this.storage.removeItem(AUTH.TOKEN);
       this.storage.removeItem(AUTH.ROLES);
     }
+    
 }

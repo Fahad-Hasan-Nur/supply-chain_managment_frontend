@@ -13,25 +13,22 @@ export class FilterService {
 // input parameter::::     formControl: new FormControl()   and  options: Modal   and  boolean: Boolean
 // boolean true for filtering and  false for select
 // Store returned data in Observable<any[]>
-  public filterData( formControl, options, boolean: Boolean): Observable<any[]> {
-    this.formControl = formControl;
+  public filterData( data, options): Observable<any[]> {
+    this.formControl = data;
     this.filteredData = this.formControl.valueChanges.pipe(
       startWith(''),
-      map((value) => this.json_data_filter(value, options, boolean)),
+      map((value) => this.json_data_filter(value, options)),
     );
     return this.filteredData;
   }
 
-  private json_data_filter(value: string, options, boolean ): string[] {
+  private json_data_filter(value: string, options ): string[] {
     const newList = [];
     options.forEach((element) => {
-      if (boolean == true) {
         if (element.name.indexOf(value.toLowerCase()) !== -1) {
           newList.push({ name: element.name, id: element.id });
         }
-      } else {
-        newList.push({ name: element.name, id: element.id });
-      }
+
     });
     return newList;
   }

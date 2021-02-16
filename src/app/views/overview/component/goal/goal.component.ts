@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialogConfig, MatDialog } from '@angular/material';
+import { DescriptionComponent } from './component/description/description.component';
 
 @Component({
   selector: 'app-goal',
@@ -8,7 +9,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class GoalComponent implements OnInit {
 
-  constructor() {}
+  constructor(protected dialog: MatDialog) {}
   displayedColumns: string[] = [ 'name', 'action'];
   dataSource = new MatTableDataSource<IPLData>(data);
 
@@ -24,17 +25,29 @@ export class GoalComponent implements OnInit {
   }
   search(data){
   }
+  viewDescriptionPage(id?){
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+        name: id
+    };
+    this.dialog.open(DescriptionComponent, dialogConfig);
+  }
 }
 export interface IPLData {
   name: string;
 }
 
 const data: IPLData[] = [
-  {name: 'A'},
-  {name: 'B'},
-  {name: 'C'},
-  {name: 'D'},
-  {name: 'E'},
+  {name: 'রাস্তা নির্মান'},
+  {name: 'দারিদ্র্য বিমোচন'},
+  {name: 'সড়ক নির্মাণ'},
+  {name: 'হাসপাতাল নির্মাণ'},
+  {name: 'স্কুল নির্মান'},
+  {name: 'বাড়ি নির্মাণ'},
 ];
 
 

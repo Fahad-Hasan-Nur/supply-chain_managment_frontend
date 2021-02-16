@@ -5,14 +5,16 @@ import {OFFICE_API, PRJ_API} from '../../common/constant/api.constants'
 import { Layer } from '../../views/overview/model/layer';
 import { LayerOfficeBrief } from '../../views/overview/model/layer-office-brief';
 import { Project } from '../../views/prj-planning/model/project';
-import { UsersService } from '../users/users.service';
+//import { UsersService } from '../users/users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  constructor(private _http: HttpClient,private usersService: UsersService) { }
+  constructor(private _http: HttpClient,
+    //private usersService: UsersService
+    ) { }
 
   /**
    * create a new project.
@@ -45,7 +47,8 @@ export class ProjectService {
 
    getPrjOverview(data): Observable<Project> {
     if (data == null) {
-      return this._http.get<Project>(PRJ_API.GET_PROJECTS + this.usersService.usersStorage().projectId);
+      return 
+      //this._http.get<Project>(PRJ_API.GET_PROJECTS + this.usersService.usersStorage().projectId);
     } else {
       return this._http.get<Project>(PRJ_API.GET_PROJECTS + data);
     }

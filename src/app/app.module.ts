@@ -22,13 +22,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { P404Component } from './common/component/error/404.component';
 import { P500Component } from './common/component/error/500.component';
 import { ThemeService } from 'ng2-charts';
-import { httpInterceptorProviders } from './common/service/auth/auth-interceptor';
+//import { httpInterceptorProviders } from './common/service/auth/auth-interceptor';
 import { getBnPaginatorIntl } from './bn-paginator-intl';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './common/component/error/unauthorized.component';
 import {UserTestComponent} from "./common/component/error/user-test.component";
+import { FormsModule } from '@angular/forms';
+import { Auth } from './common/model/auth';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -45,9 +47,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     P404Component,
     P500Component,
     UnauthorizedComponent,
-    UserTestComponent
+    UserTestComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -71,11 +74,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   })
   ],
   providers: [
+    Auth,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'bn-BD'},
     {provide: LOCALE_ID, useValue: 'bn-BD'},
     {provide: MatPaginatorIntl, useValue: getBnPaginatorIntl()},
-    httpInterceptorProviders,
+    //httpInterceptorProviders,
     ThemeService,DatePipe,
       {
         provide: HAMMER_LOADER,

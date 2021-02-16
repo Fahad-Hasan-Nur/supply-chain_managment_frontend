@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { AuthService } from './auth.service';
-import { AUTH } from '../../constant/global-variables.constant'
-import { User } from '../../model/user';
+import { AUTH } from '../../constant/global-variables.constant';
 import { StorageService } from '../storage/storage.service';
+import { Admin } from '../../model/admin';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-    let userInfo = <User>this.storage.read(AUTH.CURRENT_USER);
+    let userInfo = <Admin>this.storage.read(AUTH.CURRENT_USER);
 
     if (this.storage.read(AUTH.TOKEN) !== null && this.authService.isTokenValid(userInfo)) {
 

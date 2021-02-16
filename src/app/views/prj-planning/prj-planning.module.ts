@@ -21,6 +21,9 @@ import { LoaderComponent } from './loader.component';
 import { AttachmentsComponent, FileUploadDialogComponent } from './component/prj-task-list/modal/attachments/attachments.component';
 import { ConfirmationComponent } from '../../common/component/confirmation/confirmation.component';
 import { PrjViewComponent } from './component/prj-view/prj-view.component';
+import { DescriptionComponent } from '../overview/component/goal/component/description/description.component';
+import { SelectModule } from 'ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     PrjPlanningComponent,
@@ -53,7 +56,9 @@ import { PrjViewComponent } from './component/prj-view/prj-view.component';
     ReactiveFormsModule,
     FormsModule,
     GanttModule,
-    TranslateModule
+    TranslateModule,
+    SelectModule,
+    NgSelectModule,
   ],
 
   providers:[

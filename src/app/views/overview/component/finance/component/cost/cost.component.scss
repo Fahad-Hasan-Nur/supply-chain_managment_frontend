@@ -10,13 +10,13 @@
     cursor: pointer;
   }
   .button1 {background-color: red;}
-  :host ::ng-deep .mat-sort-header-container {
-    display: flex;
-    justify-content: center;
+  :host ::ng-deep .mat-sort-header-container { 
+    display: flex;  
+    justify-content: center; 
   }
-
-  th.mat-header-cell, td.mat-cell {
-    text-align: center;
+  
+  th.mat-header-cell, td.mat-cell { 
+    text-align: center; 
   }
   .button {
     background-color: #4CAF50; /* Green */
@@ -30,18 +30,11 @@
     cursor: pointer;
   }
   .button1 {background-color: red;}
-  :host ::ng-deep .mat-sort-header-container {
-    display: flex;
-    justify-content: center;
+  :host ::ng-deep .mat-sort-header-container { 
+    display: flex;  
+    justify-content: center; 
   }
-
-  th.mat-header-cell, td.mat-cell {
-    text-align: center;
-  }
-  .table-input{
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
-    border-color: white;
-    border: 0px;
+  
+  th.mat-header-cell, td.mat-cell { 
+    text-align: center; 
   }

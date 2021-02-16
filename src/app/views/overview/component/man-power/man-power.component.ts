@@ -4,8 +4,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { Employee } from '../../../../common/model/employee';
 import { LoaderComponent } from '../loader/loader.component';
 
-import { OfficeService } from '../../../../service/office/office.service';
-import { UsersService } from '../../../../service/users/users.service';
+//import { OfficeService } from '../../../../service/office/office.service';
+//import { UsersService } from '../../../../service/users/users.service';
 import { AddMemberDialogComponent } from './dialog/add-member-dialog/add-member-dialog.component';
 import { ViewMemberDialogComponent } from './dialog/view-member-dialog/view-member-dialog.component';
 
@@ -23,8 +23,9 @@ export class ManPowerComponent implements OnInit {
   employees: Employee[];
 
   constructor(public dialog: MatDialog,
-     private officeService: OfficeService,
-     private userService: UsersService) {}
+    //  private officeService: OfficeService,
+    //  private userService: UsersService
+     ) {}
   ngOnInit(){
     this.dataSource = new MatTableDataSource<Employee>();
   }
@@ -33,11 +34,11 @@ export class ManPowerComponent implements OnInit {
   }
   loadData(){
     this.loader.loading = true;
-    this.officeService.getMemberByProjectId(this.userService.usersStorage().projectId).subscribe(res=>{
-        this.employees = res;
-        this.dataSource.data = this.employees;
-        this.loader.loading = false;
-    })
+    // this.officeService.getMemberByProjectId(this.userService.usersStorage().projectId).subscribe(res=>{
+    //     this.employees = res;
+    //     this.dataSource.data = this.employees;
+    //     this.loader.loading = false;
+    // })
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
