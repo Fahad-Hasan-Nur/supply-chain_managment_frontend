@@ -63,6 +63,7 @@ export class BrandAddComponent implements OnInit {
         this.saveData();
 
       }, (error) => {
+        this.loader.loading = false;
         this.saveData();
         console.log(error);
       });

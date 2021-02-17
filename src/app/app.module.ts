@@ -31,6 +31,7 @@ import { UnauthorizedComponent } from './common/component/error/unauthorized.com
 import {UserTestComponent} from "./common/component/error/user-test.component";
 import { FormsModule } from '@angular/forms';
 import { Auth } from './common/model/auth';
+import { LoaderComponent } from './views/product/loader.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent

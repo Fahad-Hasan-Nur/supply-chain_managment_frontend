@@ -34,4 +34,12 @@ private  reqHeader= new HttpHeaders({
   public addBrand(brand:Brand){
     return this._http.post(BRAND_API.ADD_BRAND,brand,{ headers: this.reqHeader });
   }
+   /**
+   * Returns single brand by id.
+   *
+   * @returns Brand 
+   */
+  public getBrandById(id): Observable<any> {
+    return this._http.get<Brand>(BRAND_API.GET_BRAND_BY_ID + id,{ headers: this.reqHeader });
+}
 }

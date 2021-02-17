@@ -1,21 +1,27 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TestLoginService } from '../../../service/test-login.service';
+import { LoaderComponent } from '../../../views/product/loader.component';
+import { success_message } from '../../constant/messages';
 import { URL } from '../../constant/nav.constant';
 import { Auth } from '../../model/auth';
 import { StateService } from '../../service/state.service';
+import { ToastService } from '../../service/toast.service';
 import { StorageService } from './../../service/storage/storage.service';
 
 @Component({
   templateUrl: '500.component.html',
-  styleUrls: ['500.component.scss']
+  styleUrls: ['500.component.scss'],
 })
 export class P500Component implements OnInit  {
 
+  @ViewChild(LoaderComponent, { static: false })
+  public loader: LoaderComponent;
   constructor(private testLoginService: TestLoginService,
               private storage: StorageService,
               private stateService: StateService,
-              public data: Auth) { }
+              public data: Auth,
+              private toastService: ToastService) { }
 
     public ngOnInit() {
       this.setStateProject(this.data);
@@ -25,10 +31,10 @@ export class P500Component implements OnInit  {
       this.stateService.setAuth(auth);
     }
 
-   testLogin() {
-     this.testLoginService.getTestLogin(this.stateService.getAuth()).subscribe(
+   public testLogin() {
+    this.testLoginService.getTestLogin(this.stateService.getAuth()).subscribe(
       (res) => {
-       window.location.replace(window.location.href.replace('/page-not-found', URL.PRODUCT_LIST) + '?token=' + res.jwt);
+        window.location.replace(window.location.href.replace('/page-not-found', URL.PRODUCT_LIST) + '?token=' + res.jwt);
       },
       (err) => {
         console.log(err);

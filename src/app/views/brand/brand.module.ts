@@ -8,10 +8,14 @@ import { BrandAddComponent } from './brand-add/brand-add.component';
 import { BrandListComponent } from './brand-list/brand-list.component';
 import { BrandRoutingModule } from './brand-routing.module';
 import { BrandComponent } from './brand.component';
+import { BrandViewComponent } from './dialog/brand-view/brand-view.component';
 import { LoaderComponent } from './loader.component';
 
 @NgModule({
-  declarations: [BrandComponent, BrandListComponent, BrandAddComponent,LoaderComponent],
+  declarations: [BrandComponent, BrandListComponent, BrandAddComponent,LoaderComponent,BrandViewComponent],
+  entryComponents: [
+    BrandViewComponent,
+  ],
   imports: [
     CommonModule,
     BrandRoutingModule,
@@ -19,6 +23,7 @@ import { LoaderComponent } from './loader.component';
     DemoMaterialModule,
     ReactiveFormsModule,
   ],
+  
   providers: [DatePipe,Brand],
 })
 export class BrandModule {

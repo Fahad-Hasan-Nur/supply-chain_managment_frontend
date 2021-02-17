@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { AddUserDialogComponent } from './dialog/add-user-dialog/add-user-dialog.component';
+import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { URL } from '../../../common/constant/nav.constant';
+import { Category } from '../../../common/model/Category';
+import { CategoryService } from '../../../service/product/category.service';
+import { CategoryViewComponent } from './dialog/category-view/category-view.component';
 
 @Component({
   selector: 'app-category-list',
@@ -9,43 +13,49 @@ import { AddUserDialogComponent } from './dialog/add-user-dialog/add-user-dialog
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor(
-    // public dialog: MatDialog
-    ) { }
+  constructor( private service: CategoryService, public route: Router, protected dialog: MatDialog) { }
+  public router: Router;
+  public category: Category[] = [];
+  public displayedColumns: string[] = ['Name', 'action'];
+  public dataSource = new MatTableDataSource;
+  public showFilters: boolean;
+  public brandId: string;
+  @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
-  // displayedColumns: string[] = ['number', 'name','office','role','ক্রিয়া'];
-  // dataSource = new MatTableDataSource<IPLData>(data);
-  // showFilters: boolean;
-  ngOnInit() {
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
+  public ngOnInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.service.getCategory().subscribe
+      (
+        (response) => {
+          this.category = response;
+          this.dataSource.data = response as Category[];
+          console.log(this.category);
+        },
+        (error) => console.log(error),
+      );
   }
-  // @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
-  // @ViewChild(MatSort,{static: true}) sort: MatSort;
 
-  // applyFilter(filterValue: string) {
-  //     this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-  // search(data){
+  public applyFilter(filterValue: any) {
+      this.dataSource.filter = filterValue.value.trim().toLowerCase();
+  }
+  public search(data) {}
 
-  // }
-  // openDialogUser() {
-  //   this.dialog.open(AddUserDialogComponent);
-  // }
+  
+  public viewAddBrandPage() {
+    this.router.navigateByUrl(URL.CATEGORY_ADD);
+  }
+  
+  openDialogView(id?) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+        brandId: id
+    };
+    console.log(id);
+    this.dialog.open(CategoryViewComponent, dialogConfig);
+  }
 
 }
-// export interface IPLData {
-//   name: string;
-//   office: string;
-//   number: number;
-//   role : string;
-// }
-
-// const data: IPLData[] = [
-//   {name: 'সুজিত কুমার পাল', office: 'বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি)',number:1,role :'সুপার এডমিন'},
-//   { name: 'মোঃ আসাদুল্লাহ হিল গালিব',  office: 'বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি)',number:2,role :'সচিব'},
-//   { name: 'তায়েফ ইমাম', office: 'বাংলাদেশ কম্পিউটার কাউন্সিল (বিসিসি)',number:3,role :'প্রকল্প সদস্য'},
-//   { name: 'ইরফাত আরা', office: 'জিআরপি টেস্ট অফিস (প্লানিং)',number:4,role :'প্রকল্প ব্যবস্থাপক '},
-//   { name: 'তায়েফ ইমাম', office: 'জিআরপি টেস্ট অফিস (প্লানিং)',number:5,role :'জিইডি লেখক'},
-//   {name: 'মোঃ আসাদুল্লাহ হিল গালিব',  office: 'জিআরপি টেস্ট অফিস (প্লানিং)',number:6,role :'সুপার এডমিন'},
-// ];

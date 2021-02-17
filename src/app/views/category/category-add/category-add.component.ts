@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material';
+import { MatDialog, MatTableDataSource } from '@angular/material';
+import * as _ from 'lodash';
+import { success_message } from '../../../common/constant/messages';
+import { Brand } from '../../../common/model/brand';
+import { Category } from '../../../common/model/Category';
+import { StateService } from '../../../common/service/state.service';
+import { ToastService } from '../../../common/service/toast.service';
+import { AppBreadcrumbService } from '../../../core/breadcrumb/app-breadcrumb.service';
+import { CategoryService } from '../../../service/product/category.service';
+import { LoaderComponent } from '../../category/loader.component';
 
 @Component({
   selector: 'app-category-add',
@@ -9,44 +18,43 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class CategoryAddComponent implements OnInit {
 
-  // public displayedColumns: string[] = ['privilage', 'সুপার এডমিন', 'জিইডি লেখক', 'প্রকল্প ব্যবস্থাপক', 'প্রকল্প সদস্য', 'সচিব'];
-  // public dataSource = new MatTableDataSource<IPLData>(data);
-  // form: FormGroup;
-  
-  ngOnInit() {
-  }
-  // constructor(private fb: FormBuilder) { }
-  // onChange(name: string, isChecked: boolean) {
+  @ViewChild(LoaderComponent, { static: false })
 
-  //   if (isChecked) {
-  //     //Need APi Implementaton
-  //   } else {
-  //     //Need APi Implementaton
-  //   }
-  // }
+  public loader: LoaderComponent;
+  public myFilter: any;
+
+  constructor(
+    public dialog: MatDialog,
+    public appBarService: AppBreadcrumbService,
+    private categoryService: CategoryService,
+    private toastService: ToastService,
+    private stateService: StateService,
+    public data: Category,
+    ) {
 }
-// export interface IPLData {
-//   admin: boolean;
-//   gedAuthor: boolean;
-//   pd: boolean;
-//   pdMember: boolean;
-//   secretary: boolean;
-//   privilage: string;
-// }
 
-// const data: IPLData[] = [
-//   {privilage: 'ড্যাশবোর্ড​', admin: true, gedAuthor : true, pd : true, pdMember: true, secretary : true},
-//   {privilage: 'সার-সংক্ষেপ', admin: true, gedAuthor : false, pd : false, pdMember: true, secretary : true},
-//   {privilage: 'নতুন প্রকল্প তৈরি',admin: true, gedAuthor : false, pd : false, pdMember: true, secretary : true},
-//   {privilage: 'প্রকল্পের তালিকা', admin: true, gedAuthor : true, pd : true, pdMember: false, secretary : false},
-//   {privilage: 'কার্যের তথ্য তৈরি  ',admin: false, gedAuthor : false, pd : false, pdMember: false, secretary : false},
-//   {privilage: 'অনুচ্ছেদ', admin: true, gedAuthor : true, pd : false, pdMember: false, secretary : false},
-//   {privilage: 'নতুন অনুচ্ছেদ', admin: true, gedAuthor : false, pd : true, pdMember: true, secretary : true},
-//   {privilage: 'অনুচ্ছেদের তালিকা',admin: false, gedAuthor : true, pd : false, pdMember: false, secretary : true},
-//   {privilage: 'রিপোর্ট',admin: false, gedAuthor : false, pd : false, pdMember: false, secretary : false},
-//   {privilage: 'প্রকল্পের রিপোর্ট',admin: true, gedAuthor : true, pd : true, pdMember: false, secretary : true},
-//   {privilage: 'গ্যান্ট চার্ট', admin: false, gedAuthor : false, pd : true, pdMember: true, secretary : false},
-//   {privilage: 'মাস্টার সেটিংস',admin: true, gedAuthor : false, pd : true, pdMember: false, secretary : false},
-//   {privilage: 'ইউজার-রোল', admin: false, gedAuthor : true, pd : false, pdMember: true, secretary : true},
-//   {privilage: 'অনুমতি', admin: true, gedAuthor : false, pd : true, pdMember: true, secretary : false},
-// ];
+  public ngOnInit() {
+    this.setStateCategory(this.data);
+  }
+  public setStateCategory(brand: Brand): void {
+    this.stateService.setCategory(brand);
+  }
+  public save() {
+    this.data.createdBy = 1;
+    this.data.createdAt = new Date();
+    this.loader.loading = true;
+    this.categoryService.addCategory(this.stateService.getCategory()).subscribe
+        (
+          (response) => {
+            console.log(response);
+            this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+            this.loader.loading = false;
+          }, (error) => {
+            console.log(error);
+            this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+            this.loader.loading = false;
+            console.log(this.data);
+          });
+  }
+
+}

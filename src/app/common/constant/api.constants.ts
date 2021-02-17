@@ -47,11 +47,13 @@ const CATEGORY_SERVICE = SERVICE_API + 'api/category/';
 export const CATEGORY_API = {
     GET_CATEGORY: CATEGORY_SERVICE + 'getAll/',
     ADD_CATEGORY: CATEGORY_SERVICE,
+    GET_CATEGORY_BY_ID: CATEGORY_SERVICE,
 };
 const BRAND_SERVICE = SERVICE_API + 'api/brand/';
 export const BRAND_API = {
     GET_BRAND: BRAND_SERVICE + 'getAll/',
     ADD_BRAND: BRAND_SERVICE,
+    GET_BRAND_BY_ID: BRAND_SERVICE,
 };
 const SUB_CATEGORY_SERVICE = SERVICE_API + 'api/subCategory/';
 export const SUB_CATEGORY_API = {
