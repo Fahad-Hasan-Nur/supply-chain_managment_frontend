@@ -1,0 +1,98 @@
+<div style="background-color: rgb(15, 26, 63);">
+    <h2 style="text-align: center;color: white;">Update Product Details</h2>
+</div>
+<mat-card style="min-height: inherit;">
+    <mat-card-content>
+        <form class="example-form" #prjNgModel='ngForm'>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field>
+                        <mat-label>{{' Name​'}}</mat-label>
+                        <input matInput placeholder="Write Product Name ​" [required]="true" #name="ngModel" name="name" [(ngModel)]="product.name">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Code'}}</mat-label>
+                        <input matInput placeholder="Write Product Code ​" [required]="true" #code="ngModel" name="code" [(ngModel)]="product.code">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Category ​'}}</mat-label>
+                        <input matInput [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel' name="category" [matAutocomplete]="autoCategory" [(ngModel)]="product.categoryName">
+                        <mat-autocomplete autoActiveFirstOption #autoCategory="matAutocomplete">
+                            <mat-option *ngFor="let category of categoryList" [value]="category.name" (onSelectionChange)="onSelectCategory(category.id)">
+                                {{ category.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Sub Category ​'}}</mat-label>
+                        <input matInput [required]="true" placeholder="Select Sub Category" aria-label="State" #subCategory='ngModel' name="subCategory" [matAutocomplete]="autoEm" [(ngModel)]="product.subCategoryName">
+                        <mat-autocomplete autoActiveFirstOption #autoEm="matAutocomplete">
+                            <mat-option *ngFor="let subCategory of subCategoryList" [value]="subCategory.name" (onSelectionChange)="onSelectSubCategory(subCategory.id)">
+                                {{ subCategory.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Brand ​'}}</mat-label>
+                        <input matInput [required]="true" placeholder="Select Brand" aria-label="State" #brand='ngModel' name="brand" [matAutocomplete]="autoEmm" [(ngModel)]="product.brandName">
+                        <mat-autocomplete autoActiveFirstOption #autoEmm="matAutocomplete">
+                            <mat-option *ngFor="let brand of brandList" [value]="brand.name" (onSelectionChange)="onSelectBrand(brand.id)">
+                                {{ brand.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Price'}}</mat-label>
+                        <input matInput type="number" [required]="true" placeholder=" Product price ​" #price="ngModel" name="price" [(ngModel)]="product.price">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Quantity'}}</mat-label>
+                        <input matInput type="number" [required]="true" placeholder="Write Product quantity ​" #quantity="ngModel" name="quantity" [(ngModel)]="product.quantity">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <fieldset class="form-group">
+                        <label>Upload Image</label> {{imageError}}
+                        <div class="custom-file fileInputProfileWrap">
+                            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" enctype="multipart/form-data">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-6">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" style="float:right; margin:20px 5px 5px 5px">
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <div *ngIf=retrievedImage>
+                            <img [src]="retrievedImage" style="float:right; margin:20px 5px 5px 5px">
+                        </div>
+                    </ng-template>
+                    <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid " (click)="save()">{{'Save'}}</button>
+<app-loader></app-loader>

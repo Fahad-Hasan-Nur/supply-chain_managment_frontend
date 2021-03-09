@@ -1,8 +1,66 @@
-<div class="container row">
-    <div class="col-md-12">
-        <div *ngIf=retrievedImage>
-            <img [src]="retrievedImage">
-        </div>
-    </div>
+<div style="background-color: black;">
+    <h2 style="text-align: center;color: white;"> {{product.name}} </h2>
 </div>
-<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'বন্ধ করুন'}}</button>
+
+<div *ngIf=retrievedImage>
+    <img [src]="retrievedImage" class="center">
+</div>
+
+<mat-card style="height:inherit;" mat-dialog-content>
+    <mat-card-content>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Product Code :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.code}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Product Category :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.categoryName}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Product Sub Category :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.subCategoryName}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Product Barnd:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.brandName}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Product Price :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.price}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Available Quantity :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{product.quantity}}</b>
+            </div>
+        </div>
+
+        <button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>

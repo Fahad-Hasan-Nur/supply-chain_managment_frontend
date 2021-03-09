@@ -1,1 +1,21 @@
-<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'বন্ধ করুন'}}</button>
+<div style="background-color: black;">
+    <h2 style="text-align: center;color: white;"> {{category.name}} </h2>
+</div>
+
+<div class="container">
+    <div class="leftdv">
+        <b></b>
+    </div>
+    <div class="rytdv">
+        <b></b>
+    </div>
+</div>
+
+<div class="container">
+    <div class="leftdv">
+        <b>Category Description:</b>
+        <textarea class="goal" readonly cdkTextareaAutosize cols="80" #cfcAutosize="cdkTextareaAutosize">{{category.description}}</textarea>
+    </div>
+</div>
+
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>

@@ -47,14 +47,13 @@ export class CategoryListComponent implements OnInit {
     this.router.navigateByUrl(URL.CATEGORY_ADD);
   }
   
-  openDialogView(id?) {
+  openDialogView(data?) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        brandId: id
+        category: data
     };
-    console.log(id);
     this.dialog.open(CategoryViewComponent, dialogConfig);
   }
 

@@ -1,27 +1,29 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { MatDialog} from '@angular/material';
+import { Component, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import * as _ from 'lodash';
-import { success_message } from '../../../common/constant/messages';
-import { Brand } from '../../../common/model/brand';
-import { Category } from '../../../common/model/Category';
-import { Product } from '../../../common/model/product';
-import { SubCategory } from '../../../common/model/sub-category';
-import { StateService } from '../../../common/service/state.service';
-import { ToastService } from '../../../common/service/toast.service';
-import { ImageService } from '../../../service/image/image.service';
-import { BrandService } from '../../../service/product/brand.service';
-import { CategoryService } from '../../../service/product/category.service';
-import { ProductService } from '../../../service/product/product.service';
-import { SubCategoryService } from '../../../service/product/sub-category.service';
-import { LoaderComponent } from '../loader.component';
+import { EDITOR_OPTIONS_MEDIUM } from '../../../../common/constant/editor.constants';
+import { success_message } from '../../../../common/constant/messages';
+import { Brand } from '../../../../common/model/brand';
+import { Category } from '../../../../common/model/Category';
+import { Product } from '../../../../common/model/product';
+import { SubCategory } from '../../../../common/model/sub-category';
+import { StateService } from '../../../../common/service/state.service';
+import { ToastService } from '../../../../common/service/toast.service';
+import { ImageService } from '../../../../service/image/image.service';
+import { BrandService } from '../../../../service/product/brand.service';
+import { CategoryService } from '../../../../service/product/category.service';
+import { ProductService } from '../../../../service/product/product.service';
+import { SubCategoryService } from '../../../../service/product/sub-category.service';
+import { LoaderComponent } from '../../loader.component';
 
 @Component({
-  selector: 'app-product-add',
-  templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.scss'],
+  selector: 'app-product-edit',
+  templateUrl: './product-edit.component.html',
+  styleUrls: ['./product-edit.component.scss']
 })
-export class ProductAddComponent implements OnInit {
+export class ProductEditComponent implements OnInit {
+
 
   @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
@@ -40,7 +42,6 @@ export class ProductAddComponent implements OnInit {
   public imageName: any;
 
   constructor(
-               public dialog: MatDialog,
                private productService: ProductService,
                private brandService: BrandService,
                private categoryService: CategoryService,
@@ -48,14 +49,21 @@ export class ProductAddComponent implements OnInit {
                private subCategoryService: SubCategoryService,
                private toastService: ToastService,
                private stateService: StateService,
-               public data: Product,
+               public product: Product,
+               private ngZone: NgZone,
+               private dialogRef: MatDialogRef<ProductEditComponent>,
+               @Inject(MAT_DIALOG_DATA) data,
+               private ren: Renderer2,
                ) {
-}
+                 this.product = data.product;
+             }
 
   public ngOnInit() {
-    this.setStateProject(this.data);
+    this.setStateProject(this.product);
     this.getCategory();
+    this.getSubCategory(this.product.categoryId);
     this.getBrand();
+    this.getImage(this.product.imageId);
   }
   public getCategory() {
     this.categoryService.getCategory().subscribe((data) => {
@@ -83,13 +91,13 @@ export class ProductAddComponent implements OnInit {
   }
   public onSelectCategory(value: string): void {
     this.getSubCategory(value);
-    this.data.categoryId = value;
+    this.product.categoryId = value;
   }
   public onSelectBrand(value: string): void {
-    this.data.brandId = value;
+    this.product.brandId = value;
   }
   public onSelectSubCategory(value: string): void {
-    this.data.subCategoryId = value;
+    this.product.subCategoryId = value;
   }
 
   public setStateProject(product: Product): void {
@@ -97,21 +105,11 @@ export class ProductAddComponent implements OnInit {
   }
   public save() {
     this.loader.loading = true;
-    const uploadImageData = new FormData();
-    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.imageService.uploadImage(uploadImageData).subscribe
-    (
-      (response) => {
-        this.retrieveResonse=response;
-        console.log(this.retrieveResonse);
-        this.data.imageName=this.retrieveResonse.name;
-        this.data.imageId=this.retrieveResonse.id;
-        this.saveData();
-
-      }, (error) => {
-        this.saveData();
-        console.log(error);
-      });
+    if(this.selectedFile!=null){
+      this.saveImage();
+    }else{
+      this.saveData();
+    }
   }
   public fileChangeEvent(fileInput: any) {
     this.imageError = null;
@@ -158,25 +156,56 @@ export class ProductAddComponent implements OnInit {
         this.selectedFile = fileInput.target.files[0];
     }
 }
-private saveData(){  
-  this.data.createdBy="Fahad";
-  this.productService.addProduct(this.stateService.getProduct()).subscribe
+private saveImage(){
+  const uploadImageData = new FormData();
+  uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+  this.imageService.uploadImage(uploadImageData).subscribe
+  (
+    (response) => {
+      this.retrieveResonse=response;
+      console.log(this.retrieveResonse);
+      this.product.imageName=this.retrieveResonse.name;
+      this.product.imageId=this.retrieveResonse.id;
+      this.saveData();
+
+    }, (error) => {
+      this.saveData();
+      console.log(error);
+    });
+}
+private saveData(){
+  console.log(this.stateService.getProduct());
+  this.product.updatedBy="Fahad";
+  this.productService.updateProduct(this.stateService.getProduct()).subscribe
     (
       (response) => {
         console.log(response);
-        this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+        this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {
         console.log(error);
-        this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-        this.loader.loading = false;
-        console.log(this.data);
-      });
+        this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+         this.loader.loading = false;
+       });
 }
 
 public removeImage() {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
     this.selectedFile = null;
+}
+close() {
+  this.dialogRef.close();
+}
+getImage(id) {
+  this.imageService.getImageById(id).subscribe
+    (
+      (response) => {
+        this.retrieveResonse = response;
+        this.base64Data = this.retrieveResonse.picByte;
+        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      },
+      (error) => console.log(error),
+    );
 }
 }

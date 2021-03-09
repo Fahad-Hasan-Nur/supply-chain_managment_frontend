@@ -115,8 +115,7 @@ export class BrandAddComponent implements OnInit {
 }
 private saveData(){
   this.loader.loading = true;
-  this.data.createdBy = 1;
-  this.data.createdAt = new Date();
+  this.data.createdBy="Fahad";
   this.brandService.addBrand(this.stateService.getBrand()).subscribe
     (
       (response) => {

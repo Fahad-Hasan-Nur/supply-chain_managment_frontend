@@ -48,14 +48,13 @@ export class BrandListComponent implements OnInit {
     this.router.navigateByUrl(URL.BRAND_ADD);
   }
   
-  openDialogView(id?) {
+  openDialogView(data?) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        brandId: id
+        brand: data
     };
-    console.log(id);
     this.dialog.open(BrandViewComponent, dialogConfig);
   }
 

@@ -6,5 +6,7 @@ export class SubCategory {
     public categoryName?: string ;
     public categoryId?: string ;
     public description?: string ;
+    public createdBy?: string;
+    public updatedBy?: string;
   }
   

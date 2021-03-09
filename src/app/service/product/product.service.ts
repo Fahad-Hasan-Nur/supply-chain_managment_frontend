@@ -27,6 +27,15 @@ export class ProductService {
   public addProduct(product:Product){
     return this._http.post(PRODUCT_API.ADD_PRODUCT,product,{ headers: this.reqHeader });
   }
+  /**
+   * Update a  product.
+   *
+   * @param product
+   * @returns product
+   */
+  public updateProduct(product:Product){
+    return this._http.put(PRODUCT_API.UPDATE_PRODUCT,product,{ headers: this.reqHeader });
+  }
     /**
    * Returns list of products.
    *

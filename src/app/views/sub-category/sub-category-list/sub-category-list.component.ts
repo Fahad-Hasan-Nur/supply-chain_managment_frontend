@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { SubCategoryViewComponent } from './../dialog/sub-category-view/sub-category-view.component';
+import { SubCategory } from './../../../common/model/sub-category';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { Router } from '@angular/router';
 import { URL } from '../../../common/constant/nav.constant';
-import { Product } from '../../../common/model/product';
-import { ProductService } from '../../../service/product/product.service';
+import { SubCategoryService } from '../../../service/product/sub-category.service';
 
 @Component({
   selector: 'app-sub-category-list',
@@ -13,50 +13,48 @@ import { ProductService } from '../../../service/product/product.service';
 })
 export class SubCategoryListComponent implements OnInit {
 
-  constructor(
-    // private http: HttpClient, private service: ProductService, public route: Router, protected dialog: MatDialog
-    ) { }
-  // public router: Router;
-  // public product: Product[] = [];
-  // public displayedColumns: string[] = ['Name', 'Category', 'Sub-Category', 'Brand', 'Quantity', 'Price', 'action'];
-  // public dataSource = new MatTableDataSource;
-  // public showFilters: boolean;
-  // public prjId: string;
-  // @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;
-  // @ViewChild(MatSort, {static: true}) public sort: MatSort;
+  constructor( private service: SubCategoryService, public route: Router, protected dialog: MatDialog) { }
+  public router: Router;
+  public subCategory: SubCategory[] = [];
+  public displayedColumns: string[] = ['Name', 'Category', 'action'];
+  public dataSource = new MatTableDataSource;
+  public showFilters: boolean;
+  public prjId: string;
+  @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
   public ngOnInit() {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-    // this.service.getProducts().subscribe
-    //   (
-    //     (response) => {
-    //       this.product = response;
-    //       this.dataSource.data = response as Product[];
-    //       console.log(this.product);
-    //     },
-    //     (error) => console.log(error),
-    //   );
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.service.getSubCAtegory().subscribe
+      (
+        (response) => {
+          this.subCategory = response;
+          this.dataSource.data = response as SubCategory[];
+          console.log(this.subCategory);
+        },
+        (error) => console.log(error),
+      );
   }
 
-  // public applyFilter(filterValue: any) {
-  //     this.dataSource.filter = filterValue.value.trim().toLowerCase();
-  // }
-  // public search(data) {
+  public applyFilter(filterValue: any) {
+      this.dataSource.filter = filterValue.value.trim().toLowerCase();
+  }
+  public search(data) {
 
-  // }
-  // public viewAddProductPage() {
-  //   this.router.navigateByUrl(URL.PRODUCT_ADD);
-  // }
+  }
+  public viewAddSubCategoryPage() {
+    this.router.navigateByUrl(URL.SUB_CATEGORY_ADD);
+  }
   
-  // openDialogView(id?) {
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.data = {
-  //       productId: id
-  //   };
-  //   this.dialog.open(ProductViewComponent, dialogConfig);
-  // }
+  openDialogView(data?) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+        subCategory: data
+    };
+    this.dialog.open(SubCategoryViewComponent, dialogConfig);
+  }
 
 }

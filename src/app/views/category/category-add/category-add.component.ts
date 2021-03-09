@@ -40,9 +40,8 @@ export class CategoryAddComponent implements OnInit {
     this.stateService.setCategory(brand);
   }
   public save() {
-    this.data.createdBy = 1;
-    this.data.createdAt = new Date();
     this.loader.loading = true;
+    this.data.createdBy="Fahad";
     this.categoryService.addCategory(this.stateService.getCategory()).subscribe
         (
           (response) => {

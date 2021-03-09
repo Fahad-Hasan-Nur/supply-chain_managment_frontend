@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { URL } from '../../../common/constant/nav.constant';
 import { Product } from '../../../common/model/product';
 import { ProductService } from '../../../service/product/product.service';
+import { ProductEditComponent } from '../component/product-edit/product-edit.component';
 import { ProductViewComponent } from '../component/product-view/product-view.component';
 
 @Component({
@@ -17,7 +18,7 @@ export class ProductListComponent implements OnInit {
   constructor(private http: HttpClient, private service: ProductService, public route: Router, protected dialog: MatDialog) { }
   public router: Router;
   public product: Product[] = [];
-  public displayedColumns: string[] = ['Name', 'Category', 'Sub-Category', 'Brand', 'Quantity', 'Price', 'action'];
+  public displayedColumns: string[] = ['Name', 'Category', 'Sub-Category', 'Brand', 'action'];
   public dataSource = new MatTableDataSource;
   public showFilters: boolean;
   public prjId: string;
@@ -48,14 +49,24 @@ export class ProductListComponent implements OnInit {
     this.router.navigateByUrl(URL.PRODUCT_ADD);
   }
   
-  openDialogView(id?) {
+  openDialogView(data?) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        productId: id
+        product: data
     };
     this.dialog.open(ProductViewComponent, dialogConfig);
+  }
+
+  openDialogEdit(data?) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+        product: data
+    };
+    this.dialog.open(ProductEditComponent, dialogConfig);
   }
 
 }

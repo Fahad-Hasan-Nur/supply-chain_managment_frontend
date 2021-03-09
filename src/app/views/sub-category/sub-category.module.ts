@@ -1,3 +1,6 @@
+import { SubCategory } from './../../common/model/sub-category';
+import { LoaderComponent } from './../sub-category/loader.component';
+import { SubCategoryViewComponent } from './dialog/sub-category-view/sub-category-view.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,9 +14,9 @@ import { SubCategoryComponent } from './sub-category.component';
 
 
 @NgModule({
-  declarations: [SubCategoryComponent, SubCategoryListComponent, SubCategoryAddComponent ],
+  declarations: [SubCategoryComponent, SubCategoryListComponent, SubCategoryAddComponent ,SubCategoryViewComponent,LoaderComponent],
  
-  entryComponents: [
+  entryComponents: [SubCategoryViewComponent
   ], 
   imports: [
     CommonModule,
@@ -22,7 +25,7 @@ import { SubCategoryComponent } from './sub-category.component';
     DemoMaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [DatePipe]
+  providers: [DatePipe,SubCategory]
 })
 export class SubCategoryModule {
   constructor() {

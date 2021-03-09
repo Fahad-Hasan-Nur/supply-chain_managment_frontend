@@ -10,8 +10,8 @@ export class Product {
   public subCategoryId?: string ;
   public quantity?: number ;
   public price?: number ;
-  public createdAt?: Date;
-  public createdBy?: number;
   public imageId?: string ;
   public imageName?: string ;
+  public createdBy?: string;
+  public updatedBy?: string;
 }
