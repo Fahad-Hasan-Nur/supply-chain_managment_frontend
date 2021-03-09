@@ -64,7 +64,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   public ngOnInit(): void {
-    this.userName = this.adminService.usersStorage().email;
+    //this.userName = this.adminService.usersStorage().email;
     // let roles = this.storage.read(AUTH.ROLES);
     // console.log(roles);
     const privilege = new Set<string>();

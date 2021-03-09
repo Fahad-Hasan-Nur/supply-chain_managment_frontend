@@ -53,7 +53,7 @@ export class CategoryAddComponent implements OnInit {
             console.log(error);
             this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
             this.loader.loading = false;
-            console.log(this.data);
+            console.log(error);
           });
   }
 

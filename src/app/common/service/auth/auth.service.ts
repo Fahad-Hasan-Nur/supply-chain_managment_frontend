@@ -22,7 +22,7 @@ export class AuthService {
              private adminService :AdminService) {
   }
 
-  private getDecodedAccessToken(token: string): Promise<Admin> {
+  public getDecodedAccessToken(token: string): Promise<Admin> {
     return new Promise((resolved,reject) =>{
       try {
         this.storage.save(AUTH.TOKEN, token);
@@ -50,9 +50,11 @@ export class AuthService {
 
   private currentUserSave(admin: Admin): Promise<boolean> {
    return new Promise((resolved,reject) =>{
+     console.log(admin.email)
     this.adminService.getAdminInfo(admin.email).subscribe(
       res => {
         admin = res;
+        console.log(res)
         this.stateService.setAdmin(admin);
         this.storage.save(AUTH.CURRENT_USER, admin);
         resolved(true);

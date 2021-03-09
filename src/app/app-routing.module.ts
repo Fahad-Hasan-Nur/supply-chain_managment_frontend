@@ -25,11 +25,11 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     
-      {
-        path: URL_NAME.OVERVIEW,
-       // canActivate: [AuthGuard],
-        loadChildren: () => import('./views/overview/overview.module').then(m => m.OverviewModule)
-      },
+      // {
+      //   path: URL_NAME.OVERVIEW,
+      //  // canActivate: [AuthGuard],
+      //   loadChildren: () => import('./views/overview/overview.module').then(m => m.OverviewModule)
+      // },
       {
         path: URL_NAME.CATEGORY,
        // canActivate: [AuthGuard],
@@ -37,29 +37,29 @@ export const routes: Routes = [
       },
       {
         path: URL_NAME.SUB_CATEGORY,
-       // canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
         loadChildren: () => import('./views/sub-category/sub-category.module').then(m => m.SubCategoryModule)
       },
-      {
-        path: URL_NAME.PRJ_DASHBOARD,
-       // canActivate: [AuthGuard],
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardComponentModule)
-      },
+      // {
+      //   path: URL_NAME.PRJ_DASHBOARD,
+      //  // canActivate: [AuthGuard],
+      //   loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardComponentModule)
+      // },
       {
         path: URL_NAME.PRODUCT,
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
         path: URL_NAME.BRAND,
-        canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
         loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule)
       },
-      {
-        path: URL_NAME.PRJ,
-      //  canActivate: [AuthGuard],
-        loadChildren: () => import('./views/prj-planning/prj-planning.module').then(m => m.PrjPlanningModule)
-      },
+      // {
+      //   path: URL_NAME.PRJ,
+      // //  canActivate: [AuthGuard],
+      //   loadChildren: () => import('./views/prj-planning/prj-planning.module').then(m => m.PrjPlanningModule)
+      // },
     //   {
     //     path: URL_NAME.EMPLOYEE,
     //  //   canActivate: [AuthGuard],

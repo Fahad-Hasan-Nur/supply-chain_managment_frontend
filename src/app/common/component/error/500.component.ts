@@ -5,6 +5,7 @@ import { LoaderComponent } from '../../../views/product/loader.component';
 import { success_message } from '../../constant/messages';
 import { URL } from '../../constant/nav.constant';
 import { Auth } from '../../model/auth';
+import { AuthService } from '../../service/auth/auth.service';
 import { StateService } from '../../service/state.service';
 import { ToastService } from '../../service/toast.service';
 import { StorageService } from './../../service/storage/storage.service';
@@ -21,7 +22,7 @@ export class P500Component implements OnInit  {
               private storage: StorageService,
               private stateService: StateService,
               public data: Auth,
-              private toastService: ToastService) { }
+              private auth: AuthService) { }
 
     public ngOnInit() {
       this.setStateProject(this.data);
