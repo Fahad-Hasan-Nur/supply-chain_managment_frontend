@@ -9,7 +9,7 @@ import { StateService } from '../../../common/service/state.service';
 import { ToastService } from '../../../common/service/toast.service';
 import { AppBreadcrumbService } from '../../../core/breadcrumb/app-breadcrumb.service';
 import { CategoryService } from '../../../service/product/category.service';
-import { LoaderComponent } from '../../category/loader.component';
+import { LoaderComponent } from '../loader.component';
 
 @Component({
   selector: 'app-category-add',
@@ -40,9 +40,8 @@ export class CategoryAddComponent implements OnInit {
     this.stateService.setCategory(brand);
   }
   public save() {
-    this.data.createdBy = 1;
-    this.data.createdAt = new Date();
     this.loader.loading = true;
+    this.data.createdBy="Fahad";
     this.categoryService.addCategory(this.stateService.getCategory()).subscribe
         (
           (response) => {

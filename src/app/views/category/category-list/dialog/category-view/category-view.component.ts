@@ -1,9 +1,9 @@
-import { Component, Inject, NgZone, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, HostListener, Inject, NgZone, OnInit, ViewChild } from '@angular/core';
+import {  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { take } from 'rxjs/operators';
 import { EDITOR_OPTIONS_MEDIUM } from '../../../../../common/constant/editor.constants';
 import { Category } from '../../../../../common/model/Category';
-import { CategoryService } from '../../../../../service/product/category.service';
 
 @Component({
   selector: 'app-category-view',
@@ -13,33 +13,28 @@ import { CategoryService } from '../../../../../service/product/category.service
 export class CategoryViewComponent implements OnInit {
 
   public toolbarOptions;
-  private id: string;
   constructor(
     public category: Category,
-    private service: CategoryService,
     private ngZone: NgZone,
     private dialogRef: MatDialogRef<CategoryViewComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private ren: Renderer2,
     ) {
-      this.id = data.categoryId;
-
+      this.category = data.category;
   }
   ngOnInit() {
-    this.display();
     this.toolbarOptions = EDITOR_OPTIONS_MEDIUM;
+  }
+  @ViewChild('cfcAutosize', {static: false})
+  public contentFCAutosize: CdkTextareaAutosize;
+
+  @HostListener('window:keyup.esc') public onKeyUp() {
+    this.dialogRef.close();
+  }
+  public resizeTextArea() {
+    this.ngZone.onStable.pipe(take(1))
+    .subscribe(() => this.contentFCAutosize.resizeToFitContent(true));
   }
   close() {
     this.dialogRef.close();
 }
-  display() {
-    this.service.getCategoryById(this.id).subscribe
-      (
-        (response) => {
-          this.category = response;
-          console.log(this.category);
-        },
-        (error) => console.log(error),
-      );
-  }
 }

@@ -1,0 +1,32 @@
+<div style="background-color: black;">
+    <h2 style="text-align: center;color: white;"> {{subCategory.name}} </h2>
+</div>
+
+<div class="container">
+    <div class="leftdv">
+        <b>Sub Category Code :</b>
+    </div>
+    <div class="rytdv">
+        <b>{{subCategory.code}}</b>
+    </div>
+</div>
+
+<div class="container">
+    <div class="leftdv">
+        <b>Parent Category :</b>
+    </div>
+    <div class="rytdv">
+        <b>{{subCategory.categoryName}}</b>
+    </div>
+</div>
+
+<div class="container">
+    <div class="leftdv">
+        <b>Sub Category Description:</b>
+        <textarea class="goal" readonly cdkTextareaAutosize cols="80" #cfcAutosize="cdkTextareaAutosize">{{subCategory.description}}</textarea>
+    </div>
+</div>
+
+
+
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>

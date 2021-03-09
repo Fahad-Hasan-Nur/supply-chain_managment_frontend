@@ -1,3 +1,4 @@
+import { SUB_CATEGORY_API } from './api.constants';
 import { PROJECT } from './global-variables.constant';
 export const ROLES = {
   // PRJ_GED_AUTHOR: 'GED_AUTHOR',
@@ -9,16 +10,19 @@ export const ROLES = {
 };
 
 export const MENU_NAME = {
-  BRAND:'brand',
+  BRAND:'Brand',
   BRAND_LIST:'Brand List',
   BRAND_ADD:'Add Brand',
   SUB_CATEGORY:'Sub Category',
   SUB_CATEGORY_LIST:'Sub Category List',
   SUB_CATEGORY_ADD:'Add Sub Category',
   CATEGORY:'Category',
-  CATEGORY_LIST:'Add Category ',
-  CATEGORY_ADD:'Category List',
+  CATEGORY_LIST:' Category List',
+  CATEGORY_ADD:'Add Category',
   PRODUCT: 'Product',
+  EMPLOYYE:'Employee',
+  EMPLOYYE_LIST:' Emplyee List',
+  EMPLOYYE_ADD:'Add Employee',
   PRJ_DASHBOARD: 'ড্যাশবোর্ড​',
   PRJ_OVERVIEW:' প্রকল্প সার-সংক্ষেপ',
   PRJ_MEMBER:'প্রকল্পের সদস্য',
@@ -48,6 +52,9 @@ export const URL = {
   SUB_CATEGORY: '/sub-category',
   SUB_CATEGORY_ADD: '/sub-category/sub-category-add',
   SUB_CATEGORY_LIST: '/sub-category/sub-category-list',
+  EMPLOYEE: '/employee',
+  EMPLOYEE_ADD: '/employee/employee-add',
+  EMPLOYEE_LIST: '/employee/employee-list',
   PRJ_MEMBER:'/prj-member-list',
   PRJ_OVERVIEW:'/overview',
   PRJ_OVERVIEW_ID:'/overview/prj-overview/',
@@ -81,6 +88,8 @@ export const URL_NAME = {
   PRJ_OVERVIEW:'prj-overview',
   PRJ_OVERVIEW_ID:'prj-overview/:id',
   EMPLOYEE:'employee',
+  EMPLOYEE_ADD:'employee-add',
+  EMPLOYEE_LIST:'employee-list',
   PRJ:'prj',
   PRJ_MEMBER:'prj-member-list',
   PRJ_ADD:'prj-add',
@@ -99,22 +108,33 @@ export const URL_NAME = {
   USER_PERMISSION : 'permission'
 };
 export const ICON = {
-  BRAND:'icon-list',
-  CATEGORY:'icon-list',
-  PRODUCT:'icon-list',
-  PRJ_DASHBOARD: 'icon-speedometer',
-  PRJ_OVERVIEW:'icon-speedometer',
-  PRJ_ADD:'icon-plus',
-  PRJ_LIST:'icon-list',
-  PRJ_TASK_ADD:'icon-plus',
-  PRJ_TASK_LIST:'icon-list',
+  BRAND:'icon-tag',
+  BRAND_ADD:'icon-puzzle',
+  BRAND_LIST: 'icon-list',
+  CATEGORY:'icon-menu',
+  CATEGORY_ADD: 'icon-plus',
+  CATEGORY_LIST: 'icon-eyeglass',
+  PRODUCT:'icon-basket-loaded',
   PRODUCT_ADD: 'icon-plus',
-  PRODUCT_LIST: 'icon-list',
-  REPORT: 'icon-drop',
-  PRJ_REPORT: 'icon-list',
-  PRJ_GRANTT_CHART:'icon-list',
-  MASTER_SETTING: 'icon-settings',
-  USER_ROLES : 'icon-location-pin',
-  USER_PERMISSION : 'icon-location-pin'
+  PRODUCT_LIST: 'icon-basket',
+  SUB_CATEGORY:'icon-book-open',
+  SUB_CATEGORY_ADD:'icon-wrench',
+  SUB_CATEGORY_LIST:'icon-directions',
+  EMPLOYEE:'icon-user',
+  EMPLOYEE_ADD:'icon-user-following',
+  EMPLOYEE_LIST:'icon-people',
+  // PRJ_DASHBOARD: 'icon-speedometer',
+  // PRJ_OVERVIEW:'icon-speedometer',
+  // PRJ_ADD:'icon-plus',
+  // PRJ_LIST:'icon-list',
+  // PRJ_TASK_ADD:'icon-plus',
+  // PRJ_TASK_LIST:'icon-list',
+  
+  // REPORT: 'icon-drop',
+  // PRJ_REPORT: 'icon-list',
+  // PRJ_GRANTT_CHART:'icon-list',
+  // MASTER_SETTING: 'icon-settings',
+  // USER_ROLES : 'icon-location-pin',
+  // USER_PERMISSION : 'icon-location-pin'
 };
 

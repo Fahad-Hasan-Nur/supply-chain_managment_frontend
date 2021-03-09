@@ -9,7 +9,6 @@ import { Product } from '../../../common/model/product';
 import { SubCategory } from '../../../common/model/sub-category';
 import { StateService } from '../../../common/service/state.service';
 import { ToastService } from '../../../common/service/toast.service';
-import { AppBreadcrumbService } from '../../../core/breadcrumb/app-breadcrumb.service';
 import { ImageService } from '../../../service/image/image.service';
 import { BrandService } from '../../../service/product/brand.service';
 import { CategoryService } from '../../../service/product/category.service';
@@ -42,7 +41,6 @@ export class ProductAddComponent implements OnInit {
 
   constructor(
                public dialog: MatDialog,
-               public appBarService: AppBreadcrumbService,
                private productService: ProductService,
                private brandService: BrandService,
                private categoryService: CategoryService,
@@ -85,13 +83,12 @@ export class ProductAddComponent implements OnInit {
   }
   public onSelectCategory(value: string): void {
     this.getSubCategory(value);
-    this.data.categoryId = value;
   }
   public onSelectBrand(value: string): void {
-    this.data.brandId = value;
+    this.data.brandName = value;
   }
   public onSelectSubCategory(value: string): void {
-    this.data.subCategoryId = value;
+    this.data.subCategoryName = value;
   }
 
   public setStateProject(product: Product): void {
@@ -119,7 +116,7 @@ export class ProductAddComponent implements OnInit {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
         // Size Filter Bytes
-        const max_size = 2097000;
+        const max_size = 2097000/5;
         const allowed_types = ['image/png', 'image/jpeg'];
         const max_height = 300;
         const max_width = 300;
@@ -160,9 +157,8 @@ export class ProductAddComponent implements OnInit {
         this.selectedFile = fileInput.target.files[0];
     }
 }
-private saveData(){
-  this.data.createdBy = 1;
-  this.data.createdAt = new Date();
+private saveData(){  
+  this.data.createdBy="Fahad";
   this.productService.addProduct(this.stateService.getProduct()).subscribe
     (
       (response) => {

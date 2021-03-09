@@ -20,5 +20,10 @@
       "esnext",
       "dom"
     ]
-  }
+  },
+  
+    "compilerOptions": {
+      "forceConsistentCasingInFileNames": false,
+    }
+  
 }

@@ -21,39 +21,43 @@
 
                 <div class="col-md-6">
                     <mat-form-field>
-                        <mat-label>{{' Category ​'}}</mat-label>
-                        <input matInput [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel' name="category" [matAutocomplete]="autoCategory" [(ngModel)]="data.categoryName">
-                        <mat-autocomplete autoActiveFirstOption #autoCategory="matAutocomplete">
-                            <mat-option *ngFor="let category of categoryList" [value]="category.name" (onSelectionChange)="onSelectCategory(category.id)">
-                                {{ category.name }}
-                            </mat-option>
-                        </mat-autocomplete>
+                      <mat-label>{{' Category ​'}}</mat-label>
+                      <mat-select #autoCategory="matSelect" [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel'
+                      name="category" [(ngModel)]="data.categoryId">
+                        <mat-option *ngFor="let category of categoryList" [value]="category.id"
+                          (onSelectionChange)="onSelectCategory(category.id)">
+                          {{ category.name }}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
-                </div>
+                  </div>
+
 
                 <div class="col-md-6">
                     <mat-form-field>
-                        <mat-label>{{' Sub Category ​'}}</mat-label>
-                        <input matInput [required]="true" placeholder="Select Sub Category" aria-label="State" #subCategory='ngModel' name="subCategory" [matAutocomplete]="autoEm" [(ngModel)]="data.subCategoryName">
-                        <mat-autocomplete autoActiveFirstOption #autoEm="matAutocomplete">
-                            <mat-option *ngFor="let subCategory of subCategoryList" [value]="subCategory.name" (onSelectionChange)="onSelectSubCategory(subCategory.id)">
-                                {{ subCategory.name }}
-                            </mat-option>
-                        </mat-autocomplete>
+                      <mat-label>{{' Sub Category ​'}}</mat-label>
+                      <mat-select #autoSubCategory="matSelect" [required]="true" placeholder="Select Sub Category" aria-label="State" #subCategory='ngModel'
+                      name="subCategory" [(ngModel)]="data.subCategoryId">
+                        <mat-option *ngFor="let subCategory of subCategoryList" [value]="subCategory.id"
+                          (onSelectionChange)="onSelectSubCategory(subCategory.name)">
+                          {{ subCategory.name }}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
-                </div>
+                  </div>
 
                 <div class="col-md-6">
                     <mat-form-field>
-                        <mat-label>{{' Brand ​'}}</mat-label>
-                        <input matInput [required]="true" placeholder="Select Brand" aria-label="State" #brand='ngModel' name="brand" [matAutocomplete]="autoEmm" [(ngModel)]="data.brandName">
-                        <mat-autocomplete autoActiveFirstOption #autoEmm="matAutocomplete">
-                            <mat-option *ngFor="let brand of brandList" [value]="brand.name" (onSelectionChange)="onSelectBrand(brand.id)">
-                                {{ brand.name }}
-                            </mat-option>
-                        </mat-autocomplete>
+                      <mat-label>{{' Brand ​'}}</mat-label>
+                      <mat-select #autoBrand="matSelect" [required]="true" placeholder="Select Brand" aria-label="State" #brand='ngModel'
+                      name="brand" [(ngModel)]="data.brandId">
+                        <mat-option *ngFor="let brand of brandList" [value]="brand.id"
+                          (onSelectionChange)="onSelectBrand(brand.name)">
+                          {{ brand.name }}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
-                </div>
+                  </div>
 
                 <div class="col-md-6">
                     <mat-form-field>

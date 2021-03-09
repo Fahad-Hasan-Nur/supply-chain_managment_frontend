@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { URL } from '../../../common/constant/nav.constant';
 import { Category } from '../../../common/model/Category';
 import { CategoryService } from '../../../service/product/category.service';
+import { CategoryEditComponent } from './dialog/category-edit/category-edit.component';
 import { CategoryViewComponent } from './dialog/category-view/category-view.component';
 
 @Component({
@@ -47,15 +48,23 @@ export class CategoryListComponent implements OnInit {
     this.router.navigateByUrl(URL.CATEGORY_ADD);
   }
   
-  openDialogView(id?) {
+  openDialogView(data?) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        brandId: id
+        category: data
     };
-    console.log(id);
     this.dialog.open(CategoryViewComponent, dialogConfig);
+  }
+  openDialogEdit(data?) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+        category: data
+    };
+    this.dialog.open(CategoryEditComponent, dialogConfig);
   }
 
 }

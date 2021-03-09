@@ -1,3 +1,4 @@
+import { ROLES } from './../../common/constant/nav.constant';
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -64,27 +65,26 @@ export class DefaultLayoutComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   public ngOnInit(): void {
-    //this.userName = this.adminService.usersStorage().email;
-    // let roles = this.storage.read(AUTH.ROLES);
-    // console.log(roles);
+    this.userName = this.adminService.usersStorage().email;
+    let roles = this.storage.read(AUTH.ROLES);
+    console.log(roles);
     const privilege = new Set<string>();
 
     // privilege.add(MENU_NAME.CATEGORY);
     privilege.add(MENU_NAME.BRAND);
     privilege.add(MENU_NAME.PRODUCT_ADD);
     privilege.add(MENU_NAME.PRODUCT_LIST);
-    // privilege.add(MENU_NAME.PRJ_DASHBOARD);
-    // privilege.add(MENU_NAME.PRJ_OVERVIEW);
-    // privilege.add(MENU_NAME.PRJ_ADD);
-    // privilege.add(MENU_NAME.PRJ_LIST);
-    // privilege.add(MENU_NAME.PRJ_TASK_LIST);
-    // privilege.add(MENU_NAME.PRJ_TASK_ADD);
     privilege.add(MENU_NAME.BRAND_ADD);
     privilege.add(MENU_NAME.BRAND_LIST);
     privilege.add(MENU_NAME.CATEGORY_ADD);
     privilege.add(MENU_NAME.CATEGORY_LIST);
     privilege.add(MENU_NAME.SUB_CATEGORY_ADD);
     privilege.add(MENU_NAME.SUB_CATEGORY_LIST);
+    if(roles==ROLES.SUPER_ADMIN){
+      privilege.add(MENU_NAME.EMPLOYYE_ADD);
+      privilege.add(MENU_NAME.EMPLOYYE_LIST);
+    }
+
 
 
     this.navItems = this.filterNavItems(getNavItems(), privilege);

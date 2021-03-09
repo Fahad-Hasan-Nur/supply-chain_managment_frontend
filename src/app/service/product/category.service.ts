@@ -43,4 +43,13 @@ private  reqHeader= new HttpHeaders({
   public getCategoryById(id): Observable<any> {
     return this._http.get<Category>(CATEGORY_API.GET_CATEGORY_BY_ID + id,{ headers: this.reqHeader });
 }
+ /**
+   * Update a  Category.
+   *
+   * @param Category
+   * @returns CAtegory
+   */
+  public updateCategory(category:Category){
+    return this._http.put(CATEGORY_API.UPDATE_CATEGORY,category,{ headers: this.reqHeader });
+  }
 }

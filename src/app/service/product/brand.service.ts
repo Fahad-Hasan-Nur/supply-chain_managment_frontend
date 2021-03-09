@@ -1,11 +1,11 @@
+import { Brand } from './../../common/model/brand';
 import { BRAND_API } from './../../common/constant/api.constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../common/service/storage/storage.service';
 import { AUTH } from '../../common/constant/global-variables.constant';
-import { Brand } from '../../common/model/brand';
-
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -42,4 +42,13 @@ private  reqHeader= new HttpHeaders({
   public getBrandById(id): Observable<any> {
     return this._http.get<Brand>(BRAND_API.GET_BRAND_BY_ID + id,{ headers: this.reqHeader });
 }
+ /**
+   * Update a  brand.
+   *
+   * @param brand
+   * @returns brand
+   */
+  public updateBrand(brand:Brand){
+    return this._http.put(BRAND_API.UPDATE_BRAND,brand,{ headers: this.reqHeader });
+  }
 }

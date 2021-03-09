@@ -1,0 +1,52 @@
+<div style="background-color: rgb(15, 26, 63);">
+  <h2 style="text-align: center;color: white;">Update Product Details</h2>
+</div>
+<mat-card style="min-height: inherit;">
+  <mat-card-content>
+    <form class="example-form" #prjNgModel='ngForm'>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field>
+            <mat-label>{{' Name​'}}</mat-label>
+            <input matInput placeholder="Write Product Name ​" [required]="true" #name="ngModel" name="name"
+              [(ngModel)]="subCategory.name">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Code'}}</mat-label>
+            <input matInput placeholder="Write Product Code ​" [required]="true" #code="ngModel" name="code"
+              [(ngModel)]="subCategory.code">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Category ​'}}</mat-label>
+            <mat-select #autoCategory="matSelect" [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel'
+            name="category" [(ngModel)]="subCategory.categoryId">
+              <mat-option *ngFor="let category of categoryList" [value]="category.id"
+                (onSelectionChange)="onSelectCategory(category.name)">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{' Description'}}</mat-label>
+            <textarea matInput placeholder="Write Brand Description.." #description='ngModel' name="description"
+              [(ngModel)]="subCategory.description" [required]="false" rows="6"></textarea>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid "
+  (click)="save()">{{'Save'}}</button>
+<app-loader></app-loader>

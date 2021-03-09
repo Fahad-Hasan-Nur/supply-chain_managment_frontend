@@ -8,8 +8,8 @@
                 </mat-form-field>
             </td>
             <td class="float-right" style="border: none">
-                <a class="btn btn-primary" [routerLink]="'/product/product-add'">
-                    <i class="fa fa-plus" matTooltip="Add New Product"></i>
+                <a class="btn btn-primary" [routerLink]="'/brand/brand-add'">
+                    <i class="fa fa-plus" matTooltip="Add New Brand"></i>
                 </a>
             </td>
         </tr>
@@ -36,10 +36,10 @@
     <ng-container matColumnDef="action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
         <td *matCellDef="let element" mat-cell>
-            <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element.id)">
+            <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element)">
                 <i class="fa fa-eye"></i>
             </a>
-            <a class="btn btn-danger" matTooltip="Edit">
+            <a class="btn btn-danger" matTooltip="Edit" (click)="openDialogEdit(element)">
                 <i class="fa fa-edit"></i>
             </a>
         </td>

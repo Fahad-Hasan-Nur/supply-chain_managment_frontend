@@ -1,3 +1,4 @@
+import { ROLES } from './common/constant/nav.constant';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
@@ -32,29 +33,32 @@ export const routes: Routes = [
       // },
       {
         path: URL_NAME.CATEGORY,
-       // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/category/category.module').then(m => m.CategoryModule)
       },
       {
         path: URL_NAME.SUB_CATEGORY,
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/sub-category/sub-category.module').then(m => m.SubCategoryModule)
       },
-      // {
-      //   path: URL_NAME.PRJ_DASHBOARD,
-      //  // canActivate: [AuthGuard],
-      //   loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardComponentModule)
-      // },
+      {
+        path: URL_NAME.EMPLOYEE,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule),
+        // data: { roles: [ROLES.SUPER_ADMIN]}
+      },
       {
         path: URL_NAME.PRODUCT,
-       // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
         path: URL_NAME.BRAND,
-        //canActivate: [AuthGuard],
-        loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule)
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule),
+        // data: { roles: [ROLES.ADMIN,ROLES.SUPER_ADMIN]}
       },
+    
       // {
       //   path: URL_NAME.PRJ,
       // //  canActivate: [AuthGuard],

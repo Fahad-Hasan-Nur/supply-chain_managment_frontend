@@ -26,28 +26,17 @@ export class ProductViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private ren: Renderer2,
     ) {
-      this.id = data.productId;
+      this.product = data.product;
   }
   ngOnInit() {
-    this.display();
+    this.getImage(this.product.imageId);
+
     this.toolbarOptions = EDITOR_OPTIONS_MEDIUM;
   }
   close() {
     this.dialogRef.close();
 }
-  display() {
-    this.service.getProductById(this.id).subscribe
-      (
-        (response) => {
-          this.product = response;
-          this.getImage(this.product.imageId);
-          console.log(this.product);
-        },
-        (error) => console.log(error),
-      );
-  }
   getImage(id) {
-
     this.imageService.getImageById(id).subscribe
       (
         (response) => {
@@ -58,6 +47,4 @@ export class ProductViewComponent implements OnInit {
         (error) => console.log(error),
       );
   }
-
-
 }

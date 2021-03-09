@@ -10,11 +10,12 @@ import { BrandRoutingModule } from './brand-routing.module';
 import { BrandComponent } from './brand.component';
 import { BrandViewComponent } from './dialog/brand-view/brand-view.component';
 import { LoaderComponent } from './loader.component';
+import { BrandEditComponent } from './dialog/brand-edit/brand-edit.component';
 
 @NgModule({
-  declarations: [BrandComponent, BrandListComponent, BrandAddComponent,LoaderComponent,BrandViewComponent],
+  declarations: [BrandComponent, BrandListComponent, BrandEditComponent, BrandAddComponent,LoaderComponent,BrandViewComponent, BrandEditComponent],
   entryComponents: [
-    BrandViewComponent,
+    BrandViewComponent,BrandEditComponent
   ],
   imports: [
     CommonModule,

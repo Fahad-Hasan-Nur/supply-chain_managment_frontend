@@ -57,6 +57,7 @@ export class AuthService {
         console.log(res)
         this.stateService.setAdmin(admin);
         this.storage.save(AUTH.CURRENT_USER, admin);
+        this.storage.save(AUTH.ROLES,admin.role);
         resolved(true);
       },
       err => {
