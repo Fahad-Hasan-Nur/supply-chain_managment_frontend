@@ -41,9 +41,39 @@ export function getNavItems() {
   return _.cloneDeep(navItems);
 }
 
-export const navItems: NavData[] = [ 
- 
- {
+export const navItems: NavData[] = [
+  {
+    name: MENU_NAME.DEALER,
+    url: URL.DEALER,
+    icon: ICON.DEALER,
+    children: [
+      //Shop
+      {
+        name: MENU_NAME.DEALER_SHOP,
+        url: URL.DEALER_SHOP,
+        icon: ICON.DEALER_SHOP,
+        authorities: [MENU_NAME.DEALER_SHOP],
+        
+      },
+      //Cart
+      {
+        name: MENU_NAME.DEALER_CART,
+        url: URL.DEALER_CART,
+        icon: ICON.DEALER_CART,
+        authorities: [MENU_NAME.DEALER_CART],
+      },
+      //Purchase History
+      {
+        name: MENU_NAME.DEALER_PURCHASE_HISTORY,
+        url: URL.DEALER_PURCHASE_HISTORY,
+        icon: ICON.DEALER_PURCHASE_HISTORY,
+        authorities: [MENU_NAME.DEALER_PURCHASE_HISTORY],
+        
+      },
+    ]
+  },
+
+  {
     name: MENU_NAME.PRODUCT,
     url: URL.PRODUCT,
     icon: ICON.PRODUCT,
@@ -103,7 +133,7 @@ export const navItems: NavData[] = [
     ]
   },
   //Category
-   {
+  {
     name: MENU_NAME.CATEGORY,
     url: URL.CATEGORY,
     icon: ICON.CATEGORY,
@@ -132,8 +162,8 @@ export const navItems: NavData[] = [
       },
     ]
   },
-   //SUb-Category
-   {
+  //SUb-Category
+  {
     name: MENU_NAME.SUB_CATEGORY,
     url: URL.SUB_CATEGORY,
     icon: ICON.SUB_CATEGORY,
@@ -163,8 +193,8 @@ export const navItems: NavData[] = [
     ]
   },
 
-   //Employee
-   {
+  //Employee
+  {
     name: MENU_NAME.EMPLOYYE,
     url: URL.EMPLOYEE,
     icon: ICON.EMPLOYEE,
@@ -193,5 +223,89 @@ export const navItems: NavData[] = [
         ]
       },
     ]
-  }  
+  },
+  //Dealer Manager
+  {
+    name: MENU_NAME.DEALER_MANAGER,
+    url: URL.DEALER_MANAGER,
+    icon: ICON.DEALER_MANAGER,
+    children: [
+      //Verified
+      {
+        name: MENU_NAME.VERIFIED_DEALER,
+        url: URL.VERIFIED_DEALER,
+        icon: ICON.VERIFIED_DEALER,
+        authorities: [MENU_NAME.VERIFIED_DEALER],
+      },
+      //Un verified
+      {
+        name: MENU_NAME.UNVERIFIED_DEALER,
+        url: URL.UNVERIFIED_DEALER,
+        icon: ICON.UNVERIFIED_DEALER,
+        authorities: [MENU_NAME.UNVERIFIED_DEALER],
+      },
+    ]
+  },
+
+  //Inventory
+  {
+    name: MENU_NAME.INVENTORY,
+    url: URL.INVENTORY,
+    icon: ICON.INVENTORY,
+    children: [
+ //     Verified
+      {
+        name: MENU_NAME.INVENTORY_VERIFIED_REQUISITION,
+        url: URL.INVENTORY_VERIFIED_REQUISITION,
+        icon: ICON.INVENTORY_VERIFIED_REQUISITION,
+        authorities: [MENU_NAME.INVENTORY_VERIFIED_REQUISITION],
+        
+      },
+      //Un verified
+      {
+        name: MENU_NAME.INVENTORY_UNVERIFIED_REQUISITION,
+        url: URL.INVENTORY_UNVERIFIED_REQUISITION,
+        icon: ICON.INVENTORY_UNVERIFIED_REQUISITION,
+        authorities: [MENU_NAME.INVENTORY_UNVERIFIED_REQUISITION],
+      },
+      // Under Processing
+      {
+        name: MENU_NAME.INVENTORY_UNDER_PROCESSING_REQUISITION,
+        url: URL.INVENTORY_UNDER_PROCESSING_REQUISITION,
+        icon: ICON.INVENTORY_UNDER_PROCESSING_REQUISITION,
+        authorities: [MENU_NAME.INVENTORY_UNDER_PROCESSING_REQUISITION],
+        
+      },
+      // Complete
+      {
+        name: MENU_NAME.INVENTORY_COMPLETE_REQUISITION,
+        url: URL.INVENTORY_COMPLETE_REQUISITION,
+        icon: ICON.INVENTORY_COMPLETE_REQUISITION,
+        authorities: [MENU_NAME.INVENTORY_COMPLETE_REQUISITION],
+      },
+    ]
+  },
+  //Account
+  {
+    name: MENU_NAME.ACCOUNTS,
+    url: URL.ACCOUNTS,
+    icon: ICON.ACCOUNTS,
+    children: [
+      //Verified
+      {
+        name: MENU_NAME.ACCOUNTS_VERIFIED_TRANSACTION,
+        url: URL.ACCOUNTS_VERIFIED_TRANSACTION,
+        icon: ICON.ACCOUNTS_VERIFIED_TRANSACTION,
+        authorities: [MENU_NAME.ACCOUNTS_VERIFIED_TRANSACTION],
+      },
+      //Un verified
+      {
+        name: MENU_NAME.ACCOUNTS_UNVERIFIED_TRANSACTION,
+        url: URL.ACCOUNTS_UNVERIFIED_TRANSACTION,
+        icon: ICON.ACCOUNTS_UNVERIFIED_TRANSACTION,
+        authorities: [MENU_NAME.ACCOUNTS_UNVERIFIED_TRANSACTION],
+      },
+    ]
+  },
+
 ];

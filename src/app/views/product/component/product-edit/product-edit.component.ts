@@ -40,6 +40,8 @@ export class ProductEditComponent implements OnInit {
   public retrieveResonse: any;
   public message: string;
   public imageName: any;
+  public sizeData: string[]=['S (Small)','M (Medium)','L (Large)','XL (Extra Large)','250ml','500ml','1L','2L','5L'];
+
 
   constructor(
                private productService: ProductService,

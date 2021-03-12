@@ -1,0 +1,58 @@
+<mat-card>
+    <table class="table" style="border: none" border="0">
+        <tr>
+            <td width="85%" style="border: none">
+                <mat-form-field style="display: inline; width: 30%">
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Write to search..." (keyup)="applyFilter($event.target)" />
+                </mat-form-field>
+            </td>
+            <td class="float-right" style="border: none">
+                <a class="btn btn-primary" [routerLink]="'/dealer/dealer-shop'">
+                    <i class="fa fa-plus" matTooltip="Shop Now"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <mat-card-actions [hidden]="!showFilters" align="end">
+        <a class="btn btn-primary" (click)="search($event)">
+            <i class="fa fa-search"></i>
+        </a>
+    </mat-card-actions>
+</mat-card>
+<br/>
+<table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="Product Name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Product Name</th>
+        <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cartoon Size">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Cartoon Size</th>
+        <td *matCellDef="let element" mat-cell> {{element.cartoonSize}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cartoon Per Lot">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Cartoon Per Lot</th>
+        <td *matCellDef="let element" mat-cell> {{element.cartoonPerLot}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Total Cost">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Total Cost</th>
+        <td *matCellDef="let element" mat-cell> {{element.totalCost}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
+        <td *matCellDef="let element" mat-cell>
+            <a class="btn btn-danger" matTooltip="Delete" (click)="openDialogdelete(element)">
+                <i class="fa fa-trash"></i>
+            </a>
+            <a class="btn btn-primary" matTooltip="Pay Now" (click)="openDialogPay(element)">
+                <i class="fa fa-money"></i>
+            </a>
+        </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

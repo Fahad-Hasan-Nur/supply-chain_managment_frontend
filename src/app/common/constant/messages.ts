@@ -1,4 +1,6 @@
 export const success_message = {
+  FAILED_FOR_VERIFICATION:'Asking for Transaction Verification is Failed..',
+  SUCCESS_FOR_VERIFICATION:'Asking for Transaction Verification is Done..',
   NOTICE_CIRCULATED_SUCCESSFULLY: 'Notice Circulated Succesfully',
   NOTICE_SENT_FOR_APPROVAL: 'নোটিশ অনুমোদনের জন্য প্রেরণ করা হয়েছে',
   RESOLUTION_CIRCULATED_SUCCESSFULLY: 'কার্যবিবরণী সফলভাবে প্রচার করা হয়েছে',
@@ -8,6 +10,7 @@ export const success_message = {
   CREATED_SUCCESSFULLY: 'Created Successfully',
   ADDED_SUCCESSFULLY: 'Added Successfully',
   SAVED_SUCCESSFULLY: 'Saved Successfully',
+  MAIL:'Check your mail to Activate Account...',
   FAILD: 'Failed to Save',
   UPDATED_SUCCESSFULLY: 'Updated Successfully',
   DELETED_SUCCESSFULLY: 'Deleted Successfully',

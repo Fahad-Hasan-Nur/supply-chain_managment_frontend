@@ -1,4 +1,4 @@
-import { ROLES } from './common/constant/nav.constant';
+import { URL } from './common/constant/nav.constant';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
@@ -26,11 +26,6 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     
-      // {
-      //   path: URL_NAME.OVERVIEW,
-      //  // canActivate: [AuthGuard],
-      //   loadChildren: () => import('./views/overview/overview.module').then(m => m.OverviewModule)
-      // },
       {
         path: URL_NAME.CATEGORY,
         canActivate: [AuthGuard],
@@ -45,7 +40,6 @@ export const routes: Routes = [
         path: URL_NAME.EMPLOYEE,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule),
-        // data: { roles: [ROLES.SUPER_ADMIN]}
       },
       {
         path: URL_NAME.PRODUCT,
@@ -56,21 +50,30 @@ export const routes: Routes = [
         path: URL_NAME.BRAND,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/brand/brand.module').then(m => m.BrandModule),
-        // data: { roles: [ROLES.ADMIN,ROLES.SUPER_ADMIN]}
       },
-    
-      // {
-      //   path: URL_NAME.PRJ,
-      // //  canActivate: [AuthGuard],
-      //   loadChildren: () => import('./views/prj-planning/prj-planning.module').then(m => m.PrjPlanningModule)
-      // },
-    //   {
-    //     path: URL_NAME.EMPLOYEE,
-    //  //   canActivate: [AuthGuard],
-    //     loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule)
-    //   }
+      {
+        path: URL_NAME.DEALER,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/dealer/dealer.module').then(m => m.DealerModule),
+      },
+      {
+        path: URL_NAME.DEALER_MANAGER,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/dealer-manager/dealer-manager.module').then(m => m.DealerManagerModule),
+      },
+      {
+        path: URL_NAME.INVENTORY,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/inventory/inventory.module').then(m => m.InventoryModule),
+      },
+      {
+        path: URL_NAME.ACCOUNTS,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/accounts/accounts.module').then(m => m.AccountsModule),
+      },
     ],
   },
+ 
   {
     path: 'not-found',
     component: P404Component,

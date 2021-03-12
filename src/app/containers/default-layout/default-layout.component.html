@@ -10,7 +10,7 @@
         
         </span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg" style="width: 500px;" *dropdownMenu aria-labelledby="simple-dropdown">
+            <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg" style="width: 500px;" *dropdownMenu aria-labelledby="simple-dropdown">
                 <div class="dropdown-header text-center" [hidden]="">
                     <strong>আপনার 1 টি নতুন নোটিফিকেশন রয়েছে</strong>
                 </div>
@@ -30,18 +30,18 @@
                         </table>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </li>
         <li class="nav-item d-md-down-none">
             <a class="nav-link" style="color: white">{{userName}}</a>
         </li>
         <li class="nav-item dropdown" dropdown placement="bottom right">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-                <img src="assets/img/avatars/default_avater.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
+                <img [src]="retrievedImage" class="img-avatar" alt="admin@bootstrapmaster.com" />
             </a>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-                <!-- <a class="dropdown-item" [routerLink]="'/overview'"><i class="fa fa-shield"></i> জিআরপি ড্যাশবোর্ড​ </a> // <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> লগ আউট</a> -->
-            </div>
+            <!-- <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <a class="dropdown-item" [routerLink]="'/overview'"><i class="fa fa-shield"></i> জিআরপি ড্যাশবোর্ড​ </a> // <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> লগ আউট</a>
+            </div> -->
         </li>
         <li class="nav-item d-md-down-none">
 
@@ -51,7 +51,7 @@
 <div class="app-body">
     <ast-sidebar [display]="'lg'" [fixed]="true">
         <ast-sidebar-nav class="nav-tab-base" [disabled]="sidebarMinimized" [navItems]="navItems" [perfectScrollbar]></ast-sidebar-nav>
-        <ast-sidebar-minimizer style="background-color: #1D2345"></ast-sidebar-minimizer>
+        <ast-sidebar-minimizer style="background-color: #238877"></ast-sidebar-minimizer>
     </ast-sidebar>
     <!-- Main content -->
     <main class="main">
@@ -61,7 +61,7 @@
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu d-md-down-none">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn" (click)="logOut()"><i class="icon-graph"></i> &nbsp; {{ 'LOGOUT' }}</a>
+                    <a class="btn" (click)="logOut()"><i class="icon-logout"></i> &nbsp; {{ 'LOGOUT' }}</a>
                 </div>
             </li>
         </ast-cui-breadcrumb>

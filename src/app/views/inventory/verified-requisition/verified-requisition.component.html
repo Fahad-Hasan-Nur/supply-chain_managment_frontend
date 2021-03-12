@@ -1,0 +1,52 @@
+<mat-card>
+    <table class="table" style="border: none" border="0">
+        <tr>
+            <td width="85%" style="border: none">
+                <mat-form-field style="display: inline; width: 30%">
+                    <mat-label>Search</mat-label>
+                    <input matInput placeholder="Write to search..." (keyup)="applyFilter($event.target)" />
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <mat-card-actions [hidden]="!showFilters" align="end">
+        <a class="btn btn-primary" (click)="search($event)">
+            <i class="fa fa-search"></i>
+        </a>
+    </mat-card-actions>
+</mat-card>
+<br/>
+<table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="Product Name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Product Name</th>
+        <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Transaction Status</th>
+        <td *matCellDef="let element" mat-cell> {{element.status}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="action">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
+        <td *matCellDef="let element" mat-cell>
+            <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element)">
+                <i class="fa fa-eye"></i>
+            </a>
+            <a class="btn btn-warning" matTooltip="Complete Transaction" (click)="complete(element)">
+                <i class="fa fa-check-square-o"></i>
+            </a>
+        </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<div class="overlay"
+    [hidden]="!loading">
+    <img src="assets/img/brand/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
+  </div>

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
-import { QuillEditorComponent } from '../../common/component/editor/quill-editor.component';
 import { Product } from '../../common/model/product';
 import { DemoMaterialModule } from '../../material.module';
 import { ProductEditComponent } from './component/product-edit/product-edit.component';
@@ -19,7 +18,6 @@ import { ProductComponent } from './product.component';
     ProductComponent,
     ProductListComponent,
     ProductAddComponent,
-    QuillEditorComponent ,
     LoaderComponent ,
     ProductViewComponent ,
     ProductEditComponent ,

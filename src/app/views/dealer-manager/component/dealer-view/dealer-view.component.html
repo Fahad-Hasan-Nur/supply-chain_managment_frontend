@@ -1,0 +1,76 @@
+<div style="background-color: black;">
+  <h2 style="text-align: center;color: white;"> Dealer Name : {{dealer.name}} </h2>
+</div>
+
+<div *ngIf=retrievedImage>
+    <img [src]="retrievedImage" class="center">
+  </div>
+
+
+<div class="container">
+  <div class="leftdv">
+    <b>TIN Scan Copy :</b>
+  </div>
+  <div class="rytdv">
+    <div *ngIf=retrievedImage1>
+      <img [src]="retrievedImage1" class="center">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="leftdv">
+    <b>NID Scan Copy :</b>
+  </div>
+  <div class="rytdv">
+    <div *ngIf=retrievedImage2>
+      <img [src]="retrievedImage2" class="center">
+    </div>
+  </div>
+</div>
+
+
+<mat-card style="height:inherit;" mat-dialog-content>
+  <mat-card-content>
+
+    <div class="container">
+      <div class="leftdv">
+        <b>Dealer Email:</b>
+      </div>
+      <div class="rytdv">
+        <b>{{dealer.email}}</b>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="leftdv">
+        <b>Dealer Gender :</b>
+      </div>
+      <div class="rytdv">
+        <b>{{dealer.gender}}</b>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="leftdv">
+        <b>Dealer Phone Number :</b>
+      </div>
+      <div class="rytdv">
+        <b>{{dealer.phoneNumber}}</b>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="leftdv">
+        <b>Dealer Birth Date :</b>
+      </div>
+      <div class="rytdv">
+        <b>{{dealer.birthDate}}</b>
+      </div>
+    </div>
+
+
+
+
+
+    <button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>

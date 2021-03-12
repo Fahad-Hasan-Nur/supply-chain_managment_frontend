@@ -1,5 +1,6 @@
 
 export class Product {
+  public id ?: string;
   public name?: string ;
   public code?: string ;
   public categoryName?: string ;
@@ -14,4 +15,5 @@ export class Product {
   public imageName?: string ;
   public createdBy?: string;
   public updatedBy?: string;
+  public size?: string[];
 }

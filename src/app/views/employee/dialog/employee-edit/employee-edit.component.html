@@ -1,0 +1,88 @@
+<div style="background-color: rgb(15, 26, 63);">
+    <h2 style="text-align: center;color: white;">Add New Employee </h2>
+</div>
+<mat-card style="min-height: inherit;">
+    <mat-card-content>
+        <form class="example-form" #prjNgModel='ngForm'>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field>
+                        <mat-label>{{' Name​'}}</mat-label>
+                        <input matInput placeholder="Write Emplpyee Name ​" [required]="true" #name="ngModel" name="name" [(ngModel)]="admin.name">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-12">
+                    <mat-form-field>
+                        <mat-label>{{' Email'}}</mat-label>
+                        <input matInput placeholder="Write Email ​" [required]="true" #email="ngModel" name="email" [(ngModel)]="admin.email">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>{{' Phone Number'}}</mat-label>
+                        <input matInput placeholder="Enter Phone ​" [required]="true" #phoneNumber="ngModel" name="phoneNumber" [(ngModel)]="admin.phoneNumber">
+                    </mat-form-field>
+                </div>
+
+                  <div class="col-md-6">
+                  <mat-form-field appearance="fill">
+                    <mat-label>{{' Role ​'}}</mat-label>
+                    <select matNativeControl [required]="true" placeholder="Select Role" aria-label="State" #role='ngModel'
+                    name="role" [(ngModel)]="admin.role">
+                    <option value="SUPER_ADMIN">Super Admin</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="INVENTORY_MANAGER">Inventory Manager</option>
+                    <option value="ACCOUNT_MANAGER">Account Manager</option>
+                    <option value="DEALER_MANAGER">Dealer Manager</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
+
+                <div class="col-md-6">
+                <mat-radio-group  [required]="true" aria-label="State" #gender='ngModel'
+                name="gender" [(ngModel)]="admin.gender">
+                <mat-label>{{' Select Gender:'}}</mat-label>
+                    <mat-radio-button value="male">Male</mat-radio-button>
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+
+               <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{' Choose Birth Date '}}</mat-label>
+                    <input matInput [matDatepicker]="picker"[required]="true" placeholder="Choose Birth date" #birth='ngModel' name="birth" [(ngModel)]="admin.birthDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <fieldset class="form-group">
+                        <label>Upload Image</label> {{imageError}}
+                        <div class="custom-file fileInputProfileWrap">
+                            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" enctype="multipart/form-data">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-6">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" style="float:right; margin:20px 5px 5px 5px">
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <div *ngIf=retrievedImage>
+                            <img [src]="retrievedImage" style="float:right; margin:20px 5px 5px 5px">
+                        </div>
+                    </ng-template>
+                    <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+                </div>
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid " (click)="save()">{{'Save'}}</button>
+<app-loader></app-loader>

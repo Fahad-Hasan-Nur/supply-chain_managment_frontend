@@ -1,3 +1,4 @@
+import { Requisition } from './../model/requisition';
 import { Brand } from './../model/brand';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -9,12 +10,15 @@ import { Product } from '../model/product';
 import { Auth } from '../model/auth';
 import { Category } from '../model/Category';
 import { SubCategory } from '../model/sub-category';
+import { Transaction } from '../model/transaction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
   private currentAdminState!: BehaviorSubject<Admin>;
+  private currentTransactionState!: BehaviorSubject<Transaction>;
+  private currentRequisitionState!: BehaviorSubject<Requisition>;
   private currentCategoryState!: BehaviorSubject<Category>;
   private currentSubCategoryState!: BehaviorSubject<SubCategory>;
   private currentBrandState!: BehaviorSubject<Brand>;
@@ -35,6 +39,30 @@ export class StateService {
     });
     await this.currentAdminState.next(admin);
   }
+   /**
+   *
+   * set current Transaction
+   *
+   * @param Transaction
+   */
+    public async setTransaction(transaction: Transaction) {
+      await new Promise((resolve,rejects) => {
+        if (this.currentTransactionState === undefined) this.currentTransactionState = new BehaviorSubject<Transaction>(transaction);
+      });
+      await this.currentTransactionState.next(transaction);
+    }
+   /**
+   *
+   * set current Requisition
+   *
+   * @param Requisition
+   */
+    public async setRequisition(requisition: Requisition) {
+      await new Promise((resolve,rejects) => {
+        if (this.currentRequisitionState === undefined) this.currentRequisitionState = new BehaviorSubject<Requisition>(requisition);
+      });
+      await this.currentRequisitionState.next(requisition);
+    }
     /**
    *
    * set current brand
@@ -81,6 +109,15 @@ export class StateService {
   public getAdmin(): Admin{
     return this.currentAdminState.value;
   }
+  /**
+   *
+   * get current Transaction.
+   *
+   * @return currentTransactionState
+   */
+   public getTransaction(): Transaction{
+    return this.currentTransactionState.value;
+  }
    /**
    *
    * get current Brand.
@@ -108,6 +145,15 @@ export class StateService {
   public getSubCategory(): SubCategory{
     return this.currentSubCategoryState.value;
   }
+    /**
+   *
+   * get current Requisition.
+   *
+   * @return currentRequisitionState
+   */
+     public getRequisition(): Requisition{
+      return this.currentRequisitionState.value;
+    }
 
   /**
    *

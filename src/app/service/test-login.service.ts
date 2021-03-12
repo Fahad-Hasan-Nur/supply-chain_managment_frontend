@@ -12,10 +12,10 @@ import { StorageService } from '../common/service/storage/storage.service';
 })
 export class TestLoginService {
 
-  // private  reqHeader= new HttpHeaders({ 
-  //   'Content-Type': 'application/json',
-  //   'Authorization': 'Bearer ' + this.storage.read(AUTH.TOKEN)
-  // });
+  private  reqHeader= new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + this.storage.read(AUTH.TOKEN)
+  });
   constructor(private _http: HttpClient,private storage: StorageService) { }
 
   public getTestLogin(data) : Observable<any>{

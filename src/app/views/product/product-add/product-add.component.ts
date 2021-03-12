@@ -38,6 +38,7 @@ export class ProductAddComponent implements OnInit {
   public retrieveResonse: any;
   public message: string;
   public imageName: any;
+  public sizeData: string[]=['S (Small)','M (Medium)','L (Large)','XL (Extra Large)','250ml','500ml','1L','2L','5L'];
 
   constructor(
                public dialog: MatDialog,
@@ -169,7 +170,7 @@ private saveData(){
         console.log(error);
         this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
         this.loader.loading = false;
-        console.log(this.data);
+      //  console.log(this.stateService.getProduct());
       });
 }
 

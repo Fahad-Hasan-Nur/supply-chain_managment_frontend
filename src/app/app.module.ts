@@ -1,3 +1,4 @@
+import { Admin } from './common/model/admin';
 import {BrowserModule, HAMMER_LOADER} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LOCALE_ID, NgModule} from '@angular/core';
@@ -31,7 +32,7 @@ import { UnauthorizedComponent } from './common/component/error/unauthorized.com
 import {UserTestComponent} from "./common/component/error/user-test.component";
 import { FormsModule } from '@angular/forms';
 import { Auth } from './common/model/auth';
-import { LoaderComponent } from './views/product/loader.component';
+import { WelcomeComponent } from './common/component/welcome/welcome.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     P500Component,
     UnauthorizedComponent,
     UserTestComponent,
+    WelcomeComponent,
   ],
   imports: [
     FormsModule,
@@ -75,10 +77,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   })
   ],
   providers: [
-    Auth,
+    Auth,Admin,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
-    {provide: MAT_DATE_LOCALE, useValue: 'bn-BD'},
-    {provide: LOCALE_ID, useValue: 'bn-BD'},
+    {provide: MAT_DATE_LOCALE,useValue: 'es-ES'},
+    {provide: LOCALE_ID, useValue: 'es-ES'},
     {provide: MatPaginatorIntl, useValue: getBnPaginatorIntl()},
     //httpInterceptorProviders,
     ThemeService,DatePipe,

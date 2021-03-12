@@ -1,3 +1,4 @@
+import { ImageService } from './../../service/image/image.service';
 import { ROLES } from './../../common/constant/nav.constant';
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
@@ -35,15 +36,15 @@ export class DefaultLayoutComponent implements OnInit {
   public currentRole: string;
   public roleList: Array<any>;
   public userName: string;
-  // public currentEmployee: Observable<IEmployee>;
-  // private currentEmployeeSubject: BehaviorSubject<IEmployee>;
+  public retrievedImage: any;
+  public base64Data: any;
+  public retrieveResonse: any;
 
   constructor(private storage: StorageService,
-    private taskService: TaskService,
     private cdr: ChangeDetectorRef,
-    private router: Router,
     private adminService: AdminService,
     private translate: TranslateService,
+    private imageService: ImageService,
     private authService: AuthService,
     @Inject(DOCUMENT) _document?: any) {
 
@@ -57,20 +58,33 @@ export class DefaultLayoutComponent implements OnInit {
     });
     this.translate.addLangs(['bn', 'en']);
     this.showLanguage = this.LANGUAGE_ENGLISH;
-    // const browserLang = this.translate.getBrowserLang();
     this.translate.use('bn');
 
   }
   public toggleMinimize(e) {
     this.sidebarMinimized = e;
+    
+  }
+  getImage(id) {
+    this.imageService.getImageById(id).subscribe
+      (
+        (response) => {
+          this.retrieveResonse = response;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        },
+        (error) => console.log(error),
+      );
   }
   public ngOnInit(): void {
+    this.getImage(this.adminService.usersStorage().imageId);
     this.userName = this.adminService.usersStorage().email;
     let roles = this.storage.read(AUTH.ROLES);
     console.log(roles);
     const privilege = new Set<string>();
 
     // privilege.add(MENU_NAME.CATEGORY);
+    if(roles==ROLES.ADMIN || roles==ROLES.SUPER_ADMIN){
     privilege.add(MENU_NAME.BRAND);
     privilege.add(MENU_NAME.PRODUCT_ADD);
     privilege.add(MENU_NAME.PRODUCT_LIST);
@@ -80,16 +94,35 @@ export class DefaultLayoutComponent implements OnInit {
     privilege.add(MENU_NAME.CATEGORY_LIST);
     privilege.add(MENU_NAME.SUB_CATEGORY_ADD);
     privilege.add(MENU_NAME.SUB_CATEGORY_LIST);
+    }
     if(roles==ROLES.SUPER_ADMIN){
       privilege.add(MENU_NAME.EMPLOYYE_ADD);
       privilege.add(MENU_NAME.EMPLOYYE_LIST);
     }
-
-
-
+    if(roles==ROLES.DEALER ){
+      privilege.add(MENU_NAME.DEALER_SHOP);
+      privilege.add(MENU_NAME.DEALER_CART);
+      privilege.add(MENU_NAME.DEALER_PURCHASE_HISTORY)
+    }
+    if(roles==ROLES.DEALER_MANAGER||roles==ROLES.SUPER_ADMIN ){
+      privilege.add(MENU_NAME.DEALER_MANAGER);
+      privilege.add(MENU_NAME.VERIFIED_DEALER);
+      privilege.add(MENU_NAME.UNVERIFIED_DEALER)
+    }
+    if(roles==ROLES.INVENTORY_MANAGER||roles==ROLES.SUPER_ADMIN ){
+      privilege.add(MENU_NAME.INVENTORY);
+      privilege.add(MENU_NAME.INVENTORY_VERIFIED_REQUISITION);
+      privilege.add(MENU_NAME.INVENTORY_UNVERIFIED_REQUISITION);
+    }
+    if(roles==ROLES.ACCOUNT_MANAGER||roles==ROLES.SUPER_ADMIN ){
+      privilege.add(MENU_NAME.ACCOUNTS);
+      privilege.add(MENU_NAME.ACCOUNTS_VERIFIED_TRANSACTION);
+      privilege.add(MENU_NAME.ACCOUNTS_UNVERIFIED_TRANSACTION);
+      privilege.add(MENU_NAME.INVENTORY_UNDER_PROCESSING_REQUISITION);
+      privilege.add(MENU_NAME.INVENTORY_COMPLETE_REQUISITION);
+    }
     this.navItems = this.filterNavItems(getNavItems(), privilege);
     console.log(this.navItems);
-
   }
 
   private userInfoGet() {

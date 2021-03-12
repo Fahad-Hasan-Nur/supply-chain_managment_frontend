@@ -1,47 +1,157 @@
-<!-- <div class="error-background">
-    <div class="app flex-row align-items-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <mat-card style="min-height: inherit;">
-                    <mat-card-content>
-                        <form class="example-form" #NgModel='ngForm'>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field>
-                                        <mat-label>{{' Mail'}}</mat-label>
-                                        <input type="email" matInput placeholder="Enter mail.. ​" [required]="true" #email="ngModel" name="email" [(ngModel)]="data.email">
-                                    </mat-form-field>
-                                </div>
+<div class="container" *ngIf="this.login" [hidden]="loading">
+  <section id="content">
+    <form #NgModel='ngForm'>
+      <h1>Login Form</h1>
+      <h1 [hidden]="error" style="color: rgb(238, 20, 20);">Invalid Email Or Password.</h1>
+      <div>
+        <input type="text" placeholder="Email" required="true" id="username" #email="ngModel" name="email"
+          [(ngModel)]="data.email" />
+      </div>
+      <div>
+        <input type="password" placeholder="Password" required="true" id="password" #password="ngModel" name="password"
+          [(ngModel)]="data.password" />
+      </div>
+      <div>
+        <input type="submit" value="Log in" [disabled]="!NgModel.valid" (click)="testLogin()" />
+        <a href="#">Lost your password?</a>
+        <a (click)="register()">Register</a>
+      </div>
+    </form>
+  </section>
+</div>
 
-                                <div class="col-md-6">
-                                    <mat-form-field>
-                                        <mat-label>{{' Password'}}</mat-label>
-                                        <input type="password" matInput placeholder="Enter Passrowd.. ​" [required]="true" #password="ngModel" name="password" [(ngModel)]="data.password">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </form>
-                    </mat-card-content>
-                </mat-card>
-                <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!NgModel.valid" (click)="testLogin()">{{'Login'}}</button>
 
-            </div>
+<div class="container" *ngIf="!this.login" [hidden]="loading">
+  <div style="background-color: rgb(226, 176, 102);">
+    <h2 style="text-align: center;color: rgb(0, 0, 0);">Dealer Registration Form </h2>
+  </div>
+  <mat-card style="min-height: inherit;">
+    <mat-card-content>
+      <form class="example-form" #prjNgModel='ngForm'>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>{{' Name​'}}</mat-label>
+              <input matInput placeholder="Write Dealer Name ​" [required]="true" #name="ngModel" name="name"
+                [(ngModel)]="admin.name">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>{{' Email'}}</mat-label>
+              <input matInput placeholder="Write Email ​" [required]="true" #email="ngModel" name="email"
+                [(ngModel)]="admin.email">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>{{' Password'}}</mat-label>
+              <input type="password" matInput placeholder="Enter Password ​" [required]="true" #password="ngModel"
+                name="password" [(ngModel)]="admin.password">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>{{' Phone Number'}}</mat-label>
+              <input matInput placeholder="Enter Phone ​" [required]="true" #phoneNumber="ngModel" name="phoneNumber"
+                [(ngModel)]="admin.phoneNumber">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-radio-group [required]="true" aria-label="State" #gender='ngModel' name="gender"
+              [(ngModel)]="admin.gender">
+              <mat-label>{{' Select Gender:'}}</mat-label>
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>{{' Choose Birth Date '}}</mat-label>
+              <input matInput [matDatepicker]="picker" [required]="true" placeholder="Choose Birth date"
+                #birth='ngModel' name="birth" [(ngModel)]="admin.birthDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label>Upload Dealer Image</label> {{imageError}}
+              <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile"
+                  enctype="multipart/form-data">
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngIf="isImageSaved; else elseTemplate">
+              <img [src]="cardImageBase64" style="float:right; margin:20px 5px 5px 5px">
+            </ng-container>
+            <ng-template #elseTemplate>
+            </ng-template>
+            <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage()"
+              *ngIf="isImageSaved">Remove</a>
+          </div>
+
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label>Upload Dealer NID</label> {{imageError1}}
+              <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent1($event)" class="fileInputProfile1"
+                  enctype="multipart/form-data">
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngIf="isImageSaved1; else elseTemplate">
+              <img [src]="cardImageBase641" style="float:right; margin:20px 5px 5px 5px">
+            </ng-container>
+            <ng-template #elseTemplate>
+            </ng-template>
+            <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage1()"
+              *ngIf="isImageSaved1">Remove</a>
+          </div>
+
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label>Upload Dealer TIN</label> {{imageError2}}
+              <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent2($event)" class="fileInputProfile2"
+                  enctype="multipart/form-data">
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngIf="isImageSaved2; else elseTemplate">
+              <img [src]="cardImageBase642" style="float:right; margin:20px 5px 5px 5px">
+            </ng-container>
+            <ng-template #elseTemplate>
+            </ng-template>
+            <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage2()"
+              *ngIf="isImageSaved2">Remove</a>
+          </div>
+
         </div>
-    </div>
-</div> -->
-<div class="error-background">
-    <div class="box">
-        <h2>Login</h2>
-        <form #NgModel='ngForm'>
-            <div class="inputBox">
-                <input type="email" [required]="true" #email="ngModel" name="email" [(ngModel)]="data.email" onkeyup="this.setAttribute('value', this.value);" value="">
-                <label>Email</label>
-            </div>
-            <div class="inputBox">
-                <input type="password" [required]="true" #password="ngModel" name="password" [(ngModel)]="data.password" onkeyup="this.setAttribute('value', this.value);" value="">
-                <label>Password</label>
-            </div>
-            <input type="submit" name="sign-in" value="Sign In" [disabled]="!NgModel.valid" (click)="testLogin()">
-        </form>
-    </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
+    [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Save'}}</button>
+  <button mat-raised-button
+    style="float:right; margin:20px 5px 5px 5px ;color: rgb(7, 7, 6);background-color: rgb(226, 176, 102);"
+    (click)="loginn()">{{'Login'}}</button>
+</div>
+
+<div class="overlay"
+[hidden]="!loading">
+<img src="assets/img/brand/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
 </div>

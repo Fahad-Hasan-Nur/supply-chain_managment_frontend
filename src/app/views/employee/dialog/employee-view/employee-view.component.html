@@ -1,0 +1,58 @@
+<div style="background-color: black;">
+    <h2 style="text-align: center;color: white;"> {{admin.name}} </h2>
+</div>
+
+<div *ngIf=retrievedImage>
+    <img [src]="retrievedImage" class="center">
+</div>
+
+<mat-card style="height:inherit;" mat-dialog-content>
+    <mat-card-content>
+
+        <div class="container">
+            <div class="leftdv">
+                <b> Email</b>
+            </div>
+            <div class="rytdv">
+                <b>{{admin.email}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Birth Date :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{admin.birthDate}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Gender:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{admin.gender}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Phone Number:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{admin.phoneNumber}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Role :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{admin.role}}</b>
+            </div>
+        </div>
+
+
+        <button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>

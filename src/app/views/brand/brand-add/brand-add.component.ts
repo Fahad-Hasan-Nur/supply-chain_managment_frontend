@@ -44,9 +44,9 @@ export class BrandAddComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.setStateProject(this.data);
+    this.setStateBrand(this.data);
   }
-  public setStateProject(brand: Brand): void {
+  public setStateBrand(brand: Brand): void {
     this.stateService.setBrand(brand);
   }
   public save() {

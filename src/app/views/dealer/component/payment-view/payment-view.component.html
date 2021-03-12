@@ -1,0 +1,63 @@
+<div style="background-color: black;">
+    <h2 style="text-align: center;color: white;">Transaction Details</h2>
+</div>
+
+
+<mat-card style="height:inherit;" mat-dialog-content>
+    <mat-card-content>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Account Number :</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.accountNumber}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Payment Method:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.paymentMethod}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Transaction ID:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.transactionId}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Paid Amount:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.paid}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Due amount:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.due}}</b>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="leftdv">
+                <b>Transaction Status:</b>
+            </div>
+            <div class="rytdv">
+                <b>{{transaction.status}}</b>
+            </div>
+        </div>
+
+        <button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;" (click)="close()">{{'Close'}}</button>
