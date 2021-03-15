@@ -33,6 +33,16 @@ export class AdminService {
     return this._http.get(ADMIN_API.GET_ADMIN_BY_EMAIL + email, { headers: this.reqHeader });
   }
   /**
+  * get admin info by admin id
+  * @param id
+  * @returns Admin
+  */
+   public getAdminById(id: any): Observable<any> {
+    // @ts-ignore
+
+    return this._http.get(ADMIN_API.GET_ADMIN_BY_ID + id, { headers: this.reqHeader });
+  }
+  /**
    * Returns list of admins.
    *
    * @returns Admin list
@@ -92,4 +102,12 @@ export class AdminService {
      public verifyDealer(id:string): Observable<any> {
       return this._http.get(ADMIN_API.VERIFY_DEALER+id, { headers: this.reqHeader });
     }
+      /**
+   * Returns Activated dealer.
+   *
+   * @returns dealer 
+   */
+       public activateDealer(token:string): Observable<any> {
+        return this._http.get(LOGIN_API.ACTIVATE+token);
+      }
 }

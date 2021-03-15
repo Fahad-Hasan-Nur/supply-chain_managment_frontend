@@ -13,11 +13,11 @@ import { ToastService } from '../../../common/service/toast.service';
   styleUrls: ['./unverified-dealer.component.scss']
 })
 export class UnverifiedDealerComponent implements OnInit {
-  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
   constructor(protected dialog: MatDialog, private adminService: AdminService, private toastService: ToastService,
     ) { }
   public admin: Admin[] = [];
+  public loading:boolean=false;
   public displayedColumns: string[] = ['Name', 'Mobile', 'action'];
   public dataSource = new MatTableDataSource;
   public showFilters: boolean;
@@ -59,15 +59,16 @@ export class UnverifiedDealerComponent implements OnInit {
 
   }
   openVerify(data?) {
+    this.loading=true;
     this.adminService.verifyDealer(data.id).subscribe(
       (response) => {
-        this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-        this.loader.loading = false;
+        this.toastService.openSnackBar(success_message.VERIFIED_DEALER_SUCCESS, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+        this.loading = false;
         console.log(response);
       },
       (error) => {console.log(error),
       this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-      this.loader.loading = false;
+      this.loading = false;
       });
   }
 

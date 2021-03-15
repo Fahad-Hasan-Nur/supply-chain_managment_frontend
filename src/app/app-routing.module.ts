@@ -89,6 +89,13 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'page-not-found/:id',
+    component: P500Component,
+    data: {
+      title: 'Page 500'
+    }
+  },
+  {
     path: 'unauthorized',
     component: UnauthorizedComponent,
     data: {

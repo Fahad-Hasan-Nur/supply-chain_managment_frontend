@@ -8,11 +8,13 @@ import { VerifiedTransactionComponent } from './verified-transaction/verified-tr
 import { UnverifiedTransactionComponent } from './unverified-transaction/unverified-transaction.component';
 import { TransactionViewComponent } from './component/transaction-view/transaction-view.component';
 import { Transaction } from '../../common/model/transaction';
+import { DealerViewComponent } from './component/dealer-view/dealer-view.component';
+import { Admin } from '../../common/model/admin';
 
 
 @NgModule({
-  declarations: [AccountsComponent, VerifiedTransactionComponent, UnverifiedTransactionComponent, TransactionViewComponent],
-  entryComponents: [ TransactionViewComponent
+  declarations: [AccountsComponent, VerifiedTransactionComponent, UnverifiedTransactionComponent, TransactionViewComponent, DealerViewComponent],
+  entryComponents: [ TransactionViewComponent,DealerViewComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,6 @@ import { Transaction } from '../../common/model/transaction';
     DemoMaterialModule,
     ReactiveFormsModule,
   ],
-  providers:[Transaction]
+  providers:[Transaction,Admin]
 })
 export class AccountsModule { }

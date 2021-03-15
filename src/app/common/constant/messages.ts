@@ -1,4 +1,6 @@
 export const success_message = {
+  TRANSACTION_NOT_PROCESSED:'You can pay your due after your transaction is processed..',
+  VERIFIED_DEALER_SUCCESS:'Verified Dealer Successfully...',
   FAILED_FOR_VERIFICATION:'Asking for Transaction Verification is Failed..',
   SUCCESS_FOR_VERIFICATION:'Asking for Transaction Verification is Done..',
   NOTICE_CIRCULATED_SUCCESSFULLY: 'Notice Circulated Succesfully',
@@ -29,6 +31,7 @@ export const success_message = {
 };
 
 export const error_message = {
+  FAILED_DELETE:'Failed to Delete...',
   NOTICE_COULD_NOT_BE_SENT_FOR_APPROVAL: 'নোটিশ অনুমোদনের জন্য প্রেরণ করা যায়নি',
   RESOLUTION_COULD_NOT_BE_SENT_FOR_APPROVAL: 'কার্যবিবরণী অনুমোদনের জন্য প্রেরণ করা যায়নি',
   COMMENT_COULD_NOT_BE_SAVED_SUCCESSFULLY: 'মন্তব্য সফলভাবে সংরক্ষণ করা যায়নি',

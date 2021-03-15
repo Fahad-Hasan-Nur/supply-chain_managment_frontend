@@ -35,8 +35,14 @@
             <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element)">
                 <i class="fa fa-eye"></i>
             </a>
-            <a class="btn btn-warning" matTooltip="Verify Now" (click)="verifyNow(element)">
+            <a class="btn btn-success" matTooltip="Verify Now" (click)="verifyNow(element)">
                 <i class="fa fa-check-square-o"></i>
+            </a>
+            <a class="btn btn-warning" matTooltip="Contact Dealer" (click)="contactDealer(element)">
+                <i class="fa fa-phone-square"></i>
+            </a>
+            <a class="btn btn-danger" matTooltip="Delete Transaction" (click)="deleteTransaction(element)">
+                <i class="fa fa-trash"></i>
             </a>
         </td>
     </ng-container>

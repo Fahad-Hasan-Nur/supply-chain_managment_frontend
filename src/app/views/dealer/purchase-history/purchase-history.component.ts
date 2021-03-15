@@ -1,3 +1,4 @@
+import { ToastService } from './../../../common/service/toast.service';
 import { Requisition } from './../../../common/model/requisition';
 import { AdminService } from './../../../service/admin/admin.service';
 import { Transaction } from './../../../common/model/transaction';
@@ -6,6 +7,7 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource }
 import { DealerService } from '../../../service/dealer/dealer.service';
 import { PaymentComponent } from '../component/payment/payment.component';
 import { PaymentViewComponent } from '../component/payment-view/payment-view.component';
+import { success_message } from '../../../common/constant/messages';
 
 @Component({
   selector: 'app-purchase-history',
@@ -17,7 +19,8 @@ export class PurchaseHistoryComponent implements OnInit {
   constructor(
     private service: DealerService,
     protected dialog: MatDialog,
-    private storage: AdminService
+    private storage: AdminService,
+    private toastService:ToastService
   ) { }
   public transaction: Transaction[] = [];
   public displayedColumns: string[] = ['Transaction Id','Paid', 'Due', 'Action'];
@@ -46,7 +49,11 @@ export class PurchaseHistoryComponent implements OnInit {
   public search(data) {}
 
   openDialogPay(a:Transaction) {
-    this.getRequisition(a.requisitionId);
+    if(a.status!="Complete"){
+      this.toastService.openSnackBar(success_message.TRANSACTION_NOT_PROCESSED, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+    }else{
+      this.getRequisition(a.requisitionId);
+    }
   }
   openDialog(data:Transaction) {
     const dialogConfig = new MatDialogConfig();

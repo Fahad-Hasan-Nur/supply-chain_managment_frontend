@@ -20,6 +20,7 @@ import { StateService } from '../../../common/service/state.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DealerService } from '../../../service/dealer/dealer.service';
 import { PaymentComponent } from '../component/payment/payment.component';
+import { StringNullableChain } from 'lodash';
 
 @Component({
   selector: 'app-shop',
@@ -32,7 +33,8 @@ export class ShopComponent implements OnInit {
   public loader: LoaderComponent;
   public loading: boolean;
   public res:Requisition;
-  public available:boolean;
+  public available:boolean=true;
+  public message:string;
   private pay:boolean=false;
   public req: Requisition[]=[];
   public tran: Transaction[]=[];
@@ -202,6 +204,7 @@ export class ShopComponent implements OnInit {
           console.log("req is null")
         }else{
           this.available=false;
+          this.message="Complete or Delete Cart Requisition First"
         }
         console.log(response)
       },
@@ -218,9 +221,17 @@ export class ShopComponent implements OnInit {
           this.tran.forEach(element => {
             if(this.id==1){
               if(element.due==0){
-                this.available=true;
+                if(element.status=="Complete"){
+                  this.available=true;
+                  this.id=2;
+                }else{
+                this.message="Your Transaction is not Processed Yet.."
+                this.available=false;
                 this.id=2;
+                }
+                
               }else{
+                this.message="You Have to clear Your Due for New Requisition."
                 this.available=false;
                 this.id=2;
               }

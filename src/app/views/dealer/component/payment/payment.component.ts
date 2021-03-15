@@ -57,7 +57,7 @@ public savee(){
   this.transaction.createdBy = this.storage.usersStorage().id;
   this.transaction.requisitionId=this.requisition.id;
   this.transaction.userId = this.storage.usersStorage().id;
-  if(this.requisition.status=="Processing"){
+  if(this.requisition.status!="Pending"&&this.requisition.status!="cart"){
     this.transaction.status="Processing";
   }else{
     this.transaction.status="Pending";

@@ -40,6 +40,7 @@
             <a class="btn btn-success" matTooltip="Verify Now" (click)="openVerify(element)">
                 <i class="fa fa-check-square"></i>
             </a>
+           
         </td>
     </ng-container>
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
@@ -47,4 +48,7 @@
 </table>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-<app-loader></app-loader>
+<div class="overlay"
+    [hidden]="!loading">
+    <img src="assets/img/brand/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
+  </div>

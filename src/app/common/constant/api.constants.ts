@@ -48,6 +48,7 @@ const LOGIN_SERVICE = SERVICE_API + 'api/auth/';
 export const LOGIN_API = {
     LOGIN: LOGIN_SERVICE + 'admin/login',
     REGISTRATION:LOGIN_SERVICE+'user/register/',
+    ACTIVATE: LOGIN_SERVICE+'confirm-account/'
 };
 
 const CATEGORY_SERVICE = SERVICE_API + 'api/category/';
@@ -112,6 +113,8 @@ export const TRANSACTON_API = {
     PROCESS_TRANSACTION:TRANSACTON_SERVICE+'processTransaction/',
     COMPLETE_TRANSACTION:TRANSACTON_SERVICE+ 'completeTransaction/',
     GET_TRANSACTON_BY_STATUS: TRANSACTON_SERVICE +'getByStatus/',
+    DELETE_TRANSACTON: TRANSACTON_SERVICE ,
+
 
 };
 

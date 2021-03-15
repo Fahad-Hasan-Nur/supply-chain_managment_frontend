@@ -60,6 +60,8 @@ export class EmployeeAddComponent implements OnInit {
 
       }, (error) => {
    //     this.loader.loading = false;
+   this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+
         console.log(error);
       });
   }

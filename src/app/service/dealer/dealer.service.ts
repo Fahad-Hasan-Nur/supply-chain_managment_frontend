@@ -86,6 +86,14 @@ export class DealerService {
   public deleteRequisitionById(id:string): Observable<any> {
     return this._http.delete(REQUISITION_API.DELETE_REQUISITION+id ,{ headers: this.reqHeader });
 }
+/**
+   * Returns  Delete Requisition.
+   *
+   * @returns Requisition 
+   */
+ public deleteTransactionById(id:string): Observable<any> {
+  return this._http.delete(TRANSACTON_API.DELETE_TRANSACTON+id ,{ headers: this.reqHeader });
+}
  /**
    * Returns  User Transactions.
    *

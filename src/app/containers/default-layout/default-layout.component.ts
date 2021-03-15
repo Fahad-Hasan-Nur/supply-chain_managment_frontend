@@ -118,8 +118,6 @@ export class DefaultLayoutComponent implements OnInit {
       privilege.add(MENU_NAME.ACCOUNTS);
       privilege.add(MENU_NAME.ACCOUNTS_VERIFIED_TRANSACTION);
       privilege.add(MENU_NAME.ACCOUNTS_UNVERIFIED_TRANSACTION);
-      privilege.add(MENU_NAME.INVENTORY_UNDER_PROCESSING_REQUISITION);
-      privilege.add(MENU_NAME.INVENTORY_COMPLETE_REQUISITION);
     }
     this.navItems = this.filterNavItems(getNavItems(), privilege);
     console.log(this.navItems);

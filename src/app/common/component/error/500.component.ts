@@ -13,14 +13,16 @@ import { StorageService } from './../../service/storage/storage.service';
 import { AdminService } from '../../../service/admin/admin.service';
 import { ImageService } from '../../../service/image/image.service';
 import * as _ from 'lodash';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: '500.component.html',
   styleUrls: ['500.component.scss'],
 })
 export class P500Component implements OnInit  {
+  public verified: boolean=true;
   public loading:boolean;
-
+ public token:string=null;
   public error: boolean=true;
   public login: boolean=true;
   public myFilter: any;
@@ -57,11 +59,16 @@ export class P500Component implements OnInit  {
               private adminService: AdminService,
               private imageService: ImageService,
               private toastService : ToastService,
+              public route: ActivatedRoute
               ) { }
 
     public ngOnInit() {
       this.setStateAuth(this.data);
       this.setStateAdmin(this.admin);
+      this.token = this.route.snapshot.params.id;
+      if(this.token!=null){
+        this.activateUser(this.token);
+      }
   }
   public setStateAdmin(admin: Admin): void {
     this.stateService.setAdmin(admin);
@@ -92,7 +99,11 @@ public removeImage2() {
     this.testLoginService.getTestLogin(this.stateService.getAuth()).subscribe(
       (res) => {
         this.storage.save(TOKEN,res.jwt)
-        window.location.replace(window.location.href.replace('/page-not-found', URL.PRODUCT_LIST) + '?token=' + res.jwt);
+        if(this.token==null){
+          window.location.replace(window.location.href.replace('/page-not-found', URL.PRODUCT_LIST) + '?token=' + res.jwt);
+        }else{
+          window.location.replace(window.location.href.replace('/page-not-found/'+this.token, URL.PRODUCT_LIST) + '?token=' + res.jwt);
+        }
       },
       (err) => {
         console.log(err);
@@ -296,7 +307,6 @@ public fileChangeEvent2(fileInput: any) {
      (
        (response) => {
          console.log(response);
-         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
          this.toastService.openSnackBar(success_message.MAIL, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
           this.loading = false;
        }, (error) => {
@@ -305,5 +315,20 @@ public fileChangeEvent2(fileInput: any) {
         this.loading = false;
        });
  
+ }
+ private activateUser(token:string){
+   this.loading=true;
+  this.verified=false;
+  this.adminService.activateDealer(token).subscribe
+  (
+    (response) => {
+      if(response!=null){
+        this.verified=false;
+      }
+      this.loading=false;
+      console.log(response);
+    }, (error) => {
+      this.loading = false;
+    });
  }
 }

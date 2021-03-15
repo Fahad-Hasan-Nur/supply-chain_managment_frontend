@@ -3,6 +3,8 @@
     <form #NgModel='ngForm'>
       <h1>Login Form</h1>
       <h1 [hidden]="error" style="color: rgb(238, 20, 20);">Invalid Email Or Password.</h1>
+      <h1 [hidden]="verified" style="color: rgb(49, 170, 12);">Account Verified. Login now...</h1>
+
       <div>
         <input type="text" placeholder="Email" required="true" id="username" #email="ngModel" name="email"
           [(ngModel)]="data.email" />
