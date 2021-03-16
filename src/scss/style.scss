@@ -121,8 +121,8 @@ legend {
 
 .sidebar .nav-link .nav-icon {
     display: inline-block;
-    // width: 1.09375rem;
-    width: 0.8rem;
+    width: 300px;
+    //width: 0.8rem;
     // margin: 0 0.5rem 0 0;
     margin: 0 0.3rem 0 0;
     font-size: 0.875rem;
@@ -441,7 +441,7 @@ li.user-header>p>small {
 
 // header and footer color
 .nav-tab-dark {
-    background-color: #1D2345;
+    background-color: #ffffff;
 }
 
 // sidebar background color
@@ -458,6 +458,48 @@ li.user-header>p>small {
 .sidebar .nav-link:hover {
     background: #42A5F5;
 }
+.app-header .navbar-toggler {
+    min-width: 174px;
+    padding: 0.25rem 0;
+}
+//.......
+.sidebar .nav {
+    width: 265px;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 0;
+}
+.sidebar .sidebar-nav {
+    position: relative;
+    flex: 1;
+    width: 268px;
+}
+.sidebar-fixed .sidebar {
+    position: fixed;
+    z-index: 1000;
+    width: 268px;
+    height: 100vh;
+}
+@media (min-width: 992px)
+{}
+html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .main, html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .app-footer, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .main, html:not([dir="rtl"]) .sidebar-show.sidebar-fixed .app-footer {
+    margin-left: 271px;
+}
+.sidebar-fixed .sidebar {
+    position: fixed;
+    z-index: 1000;
+    width: 268px;
+    height: 100vh;
+}
+.sidebar .sidebar-minimizer {
+    position: relative;
+    flex: 0 0 50px;
+    width: 268px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 0;
+}
+
 
 // bg-color when sidebar minimized
 .sidebar-minimized .sidebar .nav-link {
@@ -471,7 +513,7 @@ li.user-header>p>small {
 
 .sidebar .nav-link .nav-icon {
     display: inline-block;
-    width: 0.8rem;
+    width: 1.8rem;
     margin: 0 0.6rem 0 0;
     font-size: 0.875rem;
     color: #73818f;
@@ -954,7 +996,7 @@ li {
 }
 
 .nav-tab-base {
-    background-color: #242C56;
+    background-color: #000105;
 }
 
 // sidebar color when active

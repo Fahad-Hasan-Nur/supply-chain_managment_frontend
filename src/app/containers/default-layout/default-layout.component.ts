@@ -113,6 +113,8 @@ export class DefaultLayoutComponent implements OnInit {
       privilege.add(MENU_NAME.INVENTORY);
       privilege.add(MENU_NAME.INVENTORY_VERIFIED_REQUISITION);
       privilege.add(MENU_NAME.INVENTORY_UNVERIFIED_REQUISITION);
+      privilege.add(MENU_NAME.INVENTORY_UNDER_PROCESSING_REQUISITION);
+      privilege.add(MENU_NAME.INVENTORY_COMPLETE_REQUISITION);
     }
     if(roles==ROLES.ACCOUNT_MANAGER||roles==ROLES.SUPER_ADMIN ){
       privilege.add(MENU_NAME.ACCOUNTS);
