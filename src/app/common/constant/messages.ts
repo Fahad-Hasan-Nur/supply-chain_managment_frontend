@@ -1,6 +1,9 @@
 export const success_message = {
   TRANSACTION_NOT_PROCESSED:'You can pay your due after your transaction is processed..',
   VERIFIED_DEALER_SUCCESS:'Verified Dealer Successfully...',
+  VERIFIED_DEALER_PROCESSING:' Dealer Verification Under Processing...',
+  REJECT_DEALER_SUCCESS:'Rejected Dealer Successfully...',
+  REJECT_DEALER_PROCESSING:'Dealer Rejection is Under Processing...',
   FAILED_FOR_VERIFICATION:'Asking for Transaction Verification is Failed..',
   SUCCESS_FOR_VERIFICATION:'Asking for Transaction Verification is Done..',
   NOTICE_CIRCULATED_SUCCESSFULLY: 'Notice Circulated Succesfully',

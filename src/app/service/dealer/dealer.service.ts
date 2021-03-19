@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AUTH } from '../../common/constant/global-variables.constant';
 import { Requisition } from '../../common/model/requisition';
+import { VerifiedDealerInfo } from '../../common/model/verified-dealer-info';
 
 @Injectable({
   providedIn: 'root'
@@ -150,37 +151,22 @@ export class DealerService {
   public getTransactionByStatus(status:string): Observable<any> {
     return this._http.get<Transaction>(TRANSACTON_API.GET_TRANSACTON_BY_STATUS+status ,{ headers: this.reqHeader });
 }
-//   /**
-//    * Update a  product.
-//    *
-//    * @param product
-//    * @returns product
-//    */
-//   public updateProduct(product:Product){
-//     return this._http.put(PRODUCT_API.UPDATE_PRODUCT,product,{ headers: this.reqHeader });
-//   }
-//     /**
-//    * Returns list of products.
-//    *
-//    * @returns Product list
-//    */
-//   public getProducts(): Observable<any>{
-//     return this._http.get(PRODUCT_API.GET_PRODUCTS,{ headers: this.reqHeader });
-//   }
+/**
+   * Returns   transaction by Status.
+   *
+   * @returns transaction 
+   */
+ public getVerifiedDealerInfo(): Observable<any> {
+  return this._http.get<VerifiedDealerInfo>(ADMIN_API.GET_VERIFIED_DEALER_INFO ,{ headers: this.reqHeader });
+}
+/**
+   * create a new VerifiedDealerInfo.
+   *
+   * @param VerifiedDealerInfo
+   * @returns VerifiedDealerInfo
+   */
+ public addVerifiedDealerInfo(ob: VerifiedDealerInfo) {
+  return this._http.post(ADMIN_API.ADD_VERIFIED_DEALER_INFO, ob, { headers: this.reqHeader });
+}
 
-//   /**
-//    * Returns single product by id.
-//    *
-//    * @returns Product 
-//    */
-//   public getProductById(id): Observable<any> {
-//       return this._http.get<Product>(PRODUCT_API.GET_PRODUCT_BY_ID + id,{ headers: this.reqHeader });
-// }
-// /**
-//    * get list of  product by sub category id .
-//    *
-//    */
-//  public getProductBySubCategoryId(data): Observable<Product[]> {
-//   return this._http.get<Product[]>(PRODUCT_API.GET_PRODUCT_BY_SUB_CATEGORY_ID + data, { headers: this.reqHeader });
-// }
 }

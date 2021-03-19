@@ -85,10 +85,14 @@ export const ADMIN_API = {
     GET_ADMIN_BY_EMAIL: ADMIN_SERVICE + 'getByEmail/',
     GET_ADMINS: ADMIN_SERVICE +'getAll/',
     ADD_ADMIN: ADMIN_SERVICE ,
+    ADD_VERIFIED_DEALER_INFO: ADMIN_SERVICE +'addVerifiedDealerInfo/',
     UPDATE_ADMIN: ADMIN_SERVICE ,
     GET_ACTIVE_DEALER: ADMIN_SERVICE +'getAll/activeDealer/' ,
     GET_INACTIVE_DEALER: ADMIN_SERVICE +'getAll/inactiveDealer/',
     VERIFY_DEALER:ADMIN_SERVICE+'verifyDealer/',
+    REJECT_DEALER: ADMIN_SERVICE+'rejectDealer/' ,
+    GET_VERIFIED_DEALER_INFO: ADMIN_SERVICE+'verifiedDealerInfo/' ,
+
 
 };
 const REQUISITION_SERVICE = SERVICE_API + 'api/requisition/';

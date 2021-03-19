@@ -110,4 +110,12 @@ export class AdminService {
        public activateDealer(token:string): Observable<any> {
         return this._http.get(LOGIN_API.ACTIVATE+token);
       }
+      /**
+   * Returns  Delete Dealer.
+   *
+   * @returns Dealer/Admin 
+   */
+  public rejectDealer(msg:string,admin:Admin): Observable<any> {
+    return this._http.post(ADMIN_API.REJECT_DEALER+msg ,admin,{ headers: this.reqHeader });
+}
 }

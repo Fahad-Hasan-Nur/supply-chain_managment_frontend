@@ -11,6 +11,7 @@ import { Auth } from '../model/auth';
 import { Category } from '../model/Category';
 import { SubCategory } from '../model/sub-category';
 import { Transaction } from '../model/transaction';
+import { VerifiedDealerInfo } from '../model/verified-dealer-info';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class StateService {
   private currentTaskState!: BehaviorSubject<Task>;
   private currentProductState!: BehaviorSubject<Product>;
   private currentProjectState!: BehaviorSubject<Project>;
+  private currentVerifiedDealerInfoState!: BehaviorSubject<VerifiedDealerInfo>;
   private currentAuthState!: BehaviorSubject<Auth>;
 
   /**
@@ -33,7 +35,19 @@ export class StateService {
    *
    * @param admin
    */
-  public async setAdmin(admin: Admin) {
+  public async setVerifiedDealerInfo(verifiedDealerInfo: VerifiedDealerInfo) {
+    await new Promise((resolve,rejects) => {
+      if (this.currentVerifiedDealerInfoState === undefined) this.currentVerifiedDealerInfoState = new BehaviorSubject<VerifiedDealerInfo>(verifiedDealerInfo);
+    });
+    await this.currentVerifiedDealerInfoState.next(verifiedDealerInfo);
+  }
+  /**
+   *
+   * set current admin
+   *
+   * @param admin
+   */
+   public async setAdmin(admin: Admin) {
     await new Promise((resolve,rejects) => {
       if (this.currentAdminState === undefined) this.currentAdminState = new BehaviorSubject<Admin>(admin);
     });
@@ -108,6 +122,15 @@ export class StateService {
    */
   public getAdmin(): Admin{
     return this.currentAdminState.value;
+  }
+  /**
+   *
+   * get current VerifiedDealerInfo.
+   *
+   * @return currentVerifiedDealerInfoState
+   */
+   public getVerifiedDealerInfo(): Admin{
+    return this.currentVerifiedDealerInfoState.value;
   }
   /**
    *

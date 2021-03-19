@@ -1,3 +1,4 @@
+import { VerifiedDealerInfo } from './../../common/model/verified-dealer-info';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DealerManagerComponent } from './dealer-manager.component';
@@ -8,14 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoMaterialModule } from '../../material.module';
 import { DealerViewComponent } from './component/dealer-view/dealer-view.component';
 import { LoaderComponent } from './loader.component';
+import { RejectDealerComponent } from './component/reject-dealer/reject-dealer.component';
+import { VerifyDealerComponent } from './component/verify-dealer/verify-dealer.component';
 
 
 
 @NgModule({
-  declarations: [DealerManagerComponent, VerifiedDealerComponent, UnverifiedDealerComponent, DealerViewComponent,LoaderComponent],
+  declarations: [DealerManagerComponent, VerifiedDealerComponent, UnverifiedDealerComponent, DealerViewComponent,LoaderComponent, RejectDealerComponent, VerifyDealerComponent],
 
   entryComponents: [
-  DealerViewComponent
+  DealerViewComponent,RejectDealerComponent,VerifyDealerComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,6 @@ import { LoaderComponent } from './loader.component';
     DemoMaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,VerifiedDealerInfo],
 })
 export class DealerManagerModule { }

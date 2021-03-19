@@ -1,3 +1,4 @@
+import { VerifyDealerComponent } from './../component/verify-dealer/verify-dealer.component';
 import { DealerViewComponent } from './../component/dealer-view/dealer-view.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
@@ -6,6 +7,7 @@ import { AdminService } from '../../../service/admin/admin.service';
 import { success_message } from '../../../common/constant/messages';
 import { LoaderComponent } from '../loader.component';
 import { ToastService } from '../../../common/service/toast.service';
+import { RejectDealerComponent } from '../component/reject-dealer/reject-dealer.component';
 
 @Component({
   selector: 'app-unverified-dealer',
@@ -55,23 +57,24 @@ export class UnverifiedDealerComponent implements OnInit {
     this.dialog.open(DealerViewComponent, dialogConfig);
   }
 
-  openDelete() {
-
+  openDelete(data?) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      dealer: data
+    };
+    this.dialog.open(RejectDealerComponent, dialogConfig);
   }
   openVerify(data?) {
-    this.loading=true;
-    this.adminService.verifyDealer(data.id).subscribe(
-      (response) => {
-        this.toastService.openSnackBar(success_message.VERIFIED_DEALER_SUCCESS, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-        this.loading = false;
-        console.log(response);
-      },
-      (error) => {console.log(error),
-      this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-      this.loading = false;
-      });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      dealer: data
+    };
+    this.dialog.open(VerifyDealerComponent, dialogConfig);
   }
-
 
 }
 

@@ -203,7 +203,7 @@ label.e-float-text,
     font-family: 'Kalpurush' !important;
 }
 
-.mat-calendar,
+
 .mat-select,
 .mat-option {
     font-family: 'Kalpurush' !important;
@@ -496,10 +496,12 @@ html:not([dir="rtl"]) .sidebar-lg-show.sidebar-fixed .main, html:not([dir="rtl"]
     flex: 0 0 50px;
     width: 268px;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #102146;
     border: 0;
 }
-
+element.style {
+    background-color: #262354;
+}
 
 // bg-color when sidebar minimized
 .sidebar-minimized .sidebar .nav-link {
@@ -763,7 +765,7 @@ button {
 
 .loader:after {
     animation: ball2 1s infinite;
-    background-color: #00a096;
+    background-color: #18214a;
     box-shadow: 30px 0 0 #97bf0d;
 }
 
@@ -982,7 +984,7 @@ li {
 }
 
 .nav-tab-selected {
-    background-color: #2C387D;
+    background-color: #4a4d5e;
 }
 
 .nav-tab-hover {

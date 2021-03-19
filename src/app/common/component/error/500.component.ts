@@ -1,5 +1,5 @@
-import { Admin } from './../../model/admin';
-import { TOKEN } from './../../constant/storage-variables.constant';
+import { Admin } from '../../model/admin';
+import { TOKEN } from '../../constant/storage-variables.constant';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TestLoginService } from '../../../service/test-login.service';
@@ -9,7 +9,7 @@ import { Auth } from '../../model/auth';
 import { AuthService } from '../../service/auth/auth.service';
 import { StateService } from '../../service/state.service';
 import { ToastService } from '../../service/toast.service';
-import { StorageService } from './../../service/storage/storage.service';
+import { StorageService } from '../../service/storage/storage.service';
 import { AdminService } from '../../../service/admin/admin.service';
 import { ImageService } from '../../../service/image/image.service';
 import * as _ from 'lodash';
@@ -174,11 +174,11 @@ public removeImage2() {
  
          if (fileInput.target.files[0].size > max_size) {
              this.imageError =
-                 'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+                 'Maximum size allowed is ' + max_size / 1000 + 'Kb';
              return false;
          }
          if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
-             this.imageError = 'Only Images are allowed ( JPG | PNG )';
+             this.imageError = 'Only Images are allowed ( JPG | PNG |)';
              return false;
          }
          const reader = new FileReader();
