@@ -1,3 +1,4 @@
+import { Variation } from './../model/variation';
 import { Requisition } from './../model/requisition';
 import { Brand } from './../model/brand';
 import { Injectable } from '@angular/core';
@@ -28,6 +29,8 @@ export class StateService {
   private currentProjectState!: BehaviorSubject<Project>;
   private currentVerifiedDealerInfoState!: BehaviorSubject<VerifiedDealerInfo>;
   private currentAuthState!: BehaviorSubject<Auth>;
+  private currentVariationState!: BehaviorSubject<Variation>;
+
 
   /**
    *
@@ -40,6 +43,18 @@ export class StateService {
       if (this.currentVerifiedDealerInfoState === undefined) this.currentVerifiedDealerInfoState = new BehaviorSubject<VerifiedDealerInfo>(verifiedDealerInfo);
     });
     await this.currentVerifiedDealerInfoState.next(verifiedDealerInfo);
+  }
+  /**
+   *
+   * set current Variation
+   *
+   * @param Variation
+   */
+   public async setVariation(variation: Variation) {
+    await new Promise((resolve,rejects) => {
+      if (this.currentVariationState === undefined) this.currentVariationState = new BehaviorSubject<Variation>(variation);
+    });
+    await this.currentVariationState.next(variation);
   }
   /**
    *
@@ -239,6 +254,14 @@ export class StateService {
   }
   public getAuth(): Auth{
     return this.currentAuthState.value;
+  }
+  /**
+   * get current Variation.
+   *
+   * @return currentVariationState
+   */
+   public getVariation(): Variation{
+    return this.currentVariationState.value;
   }
 
 }

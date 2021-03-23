@@ -102,8 +102,8 @@ export class ShopComponent implements OnInit {
 
   public onSelectProduct(value: Product): void {
     this.div = "leftdv";
-    this.sizeList = value.size;
-    this.price = value.price;
+    // this.sizeList = value.size;
+    // this.price = value.price;
     this.a = value;
     this.getImage(value.imageId);
     console.log(this.a);

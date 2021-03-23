@@ -4,8 +4,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Admin } from '../../../common/model/admin';
 import { AdminService } from '../../../service/admin/admin.service';
-import { success_message } from '../../../common/constant/messages';
-import { LoaderComponent } from '../loader.component';
 import { ToastService } from '../../../common/service/toast.service';
 import { RejectDealerComponent } from '../component/reject-dealer/reject-dealer.component';
 

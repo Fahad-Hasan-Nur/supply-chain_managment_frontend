@@ -1,6 +1,7 @@
+import { VariationComponent } from './../component/variation/variation.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { MatDialog} from '@angular/material';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent, MatDialog, MatDialogConfig} from '@angular/material';
 import * as _ from 'lodash';
 import { success_message } from '../../../common/constant/messages';
 import { Brand } from '../../../common/model/brand';
@@ -15,6 +16,11 @@ import { CategoryService } from '../../../service/product/category.service';
 import { ProductService } from '../../../service/product/product.service';
 import { SubCategoryService } from '../../../service/product/sub-category.service';
 import { LoaderComponent } from '../loader.component';
+import { FormControl } from '@angular/forms';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-product-add',
@@ -22,6 +28,21 @@ import { LoaderComponent } from '../loader.component';
   styleUrls: ['./product-add.component.scss'],
 })
 export class ProductAddComponent implements OnInit {
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl();
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = ['Black', 'Red', 'Green', 'Blue', 'White'];
+
+  @ViewChild('fruitInput',{ static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto',{ static: false }) matAutocomplete: MatAutocomplete;
+
+
+
 
   @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
@@ -41,6 +62,9 @@ export class ProductAddComponent implements OnInit {
   public sizeData: string[]=['S (Small)','M (Medium)','L (Large)','XL (Extra Large)','250ml','500ml','1L','2L','5L'];
 
   constructor(
+
+
+
                public dialog: MatDialog,
                private productService: ProductService,
                private brandService: BrandService,
@@ -51,7 +75,50 @@ export class ProductAddComponent implements OnInit {
                private stateService: StateService,
                public data: Product,
                ) {
+                this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+                  startWith(null),
+                  map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
 }
+add(event: MatChipInputEvent): void {
+  const input = event.input;
+  const value = event.value;
+
+  // Add our fruit
+  if ((value || '').trim()) {
+    this.fruits.push(value.trim());
+  }
+
+  // Reset the input value
+  if (input) {
+    input.value = '';
+  }
+
+  this.fruitCtrl.setValue(null);
+}
+
+remove(fruit: string): void {
+  const index = this.fruits.indexOf(fruit);
+
+  if (index >= 0) {
+    this.fruits.splice(index, 1);
+  }
+}
+
+selected(event: MatAutocompleteSelectedEvent): void {
+  this.fruits.push(event.option.viewValue);
+  this.fruitInput.nativeElement.value = '';
+  this.fruitCtrl.setValue(null);
+}
+
+private _filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+
+  return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+}
+
+
+
+
 
   public ngOnInit() {
     this.setStateProject(this.data);
@@ -159,19 +226,20 @@ export class ProductAddComponent implements OnInit {
     }
 }
 private saveData(){  
+  this.data.color=this.fruits;
   this.data.createdBy="Fahad";
-  this.productService.addProduct(this.stateService.getProduct()).subscribe
-    (
-      (response) => {
-        console.log(response);
-        this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-        this.loader.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-        this.loader.loading = false;
-      //  console.log(this.stateService.getProduct());
-      });
+  this.loader.loading = false;
+  this.openVariation(this.data);
+}
+public openVariation(data?){
+
+  const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+        data: data
+    };
+    this.dialog.open(VariationComponent, dialogConfig);
 }
 
 public removeImage() {

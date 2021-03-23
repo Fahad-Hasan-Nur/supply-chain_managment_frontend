@@ -5,7 +5,7 @@
     <mat-card-content>
         <form class="example-form" #prjNgModel='ngForm'>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <mat-form-field>
                         <mat-label>{{' Name​'}}</mat-label>
                         <input matInput placeholder="Write Product Name ​" [required]="true" #name="ngModel" name="name" [(ngModel)]="data.name">
@@ -60,28 +60,43 @@
                   </div>
 
                   <div class="col-md-6">
-                    <mat-form-field>
-                        <mat-select placeholder="{{' Available Sizes'}}" #size='ngModel' name="size" multiple [(ngModel)]="data.size">
+                    <!-- <mat-form-field>
+                        <mat-select placeholder="{{' Available Colors'}}" #color='ngModel' name="color" multiple [(ngModel)]="data.color">
                             <mat-option *ngFor="let option of sizeData" [value]="option">
                                 {{ option }}
                             </mat-option>
                         </mat-select>
+                    </mat-form-field> -->
+                    <mat-form-field class="example-chip-list">
+                      <mat-label>Select Availabel colors:</mat-label>
+                      <mat-chip-list #chipList aria-label="Color selection">
+                        <mat-chip
+                          *ngFor="let fruit of fruits"
+                          [ngStyle]="{ backgroundColor: fruit}"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="remove(fruit)">
+                          {{fruit}}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                        
+                          placeholder="New fruit..."
+                          #fruitInput
+                          [formControl]="fruitCtrl"
+                          [matAutocomplete]="auto"
+                          [matChipInputFor]="chipList"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                          {{fruit}}
+                        </mat-option>
+                      </mat-autocomplete>
                     </mat-form-field>
                 </div>
 
-                <div class="col-md-6">
-                    <mat-form-field>
-                        <mat-label>{{' Price'}}</mat-label>
-                        <input matInput type="number" [required]="true" placeholder=" Product price ​" #price="ngModel" name="price" [(ngModel)]="data.price">
-                    </mat-form-field>
-                </div>
-
-                <div class="col-md-6">
-                    <mat-form-field>
-                        <mat-label>{{' Quantity'}}</mat-label>
-                        <input matInput type="number" [required]="true" placeholder="Write Product quantity ​" #quantity="ngModel" name="quantity" [(ngModel)]="data.quantity">
-                    </mat-form-field>
-                </div>
 
                 <div class="col-md-6">
                     <fieldset class="form-group">
@@ -104,5 +119,6 @@
         </form>
     </mat-card-content>
 </mat-card>
+
 <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Save'}}</button>
 <app-loader></app-loader>

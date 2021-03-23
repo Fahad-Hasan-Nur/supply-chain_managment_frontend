@@ -1,3 +1,4 @@
+import { Variation } from './../../common/model/variation';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import {  ProductAddComponent } from './product-add/product-add.component';
 import {  ProductListComponent } from './product-list/product-list.component';
 import {  ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
+import { VariationComponent } from './component/variation/variation.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { ProductComponent } from './product.component';
     LoaderComponent ,
     ProductViewComponent ,
     ProductEditComponent ,
-    ProductEditComponent ,
+    ProductEditComponent,
+    VariationComponent ,
   ],
 
   entryComponents: [
     ProductViewComponent,
     ProductEditComponent,
+    VariationComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,7 @@ import { ProductComponent } from './product.component';
     ReactiveFormsModule,
     QuillModule.forRoot(),
   ],
-  providers: [DatePipe, Product],
+  providers: [DatePipe, Product,Variation],
 })
 export class ProductModule {
   constructor() {

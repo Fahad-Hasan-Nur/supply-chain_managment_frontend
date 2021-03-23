@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AUTH } from '../../common/constant/global-variables.constant';
+import { Variation } from '../../common/model/variation';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,15 @@ export class ProductService {
    */
   public addProduct(product:Product){
     return this._http.post(PRODUCT_API.ADD_PRODUCT,product,{ headers: this.reqHeader });
+  }
+  /**
+   * create list of variation.
+   *
+   * @param variation
+   * @returns variation
+   */
+   public addVariation(variation:Variation[]){
+    return this._http.post(PRODUCT_API.ADD_VARIATION,variation,{ headers: this.reqHeader });
   }
   /**
    * Update a  product.
@@ -60,4 +70,21 @@ export class ProductService {
  public getProductBySubCategoryId(data): Observable<Product[]> {
   return this._http.get<Product[]>(PRODUCT_API.GET_PRODUCT_BY_SUB_CATEGORY_ID + data, { headers: this.reqHeader });
 }
+  /**
+   * Returns list of variation.
+   *
+   * @returns variation list
+   */
+   public getVariations(id): Observable<any>{
+    return this._http.get(PRODUCT_API.GET_VARIATION_BY_PRODUCT_ID+id,{ headers: this.reqHeader });
+  }
+  /**
+   * Update a  Variation.
+   *
+   * @param Variation
+   * @returns Variation
+   */
+   public updateVariation(variation:Variation){
+    return this._http.put(PRODUCT_API.UPDATE_VARIATION,variation,{ headers: this.reqHeader });
+  }
 }

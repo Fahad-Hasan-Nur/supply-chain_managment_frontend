@@ -1,0 +1,98 @@
+<div style="max-width: 70vh;">
+<div style="background-color: rgb(15, 26, 63);">
+  <h2 style="text-align: center;color: white;">Add Product Variation details:</h2>
+</div>
+<mat-card style="min-height: inherit;">
+  <mat-card-content>
+    <form class="example-form" #prjNgModel='ngForm'>
+      <div class="row">
+
+        <div class="col-md-6">
+          <mat-form-field >
+            <mat-label>Available Size</mat-label>
+            <input type="text" placeholder="Pick one" [required]="true" aria-label="Number" matInput
+              [formControl]="myControl" [matAutocomplete]="auto" name="name" [(ngModel)]="variation.name">
+            <mat-autocomplete #auto="matAutocomplete" >
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  [hidden]="disable">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Price'}}</mat-label>
+            <input matInput placeholder="Write Variation price ​" [required]="true" #price="ngModel" name="price"
+              [(ngModel)]="variation.price"[disabled]="disable">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Quantity'}}</mat-label>
+            <input matInput placeholder="Enter product quantity ​" [required]="true" #quantity="ngModel" name="quantity"
+              [(ngModel)]="variation.quantity"[disabled]="disable">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-label>{{' Discount'}}</mat-label>
+          <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="0" max="100" [required]="true" #discount="ngModel" name="discount"
+          [(ngModel)]="variation.discount"[disabled]="disable"></mat-slider>
+
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<button mat-raised-button color="accent" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid"
+  (click)="addVariation()" [hidden]="update">{{'Add More'}}</button>
+<button mat-raised-button color="warn" style="float:right; margin:20px 5px 5px 5px"
+  (click)="close()">{{'Close'}}</button>
+  <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid"
+  (click)="save()" [hidden]="update">{{'Save'}}</button>
+  <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!prjNgModel.valid"
+  (click)="updateNow()" [hidden]="!update">{{'Update'}}</button>
+
+
+<div [hidden]="!view">
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="Name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Price</th>
+      <td *matCellDef="let element" mat-cell> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Quantity</th>
+      <td *matCellDef="let element" mat-cell> {{element.quantity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Discount">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Discount</th>
+      <td *matCellDef="let element" mat-cell> {{element.discount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
+      <td *matCellDef="let element" mat-cell>
+        <a class="btn btn-danger" matTooltip="Remove" (click)="remove(element)">
+          <i class="fa fa-trash"></i>
+        </a>
+        <a class="btn btn-warning" matTooltip="Edit" [hidden]="!update" (click)="updateData(element)">
+          <i class="fa fa-edit"></i>
+      </a>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</div>
+</div>
+
+<app-loader></app-loader>

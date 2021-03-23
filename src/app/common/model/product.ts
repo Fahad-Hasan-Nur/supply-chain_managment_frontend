@@ -1,3 +1,4 @@
+import { Variation } from './variation';
 
 export class Product {
   public id ?: string;
@@ -9,11 +10,10 @@ export class Product {
   public brandId?: string ;
   public subCategoryName?: string ;
   public subCategoryId?: string ;
-  public quantity?: number ;
-  public price?: number ;
   public imageId?: string ;
   public imageName?: string ;
   public createdBy?: string;
   public updatedBy?: string;
-  public size?: string[];
+  public color?: string[];
+
 }

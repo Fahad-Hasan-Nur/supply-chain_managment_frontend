@@ -1,6 +1,7 @@
+import { VariationComponent } from './../variation/variation.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, ElementRef, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent, MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import * as _ from 'lodash';
 import { EDITOR_OPTIONS_MEDIUM } from '../../../../common/constant/editor.constants';
 import { success_message } from '../../../../common/constant/messages';
@@ -16,6 +17,10 @@ import { CategoryService } from '../../../../service/product/category.service';
 import { ProductService } from '../../../../service/product/product.service';
 import { SubCategoryService } from '../../../../service/product/sub-category.service';
 import { LoaderComponent } from '../../loader.component';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-edit',
@@ -23,6 +28,21 @@ import { LoaderComponent } from '../../loader.component';
   styleUrls: ['./product-edit.component.scss']
 })
 export class ProductEditComponent implements OnInit {
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl();
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = ['Black', 'Red', 'Green', 'Blue', 'White'];
+
+  @ViewChild('fruitInput',{ static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto',{ static: false }) matAutocomplete: MatAutocomplete;
+
+
+
 
 
   @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
@@ -44,6 +64,7 @@ export class ProductEditComponent implements OnInit {
 
 
   constructor(
+               protected dialog: MatDialog,
                private productService: ProductService,
                private brandService: BrandService,
                private categoryService: CategoryService,
@@ -52,12 +73,15 @@ export class ProductEditComponent implements OnInit {
                private toastService: ToastService,
                private stateService: StateService,
                public product: Product,
-               private ngZone: NgZone,
                private dialogRef: MatDialogRef<ProductEditComponent>,
                @Inject(MAT_DIALOG_DATA) data,
                private ren: Renderer2,
                ) {
                  this.product = data.product;
+                 console.log(data.product)
+                 this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+                  startWith(null),
+                  map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
              }
 
   public ngOnInit() {
@@ -66,6 +90,42 @@ export class ProductEditComponent implements OnInit {
     this.getSubCategory(this.product.categoryId);
     this.getBrand();
     this.getImage(this.product.imageId);
+  }
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+  
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push(value.trim());
+    }
+  
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  
+    this.fruitCtrl.setValue(null);
+  }
+  
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
+  
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+  
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+  
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+  
+    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   public getCategory() {
     this.categoryService.getCategory().subscribe((data) => {
@@ -104,6 +164,7 @@ export class ProductEditComponent implements OnInit {
 
   public setStateProject(product: Product): void {
     this.stateService.setProduct(product);
+    this.fruits=product.color as string[];
   }
   public save() {
     this.loader.loading = true;
@@ -209,5 +270,15 @@ getImage(id) {
       },
       (error) => console.log(error),
     );
+}
+updateVariation(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data = {
+      data: this.product
+  };
+  this.dialogRef.close();
+  this.dialog.open(VariationComponent, dialogConfig);
 }
 }
