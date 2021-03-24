@@ -1,3 +1,4 @@
+import { RequisitionProduct } from './../../common/model/requisition-product';
 import { ConfirmationComponent } from './../../common/component/confirmation/confirmation.component';
 import { Transaction } from './../../common/model/transaction';
 import { Product } from './../../common/model/product';
@@ -14,11 +15,12 @@ import { DealerRoutingModule } from './dealer-routing.module';
 import { LoaderComponent } from './loader.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { PaymentViewComponent } from './component/payment-view/payment-view.component';
+import { CompletedRequisitionComponent } from './completed-requisition/completed-requisition.component';
 
 
 
 @NgModule({
-  declarations: [DealerComponent, ShopComponent, CartComponent, PurchaseHistoryComponent,LoaderComponent, PaymentComponent, PaymentViewComponent,PaymentViewComponent,ConfirmationComponent],
+  declarations: [DealerComponent, ShopComponent, CartComponent, PurchaseHistoryComponent,LoaderComponent, PaymentComponent, PaymentViewComponent,PaymentViewComponent,ConfirmationComponent, CompletedRequisitionComponent],
   imports: [
     CommonModule,
     DealerRoutingModule,
@@ -26,7 +28,7 @@ import { PaymentViewComponent } from './component/payment-view/payment-view.comp
     DemoMaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [DatePipe,Requisition,Product,Transaction],
+  providers: [DatePipe,Requisition,Product,Transaction,RequisitionProduct],
   entryComponents:[PaymentComponent,PaymentViewComponent,ConfirmationComponent]
 })
 export class DealerModule { 

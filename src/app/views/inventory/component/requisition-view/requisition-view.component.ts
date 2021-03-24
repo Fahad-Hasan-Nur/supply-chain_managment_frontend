@@ -26,7 +26,7 @@ export class RequisitionViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     ) {
       this.requisition = data.requisition;
-      this.getProduct(this.requisition.productId);
+      // this.getProduct(this.requisition.productId);
   }
   ngOnInit() {
     this.toolbarOptions = EDITOR_OPTIONS_MEDIUM;

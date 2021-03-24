@@ -1,3 +1,4 @@
+import { CompletedRequisitionComponent } from './completed-requisition/completed-requisition.component';
 import { ShopComponent } from './shop/shop.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 import { CartComponent } from './cart/cart.component';
@@ -30,6 +31,13 @@ const routes: Routes = [
         component: PurchaseHistoryComponent,
         data: {
           title: MENU_NAME.DEALER_PURCHASE_HISTORY,
+        },
+      },
+      {
+        path: URL_NAME.DEALER_COMPLETED_REQUISITION,
+        component: CompletedRequisitionComponent,
+        data: {
+          title: MENU_NAME.DEALER_COMPLETED_REQUISITION,
         },
       },
       

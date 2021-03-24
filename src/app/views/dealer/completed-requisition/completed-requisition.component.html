@@ -7,11 +7,6 @@
                     <input matInput placeholder="Write to search..." (keyup)="applyFilter($event.target)" />
                 </mat-form-field>
             </td>
-            <td class="float-right" style="border: none">
-                <a class="btn btn-primary" [routerLink]="'/dealer/dealer-shop'">
-                    <i class="fa fa-plus" matTooltip="Shop Now"></i>
-                </a>
-            </td>
         </tr>
     </table>
     <mat-card-actions [hidden]="!showFilters" align="end">
@@ -37,13 +32,7 @@
     <ng-container matColumnDef="Action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
         <td *matCellDef="let element" mat-cell>
-            <a class="btn btn-danger" matTooltip="Delete" (click)="openDialogdelete(element)">
-                <i class="fa fa-trash"></i>
-            </a>
-            <a class="btn btn-warning" matTooltip="Pay Now" (click)="openDialogPay(element)">
-                <i class="fa fa-money"></i>
-            </a>
-            <a class="btn btn-primary" matTooltip="Pay Now" (click)="viewData(element)">
+            <a class="btn btn-primary" matTooltip="Details" (click)="viewData(element)">
                 <i class="fa fa-eye"></i>
             </a>
         </td>

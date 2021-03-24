@@ -73,9 +73,9 @@
                     <mat-form-field>
                       <mat-label>{{' Product Size ​'}}</mat-label>
                       <mat-select #autoS="matSelect" [required]="true" placeholder="Select Product Size" aria-label="State" #size='ngModel'
-                      name="size" [(ngModel)]="data.size">
-                        <mat-option *ngFor="let category of sizeList" [value]="category">
-                          {{ category }}
+                      name="size" [(ngModel)]="data.variationId" >
+                        <mat-option *ngFor="let category of sizeList" [value]="category.id" (onSelectionChange)="onSelectSize(category)">
+                          {{ category.name }}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -83,8 +83,22 @@
 
                   <div class="col-md-6" [hidden]="showAll">
                     <mat-form-field>
+                        <mat-label>{{'Discount'}}</mat-label>
+                        <input readonly matInput   name="discount" [value]="discount+'%'">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6" [hidden]="showAll">
+                  <mat-form-field>
+                      <mat-label>{{'Price'}}</mat-label>
+                      <input readonly matInput   name="price" [value]="price">
+                  </mat-form-field>
+              </div>
+
+                  <div class="col-md-6" [hidden]="showAll">
+                    <mat-form-field>
                         <mat-label>{{' Total Cost'}}</mat-label>
-                        <input readonly matInput  #totalCost="ngModel" name="totalCost" [(ngModel)]="data.totalCost" [value]="data.cartoonPerLot*data.cartoonSize*price">
+                        <input readonly matInput  #totalCost="ngModel" name="totalCost" [(ngModel)]="data.totalCost" [value]="data.totalCost">
                     </mat-form-field>
                 </div>
 
@@ -92,8 +106,10 @@
         </form>
     </mat-card-content>
 </mat-card>
-<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(prjNgModel.valid && available)" (click)="addToCart()">{{'Add To Cart'}}</button>
-<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(prjNgModel.valid && available)" (click)="payNow()">{{'Pay Now'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(prjNgModel.valid && available)" (click)="addMore()">{{'Add'}}</button>
+
+
+
 </div>
 
 <div class="overlay"
@@ -144,25 +160,49 @@
                         <div class="rytdv">
                             <b>{{a.brandName}}</b>
                         </div>
-                    </div>
-            
-                    <!-- <div class="container">
-                        <div class="leftdv">
-                            <b>Available Size:</b>
-                        </div>
-                        <div class="rytdv">
-                            <b>{{a.size}}</b>
-                        </div>
-                    </div> -->
-            
-                    <!-- <div class="container">
-                        <div class="leftdv">
-                            <b>Product Price :</b>
-                        </div>
-                        <div class="rytdv">
-                            <b>{{a.price}}</b>
-                        </div>
-                    </div> -->
-       
+                    </div>     
 </div>
+
+<div [hidden]="view">  
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="Product Name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Size">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Size</th>
+      <td *matCellDef="let element" mat-cell> {{element.variationName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cartoon Size">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Cartoon Size</th>
+      <td *matCellDef="let element" mat-cell> {{element.cartoonSize}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cartoon Per Lot">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Cartoon Per Lot</th>
+      <td *matCellDef="let element" mat-cell> {{element.cartoonPerLot}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cost">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Cost</th>
+      <td *matCellDef="let element" mat-cell> {{element.totalCost}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
+      <td *matCellDef="let element" mat-cell>
+        <a class="btn btn-danger" matTooltip="Remove" >
+          <i class="fa fa-trash"></i>
+        </a>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</div>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(list&& available)" (click)="addToCart()">{{'Add To Cart'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(list && available)" (click)="payNow()">{{'Pay Now'}}</button>
 

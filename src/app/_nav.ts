@@ -70,6 +70,14 @@ export const navItems: NavData[] = [
         authorities: [MENU_NAME.DEALER_PURCHASE_HISTORY],
         
       },
+      //Complete Requisition
+      {
+        name: MENU_NAME.DEALER_COMPLETED_REQUISITION,
+        url: URL.DEALER_COMPLETED_REQUISITION,
+        icon: ICON.DEALER_COMPLETED_REQUISITION,
+        authorities: [MENU_NAME.DEALER_COMPLETED_REQUISITION],
+        
+      },
     ]
   },
 

@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource }
 import { Router } from '@angular/router';
 import { DealerService } from '../../../service/dealer/dealer.service';
 import { PaymentComponent } from '../component/payment/payment.component';
+import { RequisitionProduct } from '../../../common/model/requisition-product';
 
 @Component({
   selector: 'app-cart',
@@ -21,9 +22,12 @@ export class CartComponent implements OnInit {
                 private storage : AdminService,
                 ) { }
   public router: Router;
+  public view: boolean=true;
   public req: Requisition[] = [];
-  public displayedColumns: string[] = ['Product Name', 'Cartoon Size', 'Cartoon Per Lot', 'Total Cost', 'Action'];
+  public displayedColumns: string[] = ['Creation Time', 'Total Cost', 'Action'];
   public dataSource = new MatTableDataSource;
+  public displayedColumns1: string[] = ['Product Name', 'Size', 'Cartoon Size', 'Cartoon Per Lot', 'Cost'];
+  public dataSource1 = new MatTableDataSource;
   public showFilters: boolean;
   @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) public sort: MatSort;
@@ -67,6 +71,14 @@ export class CartComponent implements OnInit {
         requisition: data
     };
     this.dialog.open(ConfirmationComponent, dialogConfig);
+   }
+   viewData(data:Requisition){
+   this.view=false;
+   this.service.getRequisitionProduct(data.id).subscribe(
+     (res)=>{
+       this.dataSource1.data=res as RequisitionProduct[];
+     }
+   )
    }
 
 }

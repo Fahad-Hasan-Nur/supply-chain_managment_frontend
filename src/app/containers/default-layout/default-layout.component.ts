@@ -99,10 +99,11 @@ export class DefaultLayoutComponent implements OnInit {
       privilege.add(MENU_NAME.EMPLOYYE_ADD);
       privilege.add(MENU_NAME.EMPLOYYE_LIST);
     }
-    if(roles==ROLES.DEALER ){
+    if(roles==ROLES.DEALER ||roles==ROLES.SUPER_ADMIN ){
       privilege.add(MENU_NAME.DEALER_SHOP);
       privilege.add(MENU_NAME.DEALER_CART);
-      privilege.add(MENU_NAME.DEALER_PURCHASE_HISTORY)
+      privilege.add(MENU_NAME.DEALER_PURCHASE_HISTORY);
+      privilege.add(MENU_NAME.DEALER_COMPLETED_REQUISITION)
     }
     if(roles==ROLES.DEALER_MANAGER||roles==ROLES.SUPER_ADMIN ){
       privilege.add(MENU_NAME.DEALER_MANAGER);

@@ -35,6 +35,7 @@ export const MENU_NAME = {
   CATEGORY_ADD:'Add Category',
   PRODUCT: 'Product',
   EMPLOYYE:'Employee',
+  DEALER_COMPLETED_REQUISITION:'Completed Requisition',
   EMPLOYYE_LIST:' Emplyee List',
   EMPLOYYE_ADD:'Add Employee',
   PRJ_DASHBOARD: 'ড্যাশবোর্ড​',
@@ -56,6 +57,7 @@ export const MENU_NAME = {
 };
 
 export const URL = {
+  DEALER_COMPLETED_REQUISITION:'/dealer/completed',
   ACCOUNTS:'/accounts',
   ACCOUNTS_VERIFIED_TRANSACTION:'/accounts/verified-transaction',
   ACCOUNTS_UNVERIFIED_TRANSACTION:'/accounts/unverified-transaction',
@@ -117,6 +119,7 @@ export const URL_NAME = {
   DEALER:'dealer',
   DEALER_SHOP:'dealer-shop',
   DEALER_CART:'dealer-cart',
+  DEALER_COMPLETED_REQUISITION:'completed',
   DEALER_PURCHASE_HISTORY:'dealer-purchase-history',
   WELCOME:'welcome',
   BRAND:'brand',
@@ -168,6 +171,7 @@ export const ICON = {
   DEALER_SHOP:'icon-basket-loaded',
   DEALER_CART:'icon-paper-clip',
   DEALER_PURCHASE_HISTORY:'icon-briefcase',
+  DEALER_COMPLETED_REQUISITION:'fa fa-check-square-o',
   BRAND:'icon-tag',
   BRAND_ADD:'icon-puzzle',
   BRAND_LIST: 'icon-list',

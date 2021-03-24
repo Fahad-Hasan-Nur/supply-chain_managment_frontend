@@ -1,3 +1,5 @@
+import { RequisitionProduct } from './../../../common/model/requisition-product';
+import { VariationComponent } from './../../product/component/variation/variation.component';
 import { URL } from './../../../common/constant/nav.constant';
 import { Router } from '@angular/router';
 import { Transaction } from './../../../common/model/transaction';
@@ -10,7 +12,7 @@ import { Brand } from '../../../common/model/brand';
 import { Category } from '../../../common/model/Category';
 import { SubCategory } from '../../../common/model/sub-category';
 import { LoaderComponent } from '../loader.component';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 import { ProductService } from '../../../service/product/product.service';
 import { CategoryService } from '../../../service/product/category.service';
 import { ImageService } from '../../../service/image/image.service';
@@ -20,7 +22,7 @@ import { StateService } from '../../../common/service/state.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DealerService } from '../../../service/dealer/dealer.service';
 import { PaymentComponent } from '../component/payment/payment.component';
-import { StringNullableChain } from 'lodash';
+import { Variation } from '../../../common/model/variation';
 
 @Component({
   selector: 'app-shop',
@@ -29,25 +31,33 @@ import { StringNullableChain } from 'lodash';
 })
 export class ShopComponent implements OnInit {
 
-  @ViewChild(LoaderComponent, { static: false })
-  public loader: LoaderComponent;
+  public allReq: RequisitionProduct[] = [];
+  public displayedColumns: string[] = ['Product Name', 'Size', 'Cartoon Size', 'Cartoon Per Lot', 'Cost', 'action'];
+  public dataSource = new MatTableDataSource;
   public loading: boolean;
-  public res:Requisition;
-  public available:boolean=true;
-  public message:string;
-  private pay:boolean=false;
-  public req: Requisition[]=[];
-  public tran: Transaction[]=[];
+  public res: Requisition;
+  public available: boolean = true;
+  public message: string;
+  public discount: number = 0;
+  private pay: boolean = false;
+  private totalcost: number = 0;
 
-  public price: number;
-  private id:number=1;
+  public req: Requisition[] = [];
+  public tran: Transaction[] = [];
+
+  public price: number = 1;
+  private id: number = 1;
   public showSubCategory: boolean = true;
   public showProduct: boolean = true;
   public showAll: boolean = true;
+  public view: boolean = true;
+  public list: boolean = false;
+
+
   public div: string = "col-md-12";
   public isImageSaved: boolean;
   public cardImageBase64: string;
-  public sizeList: string[] = [];
+  public sizeList: Variation[] = [];
   public brandList: Brand[] = [];
   public categoryList: Category[] = [];
   public subCategoryList: SubCategory[] = [];
@@ -65,14 +75,15 @@ export class ShopComponent implements OnInit {
     private subCategoryService: SubCategoryService,
     private toastService: ToastService,
     private stateService: StateService,
-    public data: Requisition,
+    public requisition: Requisition,
+    public data: RequisitionProduct,
     public a: Product,
-    private router:Router
+    private router: Router
   ) {
   }
 
   public ngOnInit() {
-    this.setStateRequisition(this.data);
+    // this.setStateRequisition(this.data);
     this.getCategory();
     this.check();
   }
@@ -101,9 +112,9 @@ export class ShopComponent implements OnInit {
   }
 
   public onSelectProduct(value: Product): void {
+    this.data.productName = value.name;
     this.div = "leftdv";
-    // this.sizeList = value.size;
-    // this.price = value.price;
+    this.getVariation(value.id);
     this.a = value;
     this.getImage(value.imageId);
     console.log(this.a);
@@ -111,8 +122,18 @@ export class ShopComponent implements OnInit {
 
   }
 
-  public onSelectSize(value: string): void {
-    this.data.size = value;
+  public onSelectSize(value: Variation): void {
+    this.price = value.price;
+    this.discount = value.discount;
+    this.data.variationId = value.id;
+    this.data.variationName = value.name;
+    this.data.totalCost = Math.round((value.price - value.price * (value.discount / 100)) * this.data.cartoonPerLot * this.data.cartoonSize);
+  }
+  private getVariation(id: string) {
+    this.productService.getVariations(id).subscribe(
+      (res) => this.sizeList = res,
+      (error) => console.log
+    )
   }
 
   public onSelectSubCategory(value: string): void {
@@ -147,37 +168,38 @@ export class ShopComponent implements OnInit {
 
   public addToCart() {
     this.check();
-    if(this.available==true){
+    if (this.available == true) {
       this.loading = true;
-      this.data.status = "cart";
+      this.requisition.status = "cart";
       this.saveData();
     }
-   // this.router.navigateByUrl(URL.DEALER_CART);
+    // this.router.navigateByUrl(URL.DEALER_CART);
 
   }
   public payNow() {
     this.check();
-    if(this.available==true){
-      this.data.status = "cart";
-      this.pay=true;
+    if (this.available == true) {
+      this.requisition.status = "cart";
+      this.pay = true;
       this.saveData();
-    } 
+    }
   }
 
   private saveData() {
-    this.data.createdBy = this.storage.usersStorage().id;
-    this.data.userId = this.storage.usersStorage().id;
-    this.data.totalCost = this.data.cartoonPerLot * this.data.cartoonSize * this.price;
-    this.dealerService.addRequisition(this.stateService.getRequisition()).subscribe
+    this.requisition.createdBy = this.storage.usersStorage().id;
+    this.requisition.userId = this.storage.usersStorage().id;
+    this.allReq.forEach(element => {
+      this.totalcost=this.totalcost+element.totalCost;
+    });
+    this.requisition.totalCost = this.totalcost;
+    this.dealerService.addRequisition(this.requisition).subscribe
       (
         (response) => {
           console.log(response);
-          this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-          this.loading = false;
+          // this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+          // this.loading = false;
           this.res=response;
-          if(this.pay==true){
-            this.openDialogPayNow(this.res);
-          }
+          this.saveRequisitionProduct(this.res.id);
         }, (error) => {
           console.log(error);
           this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
@@ -185,65 +207,105 @@ export class ShopComponent implements OnInit {
         });
   }
 
+  private saveRequisitionProduct(id:string){
+    this.allReq.forEach(element => {
+      element.requisitionId=id;
+    });
+    this.dealerService.addRequisitionProduct(this.allReq).subscribe(
+      (response)=>{
+        console.log(response);
+          this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+          this.loading = false;
+          if(this.pay==true){
+            this.openDialogPayNow(this.res);
+          }
+      },
+      (error)=>{
+        this.loading=false;
+        this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+        console.log(error);
+      }
+    );
+  }
+  addMore() {
+    this.data.createdBy = this.storage.usersStorage().id;
+    this.allReq.push(this.data)
+    this.dataSource.data = this.allReq as RequisitionProduct[];
+    this.view = false;
+    this.a = new Product();
+    console.log(this.a)
+    this.data = new RequisitionProduct();
+    this.sizeList = [];
+    this.productList = [];
+    this.subCategoryList = [];
+    this.discount = 0;
+    this.price = 1;
+    this.showAll = true;
+    this.div = "col-md-12"
+    this.showProduct = true;
+    this.showSubCategory = true;
+    this.list = true;
+  }
+
   openDialogPayNow(data?) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        requisition: data
+      requisition: data
     };
     this.dialog.open(PaymentComponent, dialogConfig);
   }
-  private check(){
+  private check() {
     this.dealerService.getOnCartRequisition(this.storage.usersStorage().id).subscribe
-    (
-      (response) => {
-        this.req=response;
-        if(this.req.length<1){
-          this.checkTransaction();
-          console.log("req is null")
-        }else{
-          this.available=false;
-          this.message="Complete or Delete Cart Requisition First"
-        }
-        console.log(response)
-      },
-      (error) => console.log(error),
-    );  
+      (
+        (response) => {
+          this.req = response;
+          if (this.req.length < 1) {
+            this.checkTransaction();
+            console.log("req is null")
+          } else {
+            this.available = false;
+            this.message = "Complete or Delete Cart Requisition First"
+          }
+          console.log(response)
+        },
+        (error) => console.log(error),
+      );
   }
 
-  private checkTransaction(){
+  private checkTransaction() {
     this.dealerService.getTransactionByUser(this.storage.usersStorage().id).subscribe
-    (
-      (response) => {
-        this.tran=response;
-        if(this.tran.length>0){
-          this.tran.forEach(element => {
-            if(this.id==1){
-              if(element.due==0){
-                if(element.status=="Complete"){
-                  this.available=true;
-                  this.id=2;
-                }else{
-                this.message="Your Transaction is not Processed Yet.."
-                this.available=false;
-                this.id=2;
+      (
+        (response) => {
+          this.tran = response;
+          if (this.tran.length > 0) {
+            this.tran.forEach(element => {
+              if (this.id == 1) {
+                if (element.due == 0) {
+                  if (element.status == "Complete") {
+                    this.available = true;
+                    this.id = 2;
+                  } else {
+                    this.message = "Your Transaction is not Processed Yet.."
+                    this.available = false;
+                    this.id = 2;
+                  }
+
+                } else {
+                  this.message = "You Have to clear Your Due for New Requisition."
+                  this.available = false;
+                  this.id = 2;
                 }
-                
-              }else{
-                this.message="You Have to clear Your Due for New Requisition."
-                this.available=false;
-                this.id=2;
               }
-            }
-            console.log(response)
-          });
-        }else{
-          this.available=true;
-        }
-      },
-      (error) => console.log(error),
-    ); 
+              console.log(response)
+            });
+          } else {
+            this.available = true;
+          }
+        },
+        (error) => console.log(error),
+      );
   }
 
 }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AUTH } from '../../common/constant/global-variables.constant';
 import { Requisition } from '../../common/model/requisition';
 import { VerifiedDealerInfo } from '../../common/model/verified-dealer-info';
+import { RequisitionProduct } from '../../common/model/requisition-product';
 
 @Injectable({
   providedIn: 'root'
@@ -167,6 +168,32 @@ export class DealerService {
    */
  public addVerifiedDealerInfo(ob: VerifiedDealerInfo) {
   return this._http.post(ADMIN_API.ADD_VERIFIED_DEALER_INFO, ob, { headers: this.reqHeader });
+}
+/**
+   * create list of RequisitionProduct.
+   *
+   * @param RequisitionProduct
+   * @returns RequisitionProduct
+   */
+ public addRequisitionProduct(rp:RequisitionProduct[]){
+  return this._http.post(REQUISITION_API.ADD_REQUISITION_PRODUCT,rp,{ headers: this.reqHeader });
+}
+/**
+   * Returns list of RequisitionProduct.
+   *
+   * @returns RequisitionProduct list
+   */
+ public getRequisitionProduct(id): Observable<any>{
+  return this._http.get(REQUISITION_API.GET_REQUISITION_PRODUCT_BY_REQUISITION+id,{ headers: this.reqHeader });
+}
+
+/**
+   * Returns  Complete Requisitions.
+   *
+   * @returns Requisition 
+   */
+ public getCompleteRequisition(id:string): Observable<any> {
+  return this._http.get<Requisition>(REQUISITION_API.GET_COMPLETE_REQUISITION+id ,{ headers: this.reqHeader });
 }
 
 }

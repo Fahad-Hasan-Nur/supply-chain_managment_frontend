@@ -41,8 +41,7 @@ export class VariationComponent implements OnInit {
     private toastService:ToastService,
     private stateService:StateService,
     public variation: Variation,
-    public v: Variation,
-    private service: ProductService,
+     private service: ProductService,
     private dialogRef: MatDialogRef<VariationComponent>,
     @Inject(MAT_DIALOG_DATA) data,
   ) {
