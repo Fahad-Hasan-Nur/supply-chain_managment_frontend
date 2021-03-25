@@ -1,10 +1,11 @@
+import { AdminService } from './../../../../service/admin/admin.service';
 import { ProductViewComponent } from './../product-view/product-view.component';
 import { ToastService } from './../../../../common/service/toast.service';
 import { StateService } from './../../../../common/service/state.service';
 import { ProductService } from './../../../../service/product/product.service';
 import { Variation } from './../../../../common/model/variation';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MatTableDataSource, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MatSort, MatTableDataSource, MAT_DIALOG_DATA } from '@angular/material';
 import { Product } from '../../../../common/model/product';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -20,6 +21,7 @@ import { URL } from '../../../../common/constant/nav.constant';
 })
 export class VariationComponent implements OnInit {
   
+  @ViewChild(MatSort, {static: true}) public sort: MatSort;
   @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
     public toolbarOptions;
@@ -36,6 +38,7 @@ export class VariationComponent implements OnInit {
   public var: Variation[]=[];
 
   constructor(
+    private storage: AdminService,
     public product: Product,
     private productService: ProductService,
     private toastService:ToastService,
@@ -54,6 +57,7 @@ export class VariationComponent implements OnInit {
 
   ngOnInit() {
    this.set();
+   this.dataSource.sort=this.sort;
   }
  private set(){
   this.filteredOptions = this.myControl.valueChanges
@@ -102,7 +106,7 @@ export class VariationComponent implements OnInit {
   saveVar(data:Product){
     this.var.push(this.variation)
     this.var.forEach(element => {
-      element.createdBy="Fahad";
+      element.createdBy=this.storage.usersStorage().id;;
       element.productId=data.id;
     });
     console.log(this.var)

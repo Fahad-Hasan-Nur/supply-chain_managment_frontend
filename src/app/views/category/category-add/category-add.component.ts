@@ -8,6 +8,7 @@ import { Category } from '../../../common/model/Category';
 import { StateService } from '../../../common/service/state.service';
 import { ToastService } from '../../../common/service/toast.service';
 import { AppBreadcrumbService } from '../../../core/breadcrumb/app-breadcrumb.service';
+import { AdminService } from '../../../service/admin/admin.service';
 import { CategoryService } from '../../../service/product/category.service';
 import { LoaderComponent } from '../loader.component';
 
@@ -30,6 +31,7 @@ export class CategoryAddComponent implements OnInit {
     private toastService: ToastService,
     private stateService: StateService,
     public data: Category,
+    private storage: AdminService
     ) {
 }
 
@@ -41,7 +43,7 @@ export class CategoryAddComponent implements OnInit {
   }
   public save() {
     this.loader.loading = true;
-    this.data.createdBy="Fahad";
+    this.data.createdBy=this.storage.usersStorage().id;
     this.categoryService.addCategory(this.stateService.getCategory()).subscribe
         (
           (response) => {

@@ -1,124 +1,112 @@
 <div style="background-color: rgb(15, 26, 63);">
-    <h2 style="text-align: center;color: white;">Add New Product </h2>
+  <h2 style="text-align: center;color: white;">Add New Product </h2>
 </div>
 <mat-card style="min-height: inherit;">
-    <mat-card-content>
-        <form class="example-form" #prjNgModel='ngForm'>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field>
-                        <mat-label>{{' Name​'}}</mat-label>
-                        <input matInput placeholder="Write Product Name ​" [required]="true" #name="ngModel" name="name" [(ngModel)]="data.name">
-                    </mat-form-field>
-                </div>
+  <mat-card-content>
+    <form class="example-form" #prjNgModel='ngForm'>
+      <div class="row">
 
-                <div class="col-md-6">
-                    <mat-form-field>
-                        <mat-label>{{' Code'}}</mat-label>
-                        <input matInput placeholder="Write Product Code ​" [required]="true" #code="ngModel" name="code" [(ngModel)]="data.code">
-                    </mat-form-field>
-                </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Name​'}}</mat-label>
+            <input matInput placeholder="Write Product Name ​" [required]="true" #name="ngModel" name="name"
+              [(ngModel)]="data.name">
+          </mat-form-field>
+        </div>
 
-                <div class="col-md-6">
-                    <mat-form-field>
-                      <mat-label>{{' Category ​'}}</mat-label>
-                      <mat-select #autoCategory="matSelect" [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel'
-                      name="category" [(ngModel)]="data.categoryId">
-                        <mat-option *ngFor="let category of categoryList" [value]="category.id"
-                          (onSelectionChange)="onSelectCategory(category.id)">
-                          {{ category.name }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Code'}}</mat-label>
+            <input matInput placeholder="Write Product Code ​" [required]="true" #code="ngModel" name="code"
+              [(ngModel)]="data.code">
+          </mat-form-field>
+        </div>
 
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Category ​'}}</mat-label>
+            <mat-select #autoCategory="matSelect" [required]="true" placeholder="Select Category" aria-label="State"
+              #category='ngModel' name="category" [(ngModel)]="data.categoryId">
+              <mat-option *ngFor="let category of categoryList" [value]="category.id"
+                (onSelectionChange)="onSelectCategory(category.id)">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-                <div class="col-md-6">
-                    <mat-form-field>
-                      <mat-label>{{' Sub Category ​'}}</mat-label>
-                      <mat-select #autoSubCategory="matSelect" [required]="true" placeholder="Select Sub Category" aria-label="State" #subCategory='ngModel'
-                      name="subCategory" [(ngModel)]="data.subCategoryId">
-                        <mat-option *ngFor="let subCategory of subCategoryList" [value]="subCategory.id"
-                          (onSelectionChange)="onSelectSubCategory(subCategory.name)">
-                          {{ subCategory.name }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Sub Category ​'}}</mat-label>
+            <mat-select #autoSubCategory="matSelect" [required]="true" placeholder="Select Sub Category"
+              aria-label="State" #subCategory='ngModel' name="subCategory" [(ngModel)]="data.subCategoryId">
+              <mat-option *ngFor="let subCategory of subCategoryList" [value]="subCategory.id"
+                (onSelectionChange)="onSelectSubCategory(subCategory.name)">
+                {{ subCategory.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-                <div class="col-md-6">
-                    <mat-form-field>
-                      <mat-label>{{' Brand ​'}}</mat-label>
-                      <mat-select #autoBrand="matSelect" [required]="true" placeholder="Select Brand" aria-label="State" #brand='ngModel'
-                      name="brand" [(ngModel)]="data.brandId">
-                        <mat-option *ngFor="let brand of brandList" [value]="brand.id"
-                          (onSelectionChange)="onSelectBrand(brand.name)">
-                          {{ brand.name }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Brand ​'}}</mat-label>
+            <mat-select #autoBrand="matSelect" [required]="true" placeholder="Select Brand" aria-label="State"
+              #brand='ngModel' name="brand" [(ngModel)]="data.brandId">
+              <mat-option *ngFor="let brand of brandList" [value]="brand.id"
+                (onSelectionChange)="onSelectBrand(brand.name)">
+                {{ brand.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-                  <div class="col-md-6">
-                    <!-- <mat-form-field>
-                        <mat-select placeholder="{{' Available Colors'}}" #color='ngModel' name="color" multiple [(ngModel)]="data.color">
-                            <mat-option *ngFor="let option of sizeData" [value]="option">
-                                {{ option }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
-                    <mat-form-field class="example-chip-list">
-                      <mat-label>Select Availabel colors:</mat-label>
-                      <mat-chip-list #chipList aria-label="Color selection">
-                        <mat-chip
-                          *ngFor="let fruit of fruits"
-                          [ngStyle]="{ backgroundColor: fruit}"
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="remove(fruit)">
-                          {{fruit}}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input
-                        
-                          placeholder="New fruit..."
-                          #fruitInput
-                          [formControl]="fruitCtrl"
-                          [matAutocomplete]="auto"
-                          [matChipInputFor]="chipList"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          (matChipInputTokenEnd)="add($event)">
-                      </mat-chip-list>
-                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                          {{fruit}}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-chip-list">
+            <mat-label>Select Availabel colors:</mat-label>
+            <mat-chip-list #chipList aria-label="Color selection">
+              <mat-chip *ngFor="let fruit of fruits" [ngStyle]="{ backgroundColor: fruit}" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(fruit)">
+                {{fruit}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New Color" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                {{fruit}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
 
-
-                <div class="col-md-6">
-                    <fieldset class="form-group">
-                        <label>Upload Image</label> {{imageError}}
-                        <div class="custom-file fileInputProfileWrap">
-                            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" enctype="multipart/form-data">
-                        </div>
-                    </fieldset>
-                </div>
-
-                <div class="col-md-6">
-                    <ng-container *ngIf="isImageSaved; else elseTemplate">
-                        <img [src]="cardImageBase64" style="float:right; margin:20px 5px 5px 5px">
-                    </ng-container>
-                    <ng-template #elseTemplate>
-                    </ng-template>
-                    <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
-                </div>
+        <div class="col-md-6">
+          <fieldset class="form-group">
+            <label>Upload Image</label> {{imageError}}
+            <div class="custom-file fileInputProfileWrap">
+              <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile"
+                enctype="multipart/form-data">
             </div>
-        </form>
-    </mat-card-content>
+          </fieldset>
+        </div>
+
+        <div class="col-md-6">
+          <ng-container *ngIf="isImageSaved; else elseTemplate">
+            <img [src]="cardImageBase64" style="float:right; margin:20px 5px 5px 5px">
+          </ng-container>
+          <ng-template #elseTemplate>
+          </ng-template>
+          <a class="btn btn-danger" style="float:right; margin:20px 5px 5px 5px" (click)="removeImage()"
+            *ngIf="isImageSaved">Remove</a>
+        </div>
+
+      </div>
+    </form>
+  </mat-card-content>
 </mat-card>
 
-<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px" [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Save'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
+  [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Next'}}</button>
 <app-loader></app-loader>

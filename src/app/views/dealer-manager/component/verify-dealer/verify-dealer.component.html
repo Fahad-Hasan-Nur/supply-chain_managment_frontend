@@ -1,6 +1,6 @@
 <div [hidden]="dealerVerified">
 <div style="min-height: 50vh;min-width: 50vh;">
-  <div style="background-color: rgb(109, 197, 58);">
+  <div style="background-color: rgb(18, 36, 75);">
     <h2 style="text-align: center;color: white;"> Verify Dealer Detail : </h2>
   </div>
 
@@ -14,11 +14,11 @@
       <img [src]="retrievedImage" class="center">
     </div>
 
-    <div style="background-color: rgb(109, 197, 58);" *ngIf="this.nidVerified==1" >
-        <h3 style="text-align: center;color: white;"> NID is not registered before.</h3>
+    <div style=" padding-top: 30px;" *ngIf="this.nidVerified==1" >
+        <h3 style="text-align: center;color: rgb(109, 255, 56);"> NID is not registered before.</h3>
       </div>
-      <div style="background-color: rgb(197, 58, 58);" *ngIf="this.nidVerified==0" >
-        <h3 style="text-align: center;color: white;">NID is already registered.</h3>
+      <div style=" padding-top: 30px;" *ngIf="this.nidVerified==0" >
+        <h3 style="text-align: center;color: rgb(146, 16, 16);">NID is already registered.</h3>
       </div>
     <form class="example-form" #prjNgModel='ngForm'>
       <div class="col-md-12">
@@ -41,11 +41,11 @@
       <img [src]="retrievedImage1" class="center">
     </div>
 
-    <div style="background-color: rgb(109, 197, 58);" *ngIf="this.tinVerified==1" >
-        <h3 style="text-align: center;color: white;"> TIN is not registered before.</h3>
+    <div style=" padding-top: 30px;" *ngIf="this.tinVerified==1" >
+        <h3 style="text-align: center;color:  rgb(35, 104, 10);"> TIN is not registered before.</h3>
       </div>
-      <div style="background-color: rgb(197, 58, 58);" *ngIf="this.tinVerified==0" >
-        <h3 style="text-align: center;color: white;">TIN is already registered.</h3>
+      <div style=" padding-top: 30px;"  *ngIf="this.tinVerified==0" >
+        <h3 style="text-align: center;color: rgb(146, 16, 16);">TIN is already registered.</h3>
       </div>
     <form class="example-form" #prjNgModel='ngForm'>
         <div class="col-md-12">

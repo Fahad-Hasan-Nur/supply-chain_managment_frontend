@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
         (response) => {
           this.product = response;
           this.dataSource.data = response as Product[];
+          this.dataSource.sort = this.sort;
           console.log(this.product);
         },
         (error) => console.log(error),

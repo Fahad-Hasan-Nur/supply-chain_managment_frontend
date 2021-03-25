@@ -121,7 +121,7 @@ private saveImage(){
     });
 }
 private saveData(){
-  this.admin.updatedBy="Fahad";
+  this.admin.updatedBy=this.adminService.usersStorage().id;
   this.adminService.updateAdmin(this.stateService.getAdmin()).subscribe
     (
       (response) => {

@@ -1,3 +1,4 @@
+import { AdminService } from './../../../service/admin/admin.service';
 import { VariationComponent } from './../component/variation/variation.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
@@ -74,6 +75,7 @@ export class ProductAddComponent implements OnInit {
                private toastService: ToastService,
                private stateService: StateService,
                public data: Product,
+               private storage: AdminService
                ) {
                 this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
                   startWith(null),
@@ -227,7 +229,7 @@ private _filter(value: string): string[] {
 }
 private saveData(){  
   this.data.color=this.fruits;
-  this.data.createdBy="Fahad";
+  this.data.createdBy = this.storage.usersStorage().id;
   this.loader.loading = false;
   this.openVariation(this.data);
 }

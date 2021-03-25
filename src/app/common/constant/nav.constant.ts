@@ -9,6 +9,8 @@ export const ROLES = {
 };
 
 export const MENU_NAME = {
+  PRODUCT_ADD:'Add Product',
+  PRODUCT_LIST: 'Product List',
   ACCOUNTS:'Accounts',
   ACCOUNTS_VERIFIED_TRANSACTION:'Verified Transaction',
   ACCOUNTS_UNVERIFIED_TRANSACTION:'Unverified Transaction',
@@ -38,22 +40,6 @@ export const MENU_NAME = {
   DEALER_COMPLETED_REQUISITION:'Completed Requisition',
   EMPLOYYE_LIST:' Emplyee List',
   EMPLOYYE_ADD:'Add Employee',
-  PRJ_DASHBOARD: 'ড্যাশবোর্ড​',
-  PRJ_OVERVIEW:' প্রকল্প সার-সংক্ষেপ',
-  PRJ_MEMBER:'প্রকল্পের সদস্য',
-  PRJ_ADD:'নতুন প্রকল্প তৈরি',
-  PRJ_LIST:'প্রকল্প তালিকা',
-  EMP_LIST:'কর্মচারীর তালিকা',
-  PRJ_TASK_ADD:'নতুন কার্য তৈরি',
-  PRJ_TASK_LIST:'কার্য তালিকা',
-  PRODUCT_ADD: 'New Product',
-  PRODUCT_LIST: 'Product List',
-  REPORT: 'রিপোর্ট',
-  PRJ_REPORT: 'প্রকল্পের রিপোর্ট',
-  PRJ_GRANTT_CHART:'গ্যান্ট চার্ট',
-  MASTER_SETTING : 'মাস্টার সেটিংস',
-  USER_ROLES: 'ইউজার-রোল',
-  USER_PERMISSION: 'অনুমতি'
 };
 
 export const URL = {
@@ -74,8 +60,6 @@ export const URL = {
   DEALER_CART:'/dealer/dealer-cart',
   DEALER_PURCHASE_HISTORY:'/dealer/dealer-purchase-history',
   BRAND:'/brand',
-  BASE_HREF:'/grp',
-  PRJ_DASHBOARD: '/dashboard',
   PRODUCT: '/product',
   CATEGORY: '/category',
   CATEGORY_ADD: '/category/category-add',
@@ -86,23 +70,11 @@ export const URL = {
   EMPLOYEE: '/employee',
   EMPLOYEE_ADD: '/employee/employee-add',
   EMPLOYEE_LIST: '/employee/employee-list',
-  PRJ_MEMBER:'/prj-member-list',
-  PRJ_OVERVIEW:'/overview',
-  PRJ_OVERVIEW_ID:'/overview/prj-overview/',
-  PRJ_ADD:'/prj/prj-add',
-  PRJ_LIST:'/prj/prj-list',
-  PRJ_TASK_ADD:'/prj/prj-task-add',
-  PRJ_TASK_LIST:'/prj/prj-task-list',
   PRODUCT_ADD: '/product/product-add',
   PRODUCT_LIST: '/product/product-list',
   BRAND_ADD: '/brand/brand-add',
   BRAND_LIST: '/brand/brand-list',
-  REPORT: '/report',
-  PRJ_REPORT: '/prj-report',
-  PRJ_GRANTT_CHART:'/prj/prj-grant-chart',
-  MASTER_SETTING: '/master-setting',
-  USER_ROLES : '/master-setting/user-roles',
-  USER_PERMISSION: '/master-setting/permission'
+
 };
 export const URL_NAME = {
   ACCOUNTS:'accounts',
@@ -131,29 +103,13 @@ export const URL_NAME = {
   CATEGORY:'category',
   CATEGORY_LIST:'category-list',
   CATEGORY_ADD:'category-add',
-  PRJ_DASHBOARD: 'dashboard',
-  OVERVIEW:'overview',
-  PRJ_OVERVIEW:'prj-overview',
-  PRJ_OVERVIEW_ID:'prj-overview/:id',
   EMPLOYEE:'employee',
   EMPLOYEE_ADD:'employee-add',
   EMPLOYEE_LIST:'employee-list',
-  PRJ:'prj',
-  PRJ_MEMBER:'prj-member-list',
-  PRJ_ADD:'prj-add',
-  PRJ_LIST:'prj-list',
-  PRJ_TASK_ADD:'prj-task-add',
-  PRJ_TASK_LIST:'prj-task-list',
   PRODUCT:'product',
   PRODUCT_ADD: 'product-add',
   PRODUCT_LIST: 'product-list',
-  REPORT: 'report',
-  EMP_LIST:'employee-list',
-  PRJ_REPORT: 'prj-report',
-  PRJ_GRANTT_CHART:'prj-grantt-chart',
-  MASTER_SETTING: 'master-setting',
-  USER_ROLES : 'user-roles',
-  USER_PERMISSION : 'permission'
+  
 };
 export const ICON = {
   ACCOUNTS:'fa fa-credit-card',
@@ -187,18 +143,5 @@ export const ICON = {
   EMPLOYEE:'icon-user',
   EMPLOYEE_ADD:'icon-user-following',
   EMPLOYEE_LIST:'icon-people',
-  // PRJ_DASHBOARD: 'icon-speedometer',
-  // PRJ_OVERVIEW:'icon-speedometer',
-  // PRJ_ADD:'icon-plus',
-  // PRJ_LIST:'icon-list',
-  // PRJ_TASK_ADD:'icon-plus',
-  // PRJ_TASK_LIST:'icon-list',
-  
-  // REPORT: 'icon-drop',
-  // PRJ_REPORT: 'icon-list',
-  // PRJ_GRANTT_CHART:'icon-list',
-  // MASTER_SETTING: 'icon-settings',
-  // USER_ROLES : 'icon-location-pin',
-  // USER_PERMISSION : 'icon-location-pin'
 };
 

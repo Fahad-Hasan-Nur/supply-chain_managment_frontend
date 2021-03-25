@@ -9,6 +9,7 @@ import { success_message } from '../../../../common/constant/messages';
 import { CategoryService } from '../../../../service/product/category.service';
 import { Category } from '../../../../common/model/Category';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AdminService } from '../../../../service/admin/admin.service';
 
 @Component({
   selector: 'app-sub-category-edit',
@@ -27,6 +28,7 @@ export class SubCategoryEditComponent implements OnInit {
     private toastService: ToastService,
     private stateService: StateService,
     public subCategory: SubCategory,
+    private storage: AdminService,
     private dialogRef: MatDialogRef<SubCategoryEditComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private ren: Renderer2,
@@ -55,7 +57,7 @@ export class SubCategoryEditComponent implements OnInit {
   }
   public save() {
     this.loader.loading = true;
-    this.subCategory.updatedBy = "Fahad";
+    this.subCategory.updatedBy = this.storage.usersStorage().id;
     console.log(this.stateService.getSubCategory());
     this.subCategoryService.updateSubCategory(this.stateService.getSubCategory()).subscribe
       (
@@ -67,6 +69,7 @@ export class SubCategoryEditComponent implements OnInit {
           console.log(error);
           this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
            this.loader.loading = false;
+           console.log(this.stateService.getSubCategory())
         });
   }
 

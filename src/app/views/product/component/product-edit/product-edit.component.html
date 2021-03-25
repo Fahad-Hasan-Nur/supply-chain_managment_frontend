@@ -25,7 +25,7 @@
                       <mat-select #autoCategory="matSelect" [required]="true" placeholder="Select Category" aria-label="State" #category='ngModel'
                       name="category" [(ngModel)]="product.categoryId">
                         <mat-option *ngFor="let category of categoryList" [value]="category.id"
-                          (onSelectionChange)="onSelectCategory(category.id)">
+                          (onSelectionChange)="onSelectCategory(category)">
                           {{ category.name }}
                         </mat-option>
                       </mat-select>

@@ -6,6 +6,7 @@ import { CategoryService } from '../../../../../service/product/category.service
 import { LoaderComponent } from '../../../loader.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { success_message } from '../../../../../common/constant/messages';
+import { AdminService } from '../../../../../service/admin/admin.service';
 
 @Component({
   selector: 'app-category-edit',
@@ -32,6 +33,7 @@ export class CategoryEditComponent implements OnInit {
                private toastService: ToastService,
                private stateService: StateService,
                public category: Category,
+               private storage:  AdminService,
                private dialogRef: MatDialogRef<CategoryEditComponent>,
                @Inject(MAT_DIALOG_DATA) data,
                private ren: Renderer2,
@@ -48,7 +50,7 @@ export class CategoryEditComponent implements OnInit {
   }
   public save() {
     this.loader.loading = true;
-    this.category.updatedBy="Fahad";
+    this.category.updatedBy=this.storage.usersStorage().id;
     this.categoryService.updateCategory(this.stateService.getCategory()).subscribe
       (
         (response) => {

@@ -4,9 +4,6 @@ export const AUTH = {
   ROLES: 'roles'
 };
 
-export const PROJECT = {
-  PROJECT_OF_TASKS: 'tasks'
-};
 
 export const MY_FORMATS = {
   parse: {

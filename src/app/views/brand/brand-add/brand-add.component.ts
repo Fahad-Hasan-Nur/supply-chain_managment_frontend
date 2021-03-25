@@ -10,6 +10,7 @@ import { BrandService } from '../../../service/product/brand.service';
 import { success_message } from '../../../common/constant/messages';
 import * as _ from 'lodash';
 import { LoaderComponent } from '../../brand/loader.component';
+import { AdminService } from '../../../service/admin/admin.service';
 
 @Component({
   selector: 'app-brand-add',
@@ -40,6 +41,7 @@ export class BrandAddComponent implements OnInit {
     private toastService: ToastService,
     private stateService: StateService,
     public data: Brand,
+    private storage: AdminService
     ) {
 }
 
@@ -115,7 +117,7 @@ export class BrandAddComponent implements OnInit {
 }
 private saveData(){
   this.loader.loading = true;
-  this.data.createdBy="Fahad";
+  this.data.createdBy=this.storage.usersStorage().id;
   this.brandService.addBrand(this.stateService.getBrand()).subscribe
     (
       (response) => {

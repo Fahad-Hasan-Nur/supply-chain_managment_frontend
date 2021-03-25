@@ -18,8 +18,9 @@ import { LoaderComponent } from '../loader.component';
 export class EmployeeAddComponent implements OnInit {
 
   @ViewChild(LoaderComponent, { static: false }) 
-  public myFilter: any;
   public loader: LoaderComponent;
+
+  public myFilter: any;
   public imageError: string;
   public isImageSaved: boolean;
   public cardImageBase64: string;
@@ -46,7 +47,7 @@ export class EmployeeAddComponent implements OnInit {
     this.stateService.setAdmin(admin);
   }
   public save() {
-   // this.loader.loading=true;
+    this.loader.loading=true;
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     this.imageService.uploadImage(uploadImageData).subscribe
@@ -57,9 +58,10 @@ export class EmployeeAddComponent implements OnInit {
         this.data.imageName=this.retrieveResonse.name;
         this.data.imageId=this.retrieveResonse.id;
         this.saveData();
+        this.loader.loading = false;
 
       }, (error) => {
-   //     this.loader.loading = false;
+   this.loader.loading = false;
    this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
 
         console.log(error);
@@ -111,18 +113,18 @@ export class EmployeeAddComponent implements OnInit {
     }
 }
 private saveData(){
-  this.data.createdBy="Fahad";
+  this.data.createdBy=this.adminService.usersStorage().id;
   console.log(this.stateService.getAdmin())
   this.adminService.addAdmin(this.stateService.getAdmin()).subscribe
     (
       (response) => {
         console.log(response);
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-       // this.loader.loading = false;
+        this.loader.loading = false;
       }, (error) => {
         console.log(error);
         this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-       // this.loader.loading = false;
+        this.loader.loading = false;
         console.log(this.data);
       });
 

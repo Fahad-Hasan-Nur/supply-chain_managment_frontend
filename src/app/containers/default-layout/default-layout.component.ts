@@ -7,11 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { userInfo } from 'os';
 // import { TranslateService } from '@ngx-translate/core';
 import { getNavItems, NavData } from '../../_nav';
-import { AUTH, PROJECT } from '../../common/constant/global-variables.constant';
+import { AUTH } from '../../common/constant/global-variables.constant';
 import { MENU_NAME } from '../../common/constant/nav.constant';
 import { StorageService } from '../../common/service/storage/storage.service';
-import { ProjectService } from '../../service/project/project.service';
-import { TaskService } from '../../service/task/task.service';
 import { AdminService } from '../../service/admin/admin.service';
 import {AuthService} from "../../common/service/auth/auth.service";
 

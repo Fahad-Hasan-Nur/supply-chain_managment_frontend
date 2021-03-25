@@ -8,6 +8,7 @@ import { ImageService } from '../../../../service/image/image.service';
 import { ToastService } from '../../../../common/service/toast.service';
 import * as _ from 'lodash';
 import { success_message } from '../../../../common/constant/messages';
+import { AdminService } from '../../../../service/admin/admin.service';
 
 @Component({
   selector: 'app-brand-edit',
@@ -30,6 +31,7 @@ export class BrandEditComponent implements OnInit {
   public imageName: any;
 
   constructor(
+               private storage:AdminService,
                private brandService: BrandService,
                private imageService: ImageService,
                private toastService: ToastService,
@@ -122,7 +124,7 @@ private saveImage(){
     });
 }
 private saveData(){
-  this.brand.updatedBy="Fahad";
+  this.brand.updatedBy=this.storage.usersStorage().id;
   this.brandService.updateBrand(this.stateService.getBrand()).subscribe
     (
       (response) => {
@@ -133,7 +135,7 @@ private saveData(){
         console.log(error);
         this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
          this.loader.loading = false;
-         console.log(this.brand)
+         console.log(this.stateService.getBrand())
        });
 }
 

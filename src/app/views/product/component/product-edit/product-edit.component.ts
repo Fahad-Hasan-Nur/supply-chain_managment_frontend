@@ -1,3 +1,4 @@
+import { AdminService } from './../../../../service/admin/admin.service';
 import { VariationComponent } from './../variation/variation.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
@@ -64,6 +65,7 @@ export class ProductEditComponent implements OnInit {
 
 
   constructor(
+               private storage: AdminService,
                protected dialog: MatDialog,
                private productService: ProductService,
                private brandService: BrandService,
@@ -151,9 +153,9 @@ export class ProductEditComponent implements OnInit {
         console.log(err);
       });
   }
-  public onSelectCategory(value: string): void {
-    this.getSubCategory(value);
-    this.product.categoryName = value;
+  public onSelectCategory(value: Category): void {
+    this.getSubCategory(value.id);
+    this.product.categoryName = value.name;
   }
   public onSelectBrand(value: string): void {
     this.product.brandName = value;
@@ -237,7 +239,7 @@ private saveImage(){
     });
 }
 private saveData(){
-  this.product.updatedBy="Fahad";
+  this.product.updatedBy=this.storage.usersStorage().id;
   this.productService.updateProduct(this.stateService.getProduct()).subscribe
     (
       (response) => {

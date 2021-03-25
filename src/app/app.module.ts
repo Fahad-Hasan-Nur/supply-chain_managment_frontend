@@ -82,7 +82,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: MAT_DATE_LOCALE,useValue: 'es-ES'},
     {provide: LOCALE_ID, useValue: 'es-ES'},
     {provide: MatPaginatorIntl, useValue: getBnPaginatorIntl()},
-    //httpInterceptorProviders,
     ThemeService,DatePipe,
       {
         provide: HAMMER_LOADER,

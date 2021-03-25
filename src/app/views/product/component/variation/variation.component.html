@@ -78,12 +78,9 @@
       <td *matCellDef="let element" mat-cell> {{element.discount}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
-      <td *matCellDef="let element" mat-cell>
-        <a class="btn btn-danger" matTooltip="Remove" (click)="remove(element)">
-          <i class="fa fa-trash"></i>
-        </a>
+    <ng-container matColumnDef="action" >
+      <th *matHeaderCellDef mat-header-cell mat-sort-header [hidden]="!update" >   Action</th>
+      <td *matCellDef="let element" mat-cell [hidden]="!update" >
         <a class="btn btn-warning" matTooltip="Edit" [hidden]="!update" (click)="updateData(element)">
           <i class="fa fa-edit"></i>
       </a>

@@ -10,6 +10,7 @@ import { SubCategoryService } from '../../../service/product/sub-category.servic
 import { LoaderComponent } from '../loader.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { success_message } from '../../../common/constant/messages';
+import { AdminService } from '../../../service/admin/admin.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class SubCategoryAddComponent implements OnInit {
                private subCategoryService: SubCategoryService,
                private toastService: ToastService,
                private stateService: StateService,
+               private storage: AdminService,
                public data: SubCategory,
                ) {
 }
@@ -56,7 +58,7 @@ export class SubCategoryAddComponent implements OnInit {
   }
   public save() {
     this.loader.loading = true;
-    this.data.createdBy="Fahad";
+    this.data.createdBy=this.storage.usersStorage().id;
     this.subCategoryService.addSubCategory(this.stateService.getSubCategory()).subscribe
       (
         (response) => {

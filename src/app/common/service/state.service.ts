@@ -3,10 +3,7 @@ import { Requisition } from './../model/requisition';
 import { Brand } from './../model/brand';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Task } from '../../views/prj-planning/model/task';
-import {Project} from "../../views/prj-planning/model/project";
 import {Admin} from "../model/admin";
-import {rejects} from "assert";
 import { Product } from '../model/product';
 import { Auth } from '../model/auth';
 import { Category } from '../model/Category';
@@ -24,9 +21,7 @@ export class StateService {
   private currentCategoryState!: BehaviorSubject<Category>;
   private currentSubCategoryState!: BehaviorSubject<SubCategory>;
   private currentBrandState!: BehaviorSubject<Brand>;
-  private currentTaskState!: BehaviorSubject<Task>;
   private currentProductState!: BehaviorSubject<Product>;
-  private currentProjectState!: BehaviorSubject<Project>;
   private currentVerifiedDealerInfoState!: BehaviorSubject<VerifiedDealerInfo>;
   private currentAuthState!: BehaviorSubject<Auth>;
   private currentVariationState!: BehaviorSubject<Variation>;
@@ -195,29 +190,6 @@ export class StateService {
 
   /**
    *
-   * set current Tasks.
-   *
-   * @param task
-   */
-  public async setTask(task: Task) {
-    await new Promise((resolve,rejects) => {
-      if (this.currentTaskState === undefined) this.currentTaskState = new BehaviorSubject<Task>(task);
-    });
-    await this.currentTaskState.next(task);
-  }
-
-  /**
-   *
-   * get current task.
-   *
-   * @return currentTaskState
-   */
-  public getTask(): Task{
-    return this.currentTaskState.value;
-  }
-
-  /**
-   *
    * set current product.
    *
    * @param product
@@ -228,12 +200,7 @@ export class StateService {
     });
     await this.currentProductState.next(product);
   }
-  public async setProject(product: Project) {
-    await new Promise((resolve,rejects) => {
-      if (this.currentProjectState === undefined) this.currentProjectState = new BehaviorSubject<Project>(product);
-    });
-    await this.currentProductState.next(product);
-  }
+  
   public async setAuth(auth: Auth) {
     await new Promise((resolve,rejects) => {
       if (this.currentAuthState === undefined) this.currentAuthState = new BehaviorSubject<Auth>(auth);
@@ -249,9 +216,7 @@ export class StateService {
   public getProduct(): Product{
     return this.currentProductState.value;
   }
-  public getProject(): Product{
-    return this.currentProjectState.value;
-  }
+ 
   public getAuth(): Auth{
     return this.currentAuthState.value;
   }
