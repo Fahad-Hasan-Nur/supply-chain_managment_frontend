@@ -9,14 +9,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -c production --host 0.0.0.0 --disableHostCheck",
+    "start": "node server.js",
     "build": "ng build",
     "build:prod": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress --base-href=/prj/ --deploy-url=/prj/",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^11.2.6",
+    "@angular/compiler-cli": "^8.2.14",
     "@agm/core": "^1.0.0-beta.6",
     "@angular/animations": "~8.2.12",
     "@angular/cdk": "~8.2.2",
@@ -95,12 +98,13 @@
     "tslib": "^1.10.0",
     "viewerjs": "^1.4.0",
     "web-animations-js": "^2.3.1",
-    "zone.js": "^0.9.1"
+    "zone.js": "^0.9.1",
+    "typescript": "~3.6.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.21",
-    "@angular/cli": "~8.3.14",
-    "@angular/compiler-cli": "~8.2.12",
+    "@angular/cli": "^11.2.6",
+    "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "~8.2.12",
     "@types/jasmine": "^3.3.13",
     "@types/jasminewd2": "^2.0.6",
@@ -119,7 +123,8 @@
     "typescript": "~3.6.0"
   },
   "engines": {
-    "node": ">= 12",
-    "npm": ">= 6"
+    "node": "14.16.0",
+    "npm": "6.14.11"
   }
+  
 }
