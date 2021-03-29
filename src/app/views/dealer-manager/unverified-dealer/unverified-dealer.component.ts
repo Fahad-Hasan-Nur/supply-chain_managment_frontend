@@ -32,7 +32,6 @@ export class UnverifiedDealerComponent implements OnInit {
         (response) => {
           this.admin = response;
           this.dataSource.data = response as Admin[];
-          console.log(this.admin);
         },
         (error) => console.log(error),
       );

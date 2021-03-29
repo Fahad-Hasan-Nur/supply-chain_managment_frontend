@@ -43,7 +43,6 @@ export class RejectDealerComponent implements OnInit {
       (response) => {
         this.toastService.openSnackBar(success_message.REJECT_DEALER_SUCCESS, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loading = false;
-        console.log(response);
       },
       (error) => {console.log(error),
       this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);

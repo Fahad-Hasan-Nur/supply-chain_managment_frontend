@@ -23,11 +23,11 @@
 </div>
 
 
-<div class="container" *ngIf="!this.login" [hidden]="loading">
-  <div style="background-color: rgb(226, 176, 102);">
+<div class="container" *ngIf="!this.login" [hidden]="loading" style="width: 80vh;">
+  <div style="background-color: rgb(226, 176, 102);width: 80vh;">
     <h2 style="text-align: center;color: rgb(0, 0, 0);">Dealer Registration Form </h2>
   </div>
-  <mat-card style="min-height: inherit;">
+  <mat-card style="min-height: inherit;width: 80vh;">
     <mat-card-content>
       <form class="example-form" #prjNgModel='ngForm'>
         <div class="row">
@@ -47,7 +47,7 @@
             </mat-form-field>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-12">
             <mat-form-field>
               <mat-label>{{' Password'}}</mat-label>
               <input type="password" matInput placeholder="Enter Password ​" [required]="true" #password="ngModel"
@@ -55,11 +55,35 @@
             </mat-form-field>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-12">
             <mat-form-field>
               <mat-label>{{' Phone Number'}}</mat-label>
               <input matInput placeholder="Enter Phone ​" [required]="true" #phoneNumber="ngModel" name="phoneNumber"
                 [(ngModel)]="admin.phoneNumber">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>{{' Present Address:'}}</mat-label>
+              <input matInput placeholder="Enter Present Address: ​" [required]="true" #presentAddress="ngModel" name="presentAddress"
+                [(ngModel)]="admin.presentAddress">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>{{' Permanent Address:'}}</mat-label>
+              <input matInput placeholder="Enter Permanent Address: ​" [required]="true" #permanentAddress="ngModel" name="permanentAddress"
+                [(ngModel)]="admin.permanentAddress">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>{{' Shop Address:'}}</mat-label>
+              <input matInput placeholder="Enter Shop Address: ​" [required]="true" #shopAddress="ngModel" name="shopAddress"
+                [(ngModel)]="admin.shopAddress">
             </mat-form-field>
           </div>
 
@@ -149,8 +173,8 @@
   <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
     [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Register'}}</button>
   <button mat-raised-button
-    style="float:right; margin:20px 5px 5px 5px ;color: rgb(7, 7, 6);background-color: rgb(226, 176, 102);"
-    (click)="loginn()">{{'Login'}}</button>
+    style="float:left; margin:20px 5px 5px 5px ;color: rgb(7, 7, 6);background-color: rgb(226, 176, 102);"
+    (click)="loginn()">{{'Go to Login'}}</button>
 </div>
 
 <div class="overlay"

@@ -37,7 +37,6 @@ export class PurchaseHistoryComponent implements OnInit {
       (
         (response) => {
           this.dataSource.data = response as Transaction[];
-          console.log(response);
         },
         (error) => console.log(error),
       );

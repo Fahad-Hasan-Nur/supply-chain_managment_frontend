@@ -83,7 +83,6 @@ export class ShopComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // this.setStateRequisition(this.data);
     this.getCategory();
     this.check();
   }
@@ -173,7 +172,6 @@ export class ShopComponent implements OnInit {
       this.requisition.status = "cart";
       this.saveData();
     }
-    // this.router.navigateByUrl(URL.DEALER_CART);
 
   }
   public payNow() {
@@ -195,9 +193,6 @@ export class ShopComponent implements OnInit {
     this.dealerService.addRequisition(this.requisition).subscribe
       (
         (response) => {
-          console.log(response);
-          // this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-          // this.loading = false;
           this.res=response;
           this.saveRequisitionProduct(this.res.id);
         }, (error) => {
@@ -213,7 +208,6 @@ export class ShopComponent implements OnInit {
     });
     this.dealerService.addRequisitionProduct(this.allReq).subscribe(
       (response)=>{
-        console.log(response);
           this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
           this.loading = false;
           if(this.pay==true){

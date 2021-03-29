@@ -228,7 +228,6 @@ private saveImage(){
   (
     (response) => {
       this.retrieveResonse=response;
-      console.log(this.retrieveResonse);
       this.product.imageName=this.retrieveResonse.name;
       this.product.imageId=this.retrieveResonse.id;
       this.saveData();
@@ -243,7 +242,6 @@ private saveData(){
   this.productService.updateProduct(this.stateService.getProduct()).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {

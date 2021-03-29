@@ -26,8 +26,6 @@ export class VerifyDealerComponent implements OnInit {
   public tinNumber:string;
   public nidNumber:string;
   public nid:boolean=true;
-  public nidB: string="btn btn-success";
-  public tinB:string="btn btn-danger";
   public tin: boolean=false;
   public retrievedImage: any;
   public base64Data: any;
@@ -63,15 +61,12 @@ export class VerifyDealerComponent implements OnInit {
   public verifyNid() {
     this.nid=true;
     this.tin=false;
-    this.nidB="btn btn-success";
-    this.tinB="btn btn-danger";
+
 
   }
   public verifyTin() {
     this.nid=false;
     this.tin=true;
-    this.tinB="btn btn-success";
-    this.nidB="btn btn-danger";
   }
 
   private getTinImage(id) {
@@ -141,7 +136,6 @@ export class VerifyDealerComponent implements OnInit {
     this.dealerService.addVerifiedDealerInfo(this.stateService.getVerifiedDealerInfo()).subscribe
     (
       (res)=>{
-        console.log(res);
         this.updateDealer();
       },
       (error)=>{
@@ -156,27 +150,10 @@ export class VerifyDealerComponent implements OnInit {
     this.adminService.verifyDealer(this.dealer.id).subscribe(
       (response) => {
         this.toastService.openSnackBar(success_message.VERIFIED_DEALER_SUCCESS, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-        console.log(response);
       },
       (error) => {console.log(error),
       this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
       });
   }
 
-  // public reject() {
-  //   this.loading=true;
-  //   this.toastService.openSnackBar(success_message.REJECT_DEALER_PROCESSING, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-  //   this.loading=false;
-  //   this.dialogRef.close();
-  //   this.adminService.rejectDealer(this.rejectionMessage,this.dealer).subscribe(
-  //     (response) => {
-  //       this.toastService.openSnackBar(success_message.REJECT_DEALER_SUCCESS, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-  //       this.loading = false;
-  //       console.log(response);
-  //     },
-  //     (error) => {console.log(error),
-  //     this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-  //     this.loading = false;
-  //     });
-  // }
 }

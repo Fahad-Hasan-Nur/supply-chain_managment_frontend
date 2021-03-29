@@ -16,4 +16,8 @@ export class Admin{
   createdBy?: string;
   updatedBy?: string;
   verified?: boolean;
+  permanentAddress?: string;
+  presentAddress?: string;
+  shopAddress?: string;
+
 }

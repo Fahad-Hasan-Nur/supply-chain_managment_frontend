@@ -54,7 +54,6 @@ export class CategoryEditComponent implements OnInit {
     this.categoryService.updateCategory(this.stateService.getCategory()).subscribe
       (
         (response) => {
-          console.log(response);
           this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
           this.loader.loading = false;
         }, (error) => {

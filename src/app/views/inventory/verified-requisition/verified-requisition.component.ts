@@ -30,7 +30,6 @@ export class VerifiedRequisitionComponent implements OnInit {
         (response) => {
           this.requisition = response;
           this.dataSource.data = response as Requisition[];
-          console.log(this.requisition);
         },
         (error) => console.log(error),
       );

@@ -113,7 +113,6 @@ private saveImage(){
   (
     (response) => {
       this.retrieveResonse=response;
-      console.log(this.retrieveResonse);
       this.brand.imageName=this.retrieveResonse.name;
       this.brand.imageId=this.retrieveResonse.id;
       this.saveData();
@@ -128,7 +127,6 @@ private saveData(){
   this.brandService.updateBrand(this.stateService.getBrand()).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {

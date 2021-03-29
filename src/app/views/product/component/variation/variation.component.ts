@@ -52,7 +52,6 @@ export class VariationComponent implements OnInit {
     if(this.product.id!=null){
       this.getDetails();
     }
-    console.log(this.product)
   }
 
   ngOnInit() {
@@ -84,7 +83,6 @@ export class VariationComponent implements OnInit {
      this.productService.addProduct(this.product).subscribe
     (
       (response) => {
-        console.log(response);
         this.product=response;
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
        this.loader.loading = false;
@@ -113,7 +111,6 @@ export class VariationComponent implements OnInit {
     this.productService.addVariation(this.var).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
         window.location.replace(window.location.href.replace(URL.PRODUCT_ADD, URL.PRODUCT_LIST));
@@ -136,8 +133,6 @@ export class VariationComponent implements OnInit {
         this.dataSource.data=this.var as Variation[];
         this.update=true;
         this.disable=true;
-        console.log(this.var)
-
       }, (error) => {
         console.log(error);
       });
@@ -145,7 +140,6 @@ export class VariationComponent implements OnInit {
   updateData(data:Variation){
      this.variation=data;
      this.disable=false;
-     console.log(this.variation)
   }
   updateNow(){
     this.loader.loading=true;

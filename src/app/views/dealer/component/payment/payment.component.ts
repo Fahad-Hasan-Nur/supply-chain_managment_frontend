@@ -63,14 +63,9 @@ public savee(){
     this.transaction.status="Pending";
   }
   this.transaction.due=this.amountToBePaid-this.transaction.paid;
-  console.log(this.requisition.status)
-  console.log(this.transaction)
-
-  
   this.dearlerService.addTransaction(this.stateService.getTransaction()).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         if(this.requisition.status=="cart"){
           this.requisition.status="Pending";
@@ -96,18 +91,6 @@ private updateRequisition(){
       });
 }
 close() {
-  // if(this.requisition.status=="pay"){
-  //   this.dearlerService.getTransactionByRequisitionId(this.requisition.id).subscribe
-  //   (
-  //     (response) => {
-  //       if(response.length<1){
-  //         this.requisition.status="cart";
-  //         this.updateRequisition();
-  //       }
-  //     }, (error) => {
-  //       console.log(error);
-  //     });
-  // }
   this.dialogRef.close();
 
 }
@@ -125,7 +108,6 @@ close() {
         });
       }else{
         this.amountToBePaid=this.requisition.totalCost;
-        console.log(this.requisition.totalCost)
       }
       console.log(response);
     }, (error) => {

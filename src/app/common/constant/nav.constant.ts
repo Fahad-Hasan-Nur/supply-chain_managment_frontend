@@ -9,6 +9,7 @@ export const ROLES = {
 };
 
 export const MENU_NAME = {
+  PROFILE:'Profile',
   PRODUCT_ADD:'Add Product',
   PRODUCT_LIST: 'Product List',
   ACCOUNTS:'Accounts',
@@ -43,6 +44,7 @@ export const MENU_NAME = {
 };
 
 export const URL = {
+  PROFILE:'/profile',
   DEALER_COMPLETED_REQUISITION:'/dealer/completed',
   ACCOUNTS:'/accounts',
   ACCOUNTS_VERIFIED_TRANSACTION:'/accounts/verified-transaction',
@@ -77,6 +79,7 @@ export const URL = {
 
 };
 export const URL_NAME = {
+  PROFILE:'profile',
   ACCOUNTS:'accounts',
   ACCOUNTS_VERIFIED_TRANSACTION:'verified-transaction',
   ACCOUNTS_UNVERIFIED_TRANSACTION:'unverified-transaction',
@@ -112,6 +115,7 @@ export const URL_NAME = {
   
 };
 export const ICON = {
+  PROFILE:'icon-people',
   ACCOUNTS:'fa fa-credit-card',
   ACCOUNTS_VERIFIED_TRANSACTION:'fa fa-credit-card-alt',
   ACCOUNTS_UNVERIFIED_TRANSACTION:'fa fa-cc-amex',

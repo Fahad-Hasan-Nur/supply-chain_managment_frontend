@@ -42,7 +42,7 @@
             <mat-label>{{' Role ​'}}</mat-label>
             <select matNativeControl [required]="true" placeholder="Select Role" aria-label="State" #role='ngModel'
               name="role" [(ngModel)]="data.role">
-              <option value="SUPE_ADMIN">Super Admin</option>
+              <option value="SUPER_ADMIN">Super Admin</option>
               <option value="ADMIN">Admin</option>
               <option value="INVENTORY_MANAGER">Inventory Manager</option>
               <option value="ACCOUNT_MANAGER">Account Manager</option>
@@ -51,6 +51,21 @@
           </mat-form-field>
         </div>
 
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Present Address:'}}</mat-label>
+            <input matInput placeholder="Enter Present Address: ​" [required]="true" #presentAddress="ngModel" name="presentAddress"
+              [(ngModel)]="data.presentAddress">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>{{' Permanent Address:'}}</mat-label>
+            <input matInput placeholder="Enter Permanent Address: ​" [required]="true" #permanentAddress="ngModel" name="permanentAddress"
+              [(ngModel)]="data.permanentAddress">
+          </mat-form-field>
+        </div>
 
         <div class="col-md-6">
           <mat-radio-group [required]="true" aria-label="State" #gender='ngModel' name="gender"
@@ -95,6 +110,5 @@
     </form>
   </mat-card-content>
 </mat-card>
-<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
-  [disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Save'}}</button>
+<button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"[disabled]="!(prjNgModel.valid && isImageSaved)" (click)="save()">{{'Save'}}</button>
 <app-loader></app-loader>

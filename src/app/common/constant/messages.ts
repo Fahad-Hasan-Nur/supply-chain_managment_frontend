@@ -14,6 +14,7 @@ export const success_message = {
   FAILD: 'Failed to Save',
   UPDATED_SUCCESSFULLY: 'Updated Successfully',
   DELETED_SUCCESSFULLY: 'Deleted Successfully',
+  FAILED_UPLOAD_IMAGE:'Failed to Upload Image.'
 };
 
 export const error_message = {

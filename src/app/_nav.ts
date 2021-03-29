@@ -43,6 +43,12 @@ export function getNavItems() {
 
 export const navItems: NavData[] = [
   {
+    name: MENU_NAME.PROFILE,
+    url: URL.PROFILE,
+    icon: ICON.PROFILE,
+    authorities:[MENU_NAME.PROFILE]
+  },
+  {
     name: MENU_NAME.DEALER,
     url: URL.DEALER,
     icon: ICON.DEALER,

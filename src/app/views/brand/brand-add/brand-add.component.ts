@@ -59,7 +59,6 @@ export class BrandAddComponent implements OnInit {
     (
       (response) => {
         this.retrieveResonse=response;
-        console.log(this.retrieveResonse);
         this.data.imageName=this.retrieveResonse.name;
         this.data.imageId=this.retrieveResonse.id;
         this.saveData();
@@ -121,7 +120,6 @@ private saveData(){
   this.brandService.addBrand(this.stateService.getBrand()).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {

@@ -27,7 +27,6 @@ export class VerifiedTransactionComponent implements OnInit {
         (response) => {
           this.transaction = response;
           this.dataSource.data = response as Transaction[];
-          console.log(this.transaction);
         },
         (error) => console.log(error),
       );

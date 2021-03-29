@@ -32,7 +32,6 @@ export class CategoryListComponent implements OnInit {
         (response) => {
           this.category = response;
           this.dataSource.data = response as Category[];
-          console.log(this.category);
         },
         (error) => console.log(error),
       );

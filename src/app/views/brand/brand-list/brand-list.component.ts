@@ -33,7 +33,6 @@ export class BrandListComponent implements OnInit {
         (response) => {
           this.brand = response;
           this.dataSource.data = response as Brand[];
-          console.log(this.brand);
         },
         (error) => console.log(error),
       );

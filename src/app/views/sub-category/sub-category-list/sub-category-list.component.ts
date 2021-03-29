@@ -32,7 +32,6 @@ export class SubCategoryListComponent implements OnInit {
         (response) => {
           this.subCategory = response;
           this.dataSource.data = response as SubCategory[];
-          console.log(this.subCategory);
         },
         (error) => console.log(error),
       );

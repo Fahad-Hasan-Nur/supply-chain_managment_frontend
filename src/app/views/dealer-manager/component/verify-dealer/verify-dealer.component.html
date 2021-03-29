@@ -4,11 +4,6 @@
     <h2 style="text-align: center;color: white;"> Verify Dealer Detail : </h2>
   </div>
 
-  <div>
-    <button [class]="nidB" style="float:left; margin: 20px 5px 5px 5px;" (click)="verifyNid()">{{'Check NID'}}</button>
-    <button [class]="tinB" style="float:right; margin: 20px 5px 5px 5px;" (click)="verifyTin()">{{'Check TIN '}}</button>
-  </div>
-
   <div class="" *ngIf="this.nid" [hidden]="view">
     <div *ngIf=retrievedImage>
       <img [src]="retrievedImage" class="center">
@@ -29,8 +24,10 @@
             [(ngModel)]="nidNumber">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
-    [disabled]="!prjNgModel.valid" (click)="checkNid()">{{'Find Nid in DB'}}</button>
+        <button mat-raised-button color="primary" style="float:left; margin:20px 5px 5px 5px"
+    [disabled]="!prjNgModel.valid" [hidden]="this.nidVerified==1" (click)="checkNid()">{{'Find Nid in DB'}}</button>
+
+    <button mat-raised-button color="primary" *ngIf="this.nidVerified==1" style="float:left; margin: 20px 5px 5px 5px;" (click)="verifyTin()">{{'Check TIN '}}</button>
 
       </div>
     </form>
@@ -56,15 +53,15 @@
               [(ngModel)]="tinNumber">
           </mat-form-field>
   
-          <button mat-raised-button color="primary" style="float:right; margin:20px 5px 5px 5px"
-      [disabled]="!prjNgModel.valid" (click)="checkTin()">{{'Find Tin in DB'}}</button>
+          <button mat-raised-button color="primary" style="float:left; margin:20px 5px 5px 5px"
+      [disabled]="!prjNgModel.valid" [hidden]="this.tinVerified==1" (click)="checkTin()">{{'Find Tin in DB'}}</button>
       
         </div>
       </form>
   </div>
 
 </div>
-<button class="btn btn-primary" style="float:right; margin: 20px 5px 5px 5px;" [disabled]="!(tinVerified==1 && nidVerified==1)" (click)="verifyDealer()">{{'Verify Dealer'}}</button>
+<button class="btn btn-primary" style="float:right; margin: 20px 5px 5px 5px;" [hidden]="!(tinVerified==1 && nidVerified==1)" (click)="verifyDealer()">{{'Verify Dealer'}}</button>
 </div>
 
 <div [hidden]="!dealerVerified">

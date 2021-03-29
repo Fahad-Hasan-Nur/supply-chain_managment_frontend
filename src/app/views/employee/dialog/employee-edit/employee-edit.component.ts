@@ -111,7 +111,6 @@ private saveImage(){
   (
     (response) => {
       this.retrieveResonse=response;
-      console.log(this.retrieveResonse);
       this.admin.imageName=this.retrieveResonse.name;
       this.admin.imageId=this.retrieveResonse.id;
       this.saveData();
@@ -125,15 +124,12 @@ private saveData(){
   this.adminService.updateAdmin(this.stateService.getAdmin()).subscribe
     (
       (response) => {
-        console.log(response);
-        console.log(this.stateService.getAdmin())
         this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {
         console.log(error);
         this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
          this.loader.loading = false;
-         console.log(this.admin)
        });
 }
 

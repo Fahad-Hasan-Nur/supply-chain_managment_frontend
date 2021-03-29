@@ -58,11 +58,9 @@ export class SubCategoryEditComponent implements OnInit {
   public save() {
     this.loader.loading = true;
     this.subCategory.updatedBy = this.storage.usersStorage().id;
-    console.log(this.stateService.getSubCategory());
     this.subCategoryService.updateSubCategory(this.stateService.getSubCategory()).subscribe
       (
         (response) => {
-          console.log(response);
           this.toastService.openSnackBar(success_message.UPDATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
           this.loader.loading = false;
         }, (error) => {

@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
     this.service.getProducts().subscribe
       (
         (response) => {
-          this.product = response;
           this.dataSource.data = response as Product[];
           this.dataSource.sort = this.sort;
           console.log(this.product);

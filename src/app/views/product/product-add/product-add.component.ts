@@ -172,7 +172,6 @@ private _filter(value: string): string[] {
     (
       (response) => {
         this.retrieveResonse=response;
-        console.log(this.retrieveResonse);
         this.data.imageName=this.retrieveResonse.name;
         this.data.imageId=this.retrieveResonse.id;
         this.saveData();

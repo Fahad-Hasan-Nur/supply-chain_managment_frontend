@@ -104,7 +104,6 @@ export class EmployeeAddComponent implements OnInit {
                     const imgBase64Path = e.target.result;
                     this.cardImageBase64 = imgBase64Path;
                     this.isImageSaved = true;
-                    // this.previewImagePath = imgBase64Path;
                 }
             };
         };
@@ -118,7 +117,6 @@ private saveData(){
   this.adminService.addAdmin(this.stateService.getAdmin()).subscribe
     (
       (response) => {
-        console.log(response);
         this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
         this.loader.loading = false;
       }, (error) => {

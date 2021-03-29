@@ -35,7 +35,6 @@ export class CompletedRequisitionComponent implements OnInit {
         (response) => {
           this.req = response;
           this.dataSource.data = response as Requisition[];
-          console.log(this.req);
         },
         (error) => console.log(error),
       );

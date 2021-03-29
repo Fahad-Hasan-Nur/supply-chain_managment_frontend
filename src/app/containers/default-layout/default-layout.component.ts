@@ -76,7 +76,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
   public ngOnInit(): void {
     this.getImage(this.adminService.usersStorage().imageId);
-    this.userName = this.adminService.usersStorage().email;
+    this.userName = this.adminService.usersStorage().name;
     let roles = this.storage.read(AUTH.ROLES);
     console.log(roles);
     const privilege = new Set<string>();
@@ -97,7 +97,7 @@ export class DefaultLayoutComponent implements OnInit {
       privilege.add(MENU_NAME.EMPLOYYE_ADD);
       privilege.add(MENU_NAME.EMPLOYYE_LIST);
     }
-    if(roles==ROLES.DEALER ||roles==ROLES.SUPER_ADMIN ){
+    if(roles==ROLES.DEALER ){
       privilege.add(MENU_NAME.DEALER_SHOP);
       privilege.add(MENU_NAME.DEALER_CART);
       privilege.add(MENU_NAME.DEALER_PURCHASE_HISTORY);
@@ -120,6 +120,7 @@ export class DefaultLayoutComponent implements OnInit {
       privilege.add(MENU_NAME.ACCOUNTS_VERIFIED_TRANSACTION);
       privilege.add(MENU_NAME.ACCOUNTS_UNVERIFIED_TRANSACTION);
     }
+    privilege.add(MENU_NAME.PROFILE);
     this.navItems = this.filterNavItems(getNavItems(), privilege);
     console.log(this.navItems);
   }

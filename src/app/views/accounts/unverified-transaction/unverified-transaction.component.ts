@@ -46,7 +46,6 @@ export class UnverifiedTransactionComponent implements OnInit {
         (response) => {
           this.transaction = response;
           this.dataSource.data = response as Transaction[];
-          console.log(this.transaction);
         },
         (error) => console.log(error),
       );
@@ -72,9 +71,7 @@ export class UnverifiedTransactionComponent implements OnInit {
     this.service.completeTransaction(data.id).subscribe
     (
       (response) => {
-        this.verifyRequisition(data);
-        console.log(response);
-        
+        this.verifyRequisition(data);        
       }, (error) => {
         console.log(error);
         this.toastService.openSnackBar(success_message.FAILD, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
@@ -109,7 +106,6 @@ export class UnverifiedTransactionComponent implements OnInit {
         this.service.verifyRequisition(id).subscribe
         (
           (res)=>{
-            console.log(res);
           },
           (error)=>{
             console.log(error);
@@ -183,7 +179,6 @@ export class UnverifiedTransactionComponent implements OnInit {
           (
             (response) => {
               this.loading=false;
-              console.log(response);
             }, (error) => {
               this.loading=false;
 

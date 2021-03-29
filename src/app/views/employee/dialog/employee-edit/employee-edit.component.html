@@ -40,6 +40,21 @@
                   </mat-form-field>
                 </div>
 
+                <div class="col-md-6">
+                    <mat-form-field>
+                      <mat-label>{{' Present Address:'}}</mat-label>
+                      <input matInput placeholder="Enter Present Address: ​" [required]="true" #presentAddress="ngModel" name="presentAddress"
+                        [(ngModel)]="admin.presentAddress">
+                    </mat-form-field>
+                  </div>
+          
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <mat-label>{{' Permanent Address:'}}</mat-label>
+                      <input matInput placeholder="Enter Permanent Address: ​" [required]="true" #permanentAddress="ngModel" name="permanentAddress"
+                        [(ngModel)]="admin.permanentAddress">
+                    </mat-form-field>
+                  </div>
 
                 <div class="col-md-6">
                 <mat-radio-group  [required]="true" aria-label="State" #gender='ngModel'

@@ -22,10 +22,15 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: URL_NAME.PRODUCT,
+        redirectTo: URL_NAME.PROFILE,
         pathMatch: 'full',
       },
     
+      {
+        path: URL_NAME.PROFILE,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/profile/profile.module').then(m => m.ProfileModule)
+      },
       {
         path: URL_NAME.CATEGORY,
         canActivate: [AuthGuard],
