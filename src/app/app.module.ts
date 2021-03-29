@@ -32,6 +32,7 @@ import { UnauthorizedComponent } from './common/component/error/unauthorized.com
 import {UserTestComponent} from "./common/component/error/user-test.component";
 import { FormsModule } from '@angular/forms';
 import { Auth } from './common/model/auth';
+import { LoaderComponent } from './common/component/loader/loader.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     P500Component,
     UnauthorizedComponent,
     UserTestComponent,
+    LoaderComponent
   ],
   imports: [
     FormsModule,
