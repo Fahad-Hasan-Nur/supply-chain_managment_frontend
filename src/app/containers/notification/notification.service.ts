@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 // import {notification_status} from '../../constant/notification-status';
 // import {MasterService} from '../../meeting/core/master.service';
 // import {END_POINT_WEB_SOCKET_CONNECTION} from '../../constant/api';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../environments/environment.a';
 
 @Injectable({
   providedIn: 'root'

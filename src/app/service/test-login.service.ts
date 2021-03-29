@@ -2,7 +2,7 @@ import { LOGIN_API } from './../common/constant/api.constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {environment} from "../../environments/environment";
+import {environment} from "../../environments/environment.a";
 import {GREETING_SERVICE} from "../common/constant/api.constants";
 import { AUTH } from '../common/constant/global-variables.constant';
 import { StorageService } from '../common/service/storage/storage.service';
