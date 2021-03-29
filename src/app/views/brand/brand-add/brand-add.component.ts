@@ -19,7 +19,7 @@ import { AdminService } from '../../../service/admin/admin.service';
 })
 export class BrandAddComponent implements OnInit {
 
-  @ViewChild(LoaderComponent, { static: false }) 
+  @ViewChild(LoaderComponent) 
   
   public loader: LoaderComponent;
   public imageError: string;

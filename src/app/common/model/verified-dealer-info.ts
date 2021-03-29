@@ -1,4 +1,6 @@
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class VerifiedDealerInfo {
     public id ?: string;
     public createdBy?: string;

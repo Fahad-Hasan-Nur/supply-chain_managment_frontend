@@ -1,5 +1,7 @@
 import { Variation } from './variation';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class Product {
   public id ?: string;
   public name?: string ;

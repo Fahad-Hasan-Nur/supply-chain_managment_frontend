@@ -1,3 +1,5 @@
+import { Injectable } from "@angular/core";
+@Injectable()
 export class Transaction {
     public requisitionId?:string;
     public id?: string ;

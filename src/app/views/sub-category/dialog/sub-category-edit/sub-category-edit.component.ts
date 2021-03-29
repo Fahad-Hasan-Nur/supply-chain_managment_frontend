@@ -20,7 +20,7 @@ export class SubCategoryEditComponent implements OnInit {
 
   public categoryList: Category[] = [];
 
-  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent) public loader: LoaderComponent;
 
   constructor(
     private categoryService: CategoryService,

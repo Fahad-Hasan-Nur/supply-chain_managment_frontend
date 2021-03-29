@@ -28,7 +28,7 @@ export class BrandViewComponent implements OnInit {
   public retrievedImage: any;
   public base64Data: any;
   public retrieveResonse: any;
-  @ViewChild('cfcAutosize', {static: false})
+  @ViewChild('cfcAutosize')
   public contentFCAutosize: CdkTextareaAutosize;
   public ngOnInit() {
     this.getImage(this.brand.imageId);

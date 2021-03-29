@@ -19,7 +19,7 @@ import { LoaderComponent } from '../loader.component';
 })
 export class CategoryAddComponent implements OnInit {
 
-  @ViewChild(LoaderComponent, { static: false })
+  @ViewChild(LoaderComponent)
 
   public loader: LoaderComponent;
   public myFilter: any;

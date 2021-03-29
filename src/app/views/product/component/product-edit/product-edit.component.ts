@@ -39,14 +39,14 @@ export class ProductEditComponent implements OnInit {
   fruits: string[] = [];
   allFruits: string[] = ['Black', 'Red', 'Green', 'Blue', 'White'];
 
-  @ViewChild('fruitInput',{ static: false }) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto',{ static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
 
 
 
-  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent) public loader: LoaderComponent;
 
   public imageError: string;
   public isImageSaved: boolean;
