@@ -3,7 +3,7 @@ import { Component, HostListener, Inject, NgZone, OnInit, ViewChild } from '@ang
 import {  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { take } from 'rxjs/operators';
 import { EDITOR_OPTIONS_MEDIUM } from '../../../../../common/constant/editor.constants';
-import { Category } from '../../../../../common/model/Category';
+import { Category } from '../../../../../common/model/category';
 
 @Component({
   selector: 'app-category-view',

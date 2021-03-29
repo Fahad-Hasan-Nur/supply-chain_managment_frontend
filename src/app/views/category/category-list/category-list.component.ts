@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { URL } from '../../../common/constant/nav.constant';
-import { Category } from '../../../common/model/Category';
+import { Category } from '../../../common/model/category';
 import { CategoryService } from '../../../service/product/category.service';
 import { CategoryEditComponent } from './dialog/category-edit/category-edit.component';
 import { CategoryViewComponent } from './dialog/category-view/category-view.component';

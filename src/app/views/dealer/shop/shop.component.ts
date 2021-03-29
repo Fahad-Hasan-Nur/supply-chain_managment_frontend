@@ -9,7 +9,7 @@ import { Product } from './../../../common/model/product';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { success_message } from '../../../common/constant/messages';
 import { Brand } from '../../../common/model/brand';
-import { Category } from '../../../common/model/Category';
+import { Category } from '../../../common/model/category';
 import { SubCategory } from '../../../common/model/sub-category';
 import { LoaderComponent } from '../loader.component';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';

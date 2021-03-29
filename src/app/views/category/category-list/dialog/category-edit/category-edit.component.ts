@@ -1,4 +1,4 @@
-import { Category } from '../../../../../common/model/Category';
+import { Category } from '../../../../../common/model/category';
 import { Component, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { StateService } from '../../../../../common/service/state.service';
 import { ToastService } from '../../../../../common/service/toast.service';

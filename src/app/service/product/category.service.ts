@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { PRODUCT_API } from '../../common/constant/api.constants';
 import { AUTH } from '../../common/constant/global-variables.constant';
 import { StorageService } from '../../common/service/storage/storage.service';
-import { Category } from '../../common/model/Category';
+import { Category } from '../../common/model/category';
 
 @Injectable({
   providedIn: 'root'

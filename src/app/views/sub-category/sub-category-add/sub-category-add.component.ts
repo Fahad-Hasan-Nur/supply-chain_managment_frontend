@@ -2,7 +2,7 @@ import { SubCategory } from './../../../common/model/sub-category';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material';
 import * as _ from 'lodash';
-import { Category } from '../../../common/model/Category';
+import { Category } from '../../../common/model/category';
 import { StateService } from '../../../common/service/state.service';
 import { ToastService } from '../../../common/service/toast.service';
 import { CategoryService } from '../../../service/product/category.service';
@@ -20,7 +20,7 @@ import { AdminService } from '../../../service/admin/admin.service';
 })
 export class SubCategoryAddComponent implements OnInit {
 
-  @ViewChild(LoaderComponent) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent,{static:true}) public loader: LoaderComponent;
 
   public categoryList: Category[] = [];
   public myFilter: any;

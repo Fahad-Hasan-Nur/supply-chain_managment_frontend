@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import {Admin} from "../model/admin";
 import { Product } from '../model/product';
 import { Auth } from '../model/auth';
-import { Category } from '../model/Category';
+import { Category } from '../model/category';
 import { SubCategory } from '../model/sub-category';
 import { Transaction } from '../model/transaction';
 import { VerifiedDealerInfo } from '../model/verified-dealer-info';

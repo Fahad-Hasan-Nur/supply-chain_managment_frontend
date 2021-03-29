@@ -6,7 +6,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent, MatDi
 import * as _ from 'lodash';
 import { success_message } from '../../../common/constant/messages';
 import { Brand } from '../../../common/model/brand';
-import { Category } from '../../../common/model/Category';
+import { Category } from '../../../common/model/category';
 import { Product } from '../../../common/model/product';
 import { SubCategory } from '../../../common/model/sub-category';
 import { StateService } from '../../../common/service/state.service';
@@ -39,13 +39,13 @@ export class ProductAddComponent implements OnInit {
   fruits: string[] = [];
   allFruits: string[] = ['Black', 'Red', 'Green', 'Blue', 'White'];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('fruitInput',{static:true}) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto',{static:true}) matAutocomplete: MatAutocomplete;
 
 
 
 
-  @ViewChild(LoaderComponent) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent,{static:true}) public loader: LoaderComponent;
 
   public imageError: string;
   public isImageSaved: boolean;

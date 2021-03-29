@@ -7,7 +7,7 @@ import { StateService } from '../../../../common/service/state.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { success_message } from '../../../../common/constant/messages';
 import { CategoryService } from '../../../../service/product/category.service';
-import { Category } from '../../../../common/model/Category';
+import { Category } from '../../../../common/model/category';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AdminService } from '../../../../service/admin/admin.service';
 
@@ -20,7 +20,7 @@ export class SubCategoryEditComponent implements OnInit {
 
   public categoryList: Category[] = [];
 
-  @ViewChild(LoaderComponent) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent,{static:true}) public loader: LoaderComponent;
 
   constructor(
     private categoryService: CategoryService,

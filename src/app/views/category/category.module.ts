@@ -2,7 +2,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Category } from '../../common/model/Category';
+import { Category } from '../../common/model/category';
 import { DemoMaterialModule } from '../../material.module';
 import { LoaderComponent } from './loader.component';
 import { CategoryAddComponent } from './category-add/category-add.component';

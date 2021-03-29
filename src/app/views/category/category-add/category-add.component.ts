@@ -4,7 +4,7 @@ import { MatDialog, MatTableDataSource } from '@angular/material';
 import * as _ from 'lodash';
 import { success_message } from '../../../common/constant/messages';
 import { Brand } from '../../../common/model/brand';
-import { Category } from '../../../common/model/Category';
+import { Category } from '../../../common/model/category';
 import { StateService } from '../../../common/service/state.service';
 import { ToastService } from '../../../common/service/toast.service';
 import { AppBreadcrumbService } from '../../../core/breadcrumb/app-breadcrumb.service';
