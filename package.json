@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
+   
     "build:prod": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress --base-href=/prj/ --deploy-url=/prj/",
     "lint": "ng lint",
     "e2e": "ng e2e",
