@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 import { Product } from '../../common/model/product';
 import { DemoMaterialModule } from '../../material.module';
 import { ProductEditComponent } from './component/product-edit/product-edit.component';
@@ -37,6 +38,7 @@ import { VariationComponent } from './component/variation/variation.component';
     FormsModule,
     DemoMaterialModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
   ],
   providers: [DatePipe, Product,Variation],
 })

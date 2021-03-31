@@ -1,6 +1,4 @@
-import { Injectable } from "@angular/core";
 
-@Injectable()
 export class Brand {
     public id?: string;
     public name?: string ;

@@ -24,7 +24,7 @@ export class CategoryViewComponent implements OnInit {
   ngOnInit() {
     this.toolbarOptions = EDITOR_OPTIONS_MEDIUM;
   }
-  @ViewChild('cfcAutosize')
+  @ViewChild('cfcAutosize', {static: false})
   public contentFCAutosize: CdkTextareaAutosize;
 
   @HostListener('window:keyup.esc') public onKeyUp() {

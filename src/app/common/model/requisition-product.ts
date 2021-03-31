@@ -1,5 +1,3 @@
-import { Injectable } from "@angular/core";
-@Injectable()
 export class RequisitionProduct {
     public id?: string ;
     public totalCost?: number;

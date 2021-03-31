@@ -22,7 +22,7 @@ import { URL } from '../../../../common/constant/nav.constant';
 export class VariationComponent implements OnInit {
   
   @ViewChild(MatSort, {static: true}) public sort: MatSort;
-  @ViewChild(LoaderComponent) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
     public toolbarOptions;
     myControl = new FormControl();

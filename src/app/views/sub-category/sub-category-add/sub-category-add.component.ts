@@ -20,7 +20,7 @@ import { AdminService } from '../../../service/admin/admin.service';
 })
 export class SubCategoryAddComponent implements OnInit {
 
-  @ViewChild(LoaderComponent,{static:true}) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
   public categoryList: Category[] = [];
   public myFilter: any;

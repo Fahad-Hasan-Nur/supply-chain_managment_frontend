@@ -1,29 +1,45 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+// in live change
+// export const IS_LIVE = '#IS_LIVE#';
+// export const APPLICATION_NAME = '#APPLICATION-NAME#';
 
-export const IS_LIVE = true;
-
-/* Copy this file as environment.ts.ts and modify variables as necessary - Imtiaz */
+/* Live/production deployment configuration variables */
 export const environment = {
-  production: false,
-  //GATEWAY_URL: 'http://localhost:8080/',
-  GATEWAY_URL: 'https://nur-ecommerce-backend.herokuapp.com/',
-  GLOBAL_GATEWAY_URL: 'http://dev-hscm.grp.gov.bd/global/api',
-  NOTIFICATION_URL: 'http://dev-hscm.grp.gov.bd/bcc/notification',
-  LOG_IN_API_Endpoint: 'http://localhost:4200',
-  SERVICE_CONTEXT: 'grp-prj-service',
-  FILE_SERVICE_CONTEXT:'cmn-service-file-management/cmn-service-file-management',
+  production: true,
+  GATEWAY_URL: '#GATEWAY_URL#',
+  GLOBAL_GATEWAY_URL: '#GLOBAL_GATEWAY_URL#',
+  NOTIFICATION_URL: '#NOTIFICATION_URL#',
+  LOG_IN_API_Endpoint: '#LOG_IN_API_ENDPOINT#',
+  SERVICE_CONTEXT: '#PRJ_SERVICE_CONTEXT#',
+  FILE_SERVICE_CONTEXT: '#FILE_SERVICE_CONTEXT#',
   IS_MODAL_OPEN: false
-  //    // "start": "ng serve -c production --host 0.0.0.0 --disableHostCheck",
-
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+/**
+ * Live and production deployment configuration variables.
  *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// export const environment = {
+//   production: true,
+//   GATEWAY_URL: '#GATEWAY_URL#',
+//   GLOBAL_GATEWAY_URL: '#GLOBAL_GATEWAY_URL#',
+//   NOTIFICATION_URL: '#NOTIFICATION_URL#',
+//   LOG_IN_API_Endpoint: '#LOG_IN_API_ENDPOINT#',
+//   SERVICE_CONTEXT: '#PRJ_SERVICE_CONTEXT#',
+//   FILE_SERVICE_CONTEXT: '#FILE_SERVICE_CONTEXT#',
+//   IS_MODAL_OPEN: false
+// };
+
+
+
+/*
+export const environment.ts = {
+  production: true,
+  GATEWAY_URL: 'http://'+window.location.hostname+':8080',
+  GLOBAL_GATEWAY_URL: 'http://dev-hscm.grp.gov.bd/global/api',
+  NOTIFICATION_URL: 'http://dev-hscm.grp.gov.bd/bcc/notification',
+  LOG_IN_API_Endpoint: 'http://dev-hscm.grp.gov.bd/global/web',
+  SERVICE_CONTEXT: 'grp-prj-service',
+  FILE_SERVICE_CONTEXT: 'cmn-service-file-management/cmn-service-file-management',
+  IS_MODAL_OPEN: false
+};
+*/

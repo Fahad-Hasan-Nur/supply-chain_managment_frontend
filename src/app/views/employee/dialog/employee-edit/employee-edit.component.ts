@@ -16,7 +16,7 @@ import * as _ from 'lodash';
 })
 export class EmployeeEditComponent implements OnInit {
 
-  @ViewChild(LoaderComponent) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
   public imageError: string;
   public isImageSaved: boolean;

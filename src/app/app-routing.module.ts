@@ -125,9 +125,8 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules,
     paramsInheritanceStrategy: 'always',
-    initialNavigation: 'enabled',
-    relativeLinkResolution: 'legacy'
-})],
+    initialNavigation: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

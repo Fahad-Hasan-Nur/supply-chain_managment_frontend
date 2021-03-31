@@ -5,7 +5,7 @@ import { StorageService } from '../storage/storage.service';
 import {AUTH} from '../../constant/global-variables.constant'
 // import { UsersService } from '../../../service/users/users.service';
 import { Router } from '@angular/router';
-import {environment} from "../../../../environments/environment.prod";
+import {environment} from "../../../../environments/environment";
 import {StateService} from "../state.service";
 import { Admin } from '../../model/admin';
 import { AdminService } from '../../../service/admin/admin.service';

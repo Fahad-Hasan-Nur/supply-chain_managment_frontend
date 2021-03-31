@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppSidebarNavLinkComponent } from './ast-sidebar-nav-link.component';
 
@@ -6,7 +6,7 @@ describe('AppSidebarNavLinkComponent', () => {
   let component: AppSidebarNavLinkComponent;
   let fixture: ComponentFixture<AppSidebarNavLinkComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AppSidebarNavLinkComponent ]
     })

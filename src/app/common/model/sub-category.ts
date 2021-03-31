@@ -1,6 +1,4 @@
-import { Injectable } from "@angular/core";
 
-@Injectable()
 export class SubCategory {
     public id?:string;
     public name?: string ;

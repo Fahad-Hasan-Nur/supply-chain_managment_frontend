@@ -39,13 +39,13 @@ export class ProductAddComponent implements OnInit {
   fruits: string[] = [];
   allFruits: string[] = ['Black', 'Red', 'Green', 'Blue', 'White'];
 
-  @ViewChild('fruitInput',{static:true}) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto',{static:true}) matAutocomplete: MatAutocomplete;
+  @ViewChild('fruitInput',{ static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto',{ static: false }) matAutocomplete: MatAutocomplete;
 
 
 
 
-  @ViewChild(LoaderComponent,{static:true}) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
 
   public imageError: string;
   public isImageSaved: boolean;

@@ -17,7 +17,7 @@ import { LoaderComponent } from '../loader.component';
 })
 export class EmployeeAddComponent implements OnInit {
 
-  @ViewChild(LoaderComponent) 
+  @ViewChild(LoaderComponent, { static: false }) 
   public loader: LoaderComponent;
 
   public myFilter: any;

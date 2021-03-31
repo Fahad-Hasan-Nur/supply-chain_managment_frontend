@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 const SERVICE_API = environment.GATEWAY_URL;
 

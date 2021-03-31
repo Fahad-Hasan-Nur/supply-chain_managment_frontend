@@ -1,7 +1,7 @@
 import { Admin } from './common/model/admin';
-import {BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG, HAMMER_LOADER} from '@angular/platform-browser';
+import {BrowserModule, HAMMER_LOADER} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {Injectable, LOCALE_ID, NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {AppComponent} from './app.component';
@@ -32,21 +32,12 @@ import { UnauthorizedComponent } from './common/component/error/unauthorized.com
 import {UserTestComponent} from "./common/component/error/user-test.component";
 import { FormsModule } from '@angular/forms';
 import { Auth } from './common/model/auth';
-import { LoaderComponent } from './common/component/loader/loader.component';
-import {NgxGalleryModule} from 'ngx-gallery-9';
-
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-@Injectable() export class CustomHammerConfig extends HammerGestureConfig  {
-  overrides = {
-      pinch: { enable: false },
-      rotate: { enable: false }
-  };
 }
 
 @NgModule({
@@ -58,7 +49,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     P500Component,
     UnauthorizedComponent,
     UserTestComponent,
-    LoaderComponent
   ],
   imports: [
     FormsModule,
@@ -89,7 +79,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     {provide: MAT_DATE_LOCALE,useValue: 'es-ES'},
     {provide: LOCALE_ID, useValue: 'es-ES'},
-    {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
     {provide: MatPaginatorIntl, useValue: getBnPaginatorIntl()},
     ThemeService,DatePipe,
       {
@@ -97,9 +86,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useValue: () => new Promise(() => {
         })
       }],
-    bootstrap: [AppComponent],
-
-
+    bootstrap: [AppComponent]
 
 })
 export class AppModule { }
