@@ -1,11 +1,11 @@
 {
-  "name": "@grp/prj",
+  "name": "@nur/suplly_chain",
   "version": "1.0.0",
-  "description": "Project Planing Management Module",
+  "description": "Suply Chain Managment",
   "author": {
-    "name": "Rashedul Islam"
+    "name": "Fahad Hasan"
   },
-  "copyright": "Copyright 2019 Rashedul Islam",
+  "copyright": "Copyright 2021 Fahad Hasan",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
