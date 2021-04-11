@@ -15,7 +15,7 @@ import { AdminService } from '../../../../../service/admin/admin.service';
 })
 export class CategoryEditComponent implements OnInit {
 
-  @ViewChild(LoaderComponent, { static: false }) public loader: LoaderComponent;
+  @ViewChild(LoaderComponent) public loader: LoaderComponent;
 
   public imageError: string;
   public isImageSaved: boolean;

@@ -16,7 +16,7 @@ export class VerifiedRequisitionComponent implements OnInit {
   constructor(private service: DealerService, protected dialog: MatDialog,private toastService:ToastService) { }
   public requisition: Requisition[] = [];
   public loading:boolean=false;
-  public displayedColumns: string[] = ['Product Name', 'Status','action'];
+  public displayedColumns: string[] = ['Creation Time', 'Status','action'];
   public dataSource = new MatTableDataSource;
   public showFilters: boolean;
   @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;

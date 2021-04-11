@@ -18,9 +18,14 @@
 <br/>
 <table [dataSource]="dataSource" mat-table matSort>
 
-    <ng-container matColumnDef="Product Name">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Product Name</th>
-        <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    <ng-container matColumnDef="Creation Time">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Creation Time</th>
+        <td *matCellDef="let element" mat-cell> {{element.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Requisition Id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Requisition Id</th>
+        <td *matCellDef="let element" mat-cell> {{element.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Status">
@@ -29,14 +34,14 @@
     </ng-container>
 
 
-    <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
         <td *matCellDef="let element" mat-cell>
             <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element)">
                 <i class="fa fa-eye"></i>
             </a>
         </td>
-    </ng-container>
+    </ng-container> -->
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
     <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 </table>

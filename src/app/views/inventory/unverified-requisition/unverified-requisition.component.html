@@ -18,9 +18,9 @@
 <br/>
 <table [dataSource]="dataSource" mat-table matSort>
 
-    <ng-container matColumnDef="Product Name">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Product Name</th>
-        <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    <ng-container matColumnDef="Creation Time">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Creation Time</th>
+        <td *matCellDef="let element" mat-cell> {{element.createdAt}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Status">
@@ -32,9 +32,6 @@
     <ng-container matColumnDef="action">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Action</th>
         <td *matCellDef="let element" mat-cell>
-            <a class="btn btn-primary" matTooltip="Details" (click)="openDialogView(element)">
-                <i class="fa fa-eye"></i>
-            </a>
             <a class="btn btn-warning" matTooltip="Ask for Verification." (click)="verifyTransaction(element)">
                 <i class="fa fa-check-square-o"></i>
             </a>

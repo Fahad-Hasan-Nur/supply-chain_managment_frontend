@@ -18,7 +18,7 @@ export class UnverifiedRequisitionComponent implements OnInit {
     ) { }
   public requisition: Requisition[] = [];
   public transaction: Transaction[] = [];
-  public displayedColumns: string[] = ['Product Name', 'Status','action'];
+  public displayedColumns: string[] = ['Creation Time', 'Status','action'];
   public dataSource = new MatTableDataSource;
   public showFilters: boolean;
   public loading: boolean=false;
@@ -42,16 +42,6 @@ export class UnverifiedRequisitionComponent implements OnInit {
       this.dataSource.filter = filterValue.value.trim().toLowerCase();
   }
   public search(data) {  }
-
-  openDialogView(data?) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-        requisition: data
-    };
-    this.dialog.open(RequisitionViewComponent, dialogConfig);
-  }
 
   public verifyTransaction(data?) {
     this.loading=true;

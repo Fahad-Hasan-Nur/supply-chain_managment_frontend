@@ -103,14 +103,25 @@ export class UnverifiedTransactionComponent implements OnInit {
       this.loading = false;
     }
     private changeStatus(id:string){
-        this.service.verifyRequisition(id).subscribe
-        (
-          (res)=>{
-          },
-          (error)=>{
-            console.log(error);
-          }
-        )
+      this.service.getRequisitionById(id).subscribe
+      (
+        (response) => {
+          this.req=response;
+          if(this.req.status!="Complete"){
+            this.service.verifyRequisition(id).subscribe
+            (
+              (res)=>{
+              },
+              (error)=>{
+                console.log(error);
+              }
+            )
+          } 
+        }, (error) => {
+          console.log(error);
+
+        }); 
+        
     }
     public deleteTransaction(data:Transaction){
       this.loading=true;
@@ -123,9 +134,6 @@ export class UnverifiedTransactionComponent implements OnInit {
         }, (error) => {
           console.log(error);
           this.updateRequisition(data.requisitionId);
-
-        //  this.toastService.openSnackBar(error_message.FAILED_DELETE, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-       //   this.loading = false;
         }); 
 
     }

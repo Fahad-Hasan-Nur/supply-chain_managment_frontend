@@ -13,7 +13,7 @@ export class UnderProcessingRequisitionComponent implements OnInit {
 
   constructor(private service: DealerService, protected dialog: MatDialog) { }
   public requisition: Requisition[] = [];
-  public displayedColumns: string[] = ['Product Name', 'Status','action'];
+  public displayedColumns: string[] = ['Creation Time','Requisition Id', 'Status',];
   public dataSource = new MatTableDataSource;
   public showFilters: boolean;
   @ViewChild(MatPaginator, {static: true}) public paginator: MatPaginator;

@@ -25,7 +25,7 @@ export class SubCategoryViewComponent implements OnInit {
     ) {
       this.subCategory = data.subCategory;
   }
-  @ViewChild('cfcAutosize', {static: false})
+  @ViewChild('cfcAutosize')
   public contentFCAutosize: CdkTextareaAutosize;
   
   @HostListener('window:keyup.esc') public onKeyUp() {

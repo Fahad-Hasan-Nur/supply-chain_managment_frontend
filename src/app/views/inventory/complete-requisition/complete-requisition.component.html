@@ -18,9 +18,14 @@
 <br/>
 <table [dataSource]="dataSource" mat-table matSort>
 
-    <ng-container matColumnDef="Product Name">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Product Name</th>
-        <td *matCellDef="let element" mat-cell> {{element.productName}} </td>
+    <ng-container matColumnDef="Creation Time">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Creation Time</th>
+        <td *matCellDef="let element" mat-cell> {{element.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Requisition Id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Requisition Id</th>
+        <td *matCellDef="let element" mat-cell> {{element.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Status">
